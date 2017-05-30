@@ -38,7 +38,7 @@ public class PantallaPrincipalCalendarioActividades extends javax.swing.JPanel {
         etiquetaHora = new javax.swing.JLabel();
         comboBoxHoraInicio = new javax.swing.JComboBox<>();
         botonBuscar = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        scrollPanelTablaActividades = new javax.swing.JScrollPane();
         tablaActividadesDisponibles = new javax.swing.JTable();
         botonAgregarActividad = new javax.swing.JButton();
 
@@ -97,7 +97,7 @@ public class PantallaPrincipalCalendarioActividades extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(tablaActividadesDisponibles);
+        scrollPanelTablaActividades.setViewportView(tablaActividadesDisponibles);
 
         botonAgregarActividad.setText("Agregar actividad");
 
@@ -108,7 +108,7 @@ public class PantallaPrincipalCalendarioActividades extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
+                    .addComponent(scrollPanelTablaActividades, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(botonAgregarActividad)))
@@ -150,7 +150,7 @@ public class PantallaPrincipalCalendarioActividades extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(scrollPanelTablaActividades, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addComponent(etiquetaDia)
@@ -178,11 +178,11 @@ public class PantallaPrincipalCalendarioActividades extends javax.swing.JPanel {
     private javax.swing.JLabel etiquetaCriterioBusqueda;
     private javax.swing.JLabel etiquetaDia;
     private javax.swing.JLabel etiquetaHora;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane scrollPanelTablaActividades;
     private javax.swing.JTable tablaActividadesDisponibles;
     // End of variables declaration//GEN-END:variables
 }

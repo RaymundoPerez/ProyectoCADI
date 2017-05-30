@@ -41,6 +41,16 @@ public class PanelAgregarActividadCalendario extends javax.swing.JPanel {
         comboBoxHoraInicio = new javax.swing.JComboBox<>();
         etiquetaFin = new javax.swing.JLabel();
         comboBoxHoraFin = new javax.swing.JComboBox<>();
+        etiquetaDiasDisponibles = new javax.swing.JLabel();
+        checkBoxLunes = new javax.swing.JCheckBox();
+        checkBoxMartes = new javax.swing.JCheckBox();
+        checkBoxMiercoles = new javax.swing.JCheckBox();
+        checkBoxJueves = new javax.swing.JCheckBox();
+        checkBoxViernes = new javax.swing.JCheckBox();
+        checkBoxSabado = new javax.swing.JCheckBox();
+        botonCancelar = new javax.swing.JButton();
+        botonAgregarActividad = new javax.swing.JButton();
+        checkBoxTodaSemana = new javax.swing.JCheckBox();
 
         etiquetaAgregarActividad.setText("Agregar actividad");
 
@@ -66,28 +76,50 @@ public class PanelAgregarActividadCalendario extends javax.swing.JPanel {
 
         comboBoxHoraFin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        etiquetaDiasDisponibles.setText("Seleccione los dias que estará disponible la actividad");
+
+        checkBoxLunes.setText("Lunes");
+
+        checkBoxMartes.setText("Martes");
+
+        checkBoxMiercoles.setText("Miércoles");
+
+        checkBoxJueves.setText("Jueves");
+
+        checkBoxViernes.setText("Viernes");
+
+        checkBoxSabado.setText("Sabado");
+
+        botonCancelar.setText("Cancelar");
+
+        botonAgregarActividad.setText("Agregar Actividad");
+
+        checkBoxTodaSemana.setText("Toda la semana");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(315, 315, 315)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(etiquetaAgregarActividad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jSeparator1)
-                    .addComponent(jSeparator2)
-                    .addComponent(comboBoxIdioma, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(comboBoxCurso, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(318, 318, 318)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(etiquetaAgregarActividad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jSeparator1)
+                            .addComponent(jSeparator2)
+                            .addComponent(comboBoxIdioma, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(comboBoxCurso, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(350, 350, 350)
+                        .addComponent(etiquetaIdioma)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(223, Short.MAX_VALUE)
+                .addContainerGap(44, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(etiquetaCurso)
-                        .addGap(330, 330, 330))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(etiquetaIdioma)
-                        .addGap(322, 322, 322))
+                        .addGap(336, 336, 336))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(comboBoxActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(247, 247, 247))
@@ -105,7 +137,30 @@ public class PanelAgregarActividadCalendario extends javax.swing.JPanel {
                         .addGap(199, 199, 199))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(etiquetaHora)
-                        .addGap(278, 278, 278))))
+                        .addGap(278, 278, 278))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(etiquetaDiasDisponibles)
+                        .addGap(157, 157, 157))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(checkBoxLunes)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(checkBoxMartes)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(checkBoxMiercoles)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(checkBoxJueves)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(checkBoxViernes)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(checkBoxSabado))
+                            .addComponent(botonAgregarActividad, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(checkBoxTodaSemana)
+                            .addComponent(botonCancelar))
+                        .addGap(61, 61, 61))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,12 +191,36 @@ public class PanelAgregarActividadCalendario extends javax.swing.JPanel {
                     .addComponent(comboBoxHoraInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(etiquetaFin)
                     .addComponent(comboBoxHoraFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(206, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(etiquetaDiasDisponibles)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(checkBoxLunes)
+                    .addComponent(checkBoxMartes)
+                    .addComponent(checkBoxMiercoles)
+                    .addComponent(checkBoxJueves)
+                    .addComponent(checkBoxViernes)
+                    .addComponent(checkBoxSabado)
+                    .addComponent(checkBoxTodaSemana))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonCancelar)
+                    .addComponent(botonAgregarActividad))
+                .addGap(30, 30, 30))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonAgregarActividad;
+    private javax.swing.JButton botonCancelar;
+    private javax.swing.JCheckBox checkBoxJueves;
+    private javax.swing.JCheckBox checkBoxLunes;
+    private javax.swing.JCheckBox checkBoxMartes;
+    private javax.swing.JCheckBox checkBoxMiercoles;
+    private javax.swing.JCheckBox checkBoxSabado;
+    private javax.swing.JCheckBox checkBoxTodaSemana;
+    private javax.swing.JCheckBox checkBoxViernes;
     private javax.swing.JComboBox<String> comboBoxActividad;
     private javax.swing.JComboBox<String> comboBoxCurso;
     private javax.swing.JComboBox<String> comboBoxHoraFin;
@@ -149,6 +228,7 @@ public class PanelAgregarActividadCalendario extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> comboBoxIdioma;
     private javax.swing.JLabel etiquetaAgregarActividad;
     private javax.swing.JLabel etiquetaCurso;
+    private javax.swing.JLabel etiquetaDiasDisponibles;
     private javax.swing.JLabel etiquetaFin;
     private javax.swing.JLabel etiquetaHora;
     private javax.swing.JLabel etiquetaIdioma;
