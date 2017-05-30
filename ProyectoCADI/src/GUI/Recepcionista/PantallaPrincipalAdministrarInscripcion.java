@@ -27,7 +27,7 @@ public class PantallaPrincipalAdministrarInscripcion extends javax.swing.JPanel 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane2 = new javax.swing.JScrollPane();
+        scrollPanelTablaAlumnos = new javax.swing.JScrollPane();
         tablaAlumnos = new javax.swing.JTable();
         botonNuevaInscripcion = new javax.swing.JButton();
         etiquetaTotalDeAlumnos = new javax.swing.JLabel();
@@ -62,7 +62,7 @@ public class PantallaPrincipalAdministrarInscripcion extends javax.swing.JPanel 
             }
         });
         tablaAlumnos.setGridColor(new java.awt.Color(204, 204, 204));
-        jScrollPane2.setViewportView(tablaAlumnos);
+        scrollPanelTablaAlumnos.setViewportView(tablaAlumnos);
 
         botonNuevaInscripcion.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         botonNuevaInscripcion.setText("Nueva inscripción ");
@@ -88,7 +88,7 @@ public class PantallaPrincipalAdministrarInscripcion extends javax.swing.JPanel 
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(scrollPanelTablaAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonNuevaInscripcion)
                     .addComponent(etiquetaTotalDeAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,7 +119,7 @@ public class PantallaPrincipalAdministrarInscripcion extends javax.swing.JPanel 
                         .addComponent(campoTextoMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(botonBuscar))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(scrollPanelTablaAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(etiquetaTotalDeAlumnos)
                 .addContainerGap(157, Short.MAX_VALUE))
@@ -137,7 +137,7 @@ public class PantallaPrincipalAdministrarInscripcion extends javax.swing.JPanel 
     private javax.swing.JTextField campoTextoMatricula;
     private javax.swing.JLabel etiquetaQueAlumnoBuscabas;
     private javax.swing.JLabel etiquetaTotalDeAlumnos;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane scrollPanelTablaAlumnos;
     private javax.swing.JTable tablaAlumnos;
     // End of variables declaration//GEN-END:variables
 }
