@@ -5,6 +5,13 @@
  */
 package GUI.UsuarioGeneral;
 
+import GUI.Coordinador.MenuCoordinador;
+import GUI.Recepcionista.MenuRecepcionista;
+import GUI.UsuarioAutonomo.MenuUsuarioAutonomo;
+import Negocio.Cuenta;
+import Negocio.CuentaDAO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author raymu
@@ -16,6 +23,8 @@ public class IniciarSesion extends javax.swing.JFrame {
      */
     public IniciarSesion() {
         initComponents();
+        setLocationRelativeTo(null);
+        setVisible(true);
     }
 
     /**
@@ -51,6 +60,11 @@ public class IniciarSesion extends javax.swing.JFrame {
         });
 
         botonIniciarSesion.setText("Iniciar Sesion");
+        botonIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonIniciarSesionActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(51, 102, 255));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -122,6 +136,65 @@ public class IniciarSesion extends javax.swing.JFrame {
     private void campoTextoContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoContraseñaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoTextoContraseñaActionPerformed
+
+    private void botonIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIniciarSesionActionPerformed
+       
+        if(campoTextoNombreUsuario.getText().isEmpty() || campoTextoContraseña.getText().isEmpty()){
+       
+             JOptionPane.showMessageDialog(null, "Algunos de los campos estan vacios");
+  
+    }else{
+        
+        Cuenta cuenta = new Cuenta();
+        CuentaDAO cuentaDAO = new CuentaDAO();
+        
+        cuenta.setNombreUsuario(campoTextoNombreUsuario.getText());
+        cuenta.setConstraseña(campoTextoContraseña.getText());
+        
+        switch(cuentaDAO.iniciarSesion(cuenta)){
+        
+            case usuarioAutonomo:
+                
+                new MenuUsuarioAutonomo();
+                
+                break;
+                
+            case recepcionista:
+                
+                new MenuRecepcionista();
+                
+                break;
+                
+            case coordinador:
+                
+                new MenuCoordinador();
+                
+                break;
+                
+            case usuarioNoValido:
+                
+                JOptionPane.showMessageDialog(null, "El usuario ingresado no es válido");
+                
+                break;
+                
+            case errorConexionBD:
+                
+                JOptionPane.showMessageDialog(null, "Oops... No podemos conectarnos con el servidor"
+                        + "intente más tarde");
+                
+                break;
+            
+            
+            
+        
+        }
+        
+        
+        
+        
+        
+        }   
+    }//GEN-LAST:event_botonIniciarSesionActionPerformed
 
     /**
      * @param args the command line arguments

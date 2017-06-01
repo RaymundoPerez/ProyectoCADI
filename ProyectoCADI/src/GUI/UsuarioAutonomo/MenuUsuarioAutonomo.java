@@ -16,6 +16,8 @@ public class MenuUsuarioAutonomo extends javax.swing.JFrame {
      */
     public MenuUsuarioAutonomo() {
         initComponents();
+        setLocationRelativeTo(null);
+        setVisible(true);
     }
 
     /**

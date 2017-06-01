@@ -7,14 +7,10 @@ package Negocio;
 
 /**
  *
- * @author raymu
+ * @author Irdevelo
  */
-public enum InformacionInicioSesion{
+public enum InformacionConexion {
     
-    usuarioAutonomo,
-    recepcionista,
-    coordinador,
-    usuarioNoValido,
-    errorConexionBD
+    conexionBDExitosa, errorConexionBD
     
 }

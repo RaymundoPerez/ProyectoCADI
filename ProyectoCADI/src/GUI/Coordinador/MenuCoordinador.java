@@ -18,6 +18,8 @@ public class MenuCoordinador extends javax.swing.JFrame {
      */
     public MenuCoordinador() {
         initComponents();
+        setLocationRelativeTo(null);
+        setVisible(true);
     }
 
     /**

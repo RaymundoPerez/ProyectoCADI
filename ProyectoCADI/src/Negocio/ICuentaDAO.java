@@ -15,4 +15,6 @@ public interface ICuentaDAO {
     
     public boolean cerrarSesión();
     
+    public InformacionInicioSesion validarCuenta(String tipoUsuario);
+    
 }

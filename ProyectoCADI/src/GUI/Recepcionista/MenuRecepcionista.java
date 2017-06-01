@@ -16,6 +16,8 @@ public class MenuRecepcionista extends javax.swing.JFrame {
      */
     public MenuRecepcionista() {
         initComponents();
+        setLocationRelativeTo(null);
+        setVisible(true);
     }
 
     /**

@@ -5,6 +5,11 @@
  */
 package Negocio;
 
+import Datos.ConexionSQL;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author raymu
@@ -13,12 +18,53 @@ public class CuentaDAO implements ICuentaDAO{
 
     @Override
     public InformacionInicioSesion iniciarSesion(Cuenta cuenta) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     
+     InformacionInicioSesion mensaje = InformacionInicioSesion.errorConexionBD; 
+     String tipoUsuario;
+     ConexionSQL conexionBD = new ConexionSQL();
+     PreparedStatement sentenciaConsulta;
+     if(conexionBD.conectarBaseDatos()== InformacionConexion.conexionBDExitosa){
+         
+         String consultaSQL = "select tipoUsuario from CUENTA where nombreUsuario =? and contrasena = sha2(?,256)";
+         try{
+             sentenciaConsulta = conexionBD.getConexion().prepareStatement(consultaSQL);
+             sentenciaConsulta.setString(1, cuenta.getNombreUsuario());
+             sentenciaConsulta.setString(2, cuenta.getConstraseña());
+             
+             ResultSet resultadoConsulta = sentenciaConsulta.executeQuery();
+             
+             resultadoConsulta.next();
+             tipoUsuario = resultadoConsulta.getString(1);
+             mensaje = validarCuenta(tipoUsuario);
+         }catch(SQLException exception){
+            
+         }      
+     }
+     
+     return mensaje;
+    
     }
 
     @Override
     public boolean cerrarSesión() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public InformacionInicioSesion validarCuenta(String tipoUsuario) {
+        InformacionInicioSesion mensaje = InformacionInicioSesion.usuarioNoValido;
+        switch(tipoUsuario){
+            case "UsuarioAutonomo":
+                    mensaje = InformacionInicioSesion.usuarioAutonomo;
+                break;
+            case "Coordinador":
+                    mensaje = InformacionInicioSesion.coordinador;
+                break;
+            case "Recepcionista":
+                    mensaje = InformacionInicioSesion.recepcionista;
+                break;
+        }
+        return mensaje;
     }
     
 }
