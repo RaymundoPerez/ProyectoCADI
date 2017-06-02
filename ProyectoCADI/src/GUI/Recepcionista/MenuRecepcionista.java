@@ -6,6 +6,8 @@
 package GUI.Recepcionista;
 
 import Negocio.Empleado;
+import java.awt.Dimension;
+import javax.swing.JPanel;
 
 /**
  *
@@ -23,12 +25,22 @@ public class MenuRecepcionista extends javax.swing.JFrame {
 
     
       public MenuRecepcionista(Empleado recepcionista) {
-        this.recepcionista = recepcionista; 
+        this.recepcionista = recepcionista;
         initComponents();
+        PantallaPrincipalAdministrarInscripcion pantalla = new PantallaPrincipalAdministrarInscripcion();
+        añadirPanelPrincipal(pantalla);
         setLocationRelativeTo(null);
         setVisible(true);
     }
     
+      public static void añadirPanelPrincipal(JPanel pantalla){
+         panelPrincipalMenuRecepcionista.removeAll();
+        Dimension dimensiones = pantalla.getPreferredSize();
+        pantalla.setBounds(0,0,dimensiones.width, dimensiones.height);
+        panelPrincipalMenuRecepcionista.add(pantalla);
+        panelPrincipalMenuRecepcionista.repaint();
+        panelPrincipalMenuRecepcionista.revalidate();
+      }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,6 +60,8 @@ public class MenuRecepcionista extends javax.swing.JFrame {
         botonInscripciones = new java.awt.Button();
         botonAvisos = new java.awt.Button();
         botonActividadesSemanales = new java.awt.Button();
+        scrollPaneMenuRecepcionista = new javax.swing.JScrollPane();
+        panelPrincipalMenuRecepcionista = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -140,6 +154,24 @@ public class MenuRecepcionista extends javax.swing.JFrame {
                 .addContainerGap(139, Short.MAX_VALUE))
         );
 
+        scrollPaneMenuRecepcionista.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPaneMenuRecepcionista.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+        panelPrincipalMenuRecepcionista.setPreferredSize(new java.awt.Dimension(0, 500));
+
+        javax.swing.GroupLayout panelPrincipalMenuRecepcionistaLayout = new javax.swing.GroupLayout(panelPrincipalMenuRecepcionista);
+        panelPrincipalMenuRecepcionista.setLayout(panelPrincipalMenuRecepcionistaLayout);
+        panelPrincipalMenuRecepcionistaLayout.setHorizontalGroup(
+            panelPrincipalMenuRecepcionistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 712, Short.MAX_VALUE)
+        );
+        panelPrincipalMenuRecepcionistaLayout.setVerticalGroup(
+            panelPrincipalMenuRecepcionistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        scrollPaneMenuRecepcionista.setViewportView(panelPrincipalMenuRecepcionista);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -147,15 +179,20 @@ public class MenuRecepcionista extends javax.swing.JFrame {
             .addComponent(panelSuperior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 709, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrollPaneMenuRecepcionista, javax.swing.GroupLayout.DEFAULT_SIZE, 731, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelSuperior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(panelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(panelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(scrollPaneMenuRecepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
         );
 
         pack();
@@ -218,6 +255,8 @@ public class MenuRecepcionista extends javax.swing.JFrame {
     private java.awt.Button botonReservaciones;
     private javax.swing.JLabel etiquetaMenu;
     private javax.swing.JPanel panelMenu;
+    private static javax.swing.JPanel panelPrincipalMenuRecepcionista;
     private java.awt.Panel panelSuperior;
+    private javax.swing.JScrollPane scrollPaneMenuRecepcionista;
     // End of variables declaration//GEN-END:variables
 }

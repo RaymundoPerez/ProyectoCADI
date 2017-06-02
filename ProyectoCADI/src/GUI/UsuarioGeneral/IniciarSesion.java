@@ -149,20 +149,20 @@ public class IniciarSesion extends javax.swing.JFrame {
             case usuarioAutonomo:
                 UsuarioAutonomoDAO usuarioAutonomo = new UsuarioAutonomoDAO();
                 new MenuUsuarioAutonomo(usuarioAutonomo.obtenerUsuarioAutonomo(campoTextoNombreUsuario.getText()));
-                
+                dispose();
                 break;
                 
             case recepcionista:
                 EmpleadoDAO recepcionista = new EmpleadoDAO();
                 
                 new MenuRecepcionista(recepcionista.obtenerEmpleado(campoTextoNombreUsuario.getText()));
-                
+                dispose();
                 break;
                 
             case coordinador:
                 EmpleadoDAO coordinador = new EmpleadoDAO();
                 new MenuCoordinador(coordinador.obtenerEmpleado(campoTextoNombreUsuario.getText()));
-                
+                dispose();
                 break;
                 
             case usuarioNoValido:

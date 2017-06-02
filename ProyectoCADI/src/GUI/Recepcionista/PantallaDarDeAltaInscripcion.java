@@ -5,16 +5,24 @@
  */
 package GUI.Recepcionista;
 
+import javax.swing.JPanel;
+
 /**
  *
  * @author Irdevelo
  */
 public class PantallaDarDeAltaInscripcion extends javax.swing.JPanel {
-
+    JPanel panelPrincipal;
     /**
      * Creates new form PantallaDarDeAlta
      */
     public PantallaDarDeAltaInscripcion() {
+        initComponents();
+    }
+    
+    public PantallaDarDeAltaInscripcion(JPanel panelPrincipal) {
+        this.panelPrincipal = panelPrincipal;
+        this.panelPrincipal.removeAll();
         initComponents();
     }
 
@@ -27,6 +35,7 @@ public class PantallaDarDeAltaInscripcion extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSeparator2 = new javax.swing.JSeparator();
         etiquetaInscripcion = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         etiquetaNombres = new javax.swing.JLabel();
@@ -47,6 +56,8 @@ public class PantallaDarDeAltaInscripcion extends javax.swing.JPanel {
         comboBoxExperienciaEducativa = new javax.swing.JComboBox<>();
         botonGuardar = new javax.swing.JButton();
         botonCancelar = new javax.swing.JButton();
+        etiquetaSeccionCurso = new javax.swing.JLabel();
+        comboBoxSeccionCurso = new javax.swing.JComboBox<>();
 
         etiquetaInscripcion.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         etiquetaInscripcion.setText("Inscripción");
@@ -101,6 +112,11 @@ public class PantallaDarDeAltaInscripcion extends javax.swing.JPanel {
 
         botonCancelar.setText("Cancelar");
 
+        etiquetaSeccionCurso.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        etiquetaSeccionCurso.setText("Sección curso:");
+
+        comboBoxSeccionCurso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -108,7 +124,6 @@ public class PantallaDarDeAltaInscripcion extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(210, 210, 210)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(etiquetaExperienciaEducativa)
                     .addComponent(etiquetaProgramaEducativo)
                     .addComponent(etiquetaCorreoElectronico)
                     .addComponent(etiquetaMatricula)
@@ -119,29 +134,33 @@ public class PantallaDarDeAltaInscripcion extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(campoTextoApellidos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
                         .addComponent(campoTextoNombres, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(comboBoxDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46)
-                        .addComponent(comboBoxMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(48, 48, 48)
-                        .addComponent(comboBoxAño, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(comboBoxExperienciaEducativa, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(comboBoxProgramaEducativo, javax.swing.GroupLayout.Alignment.LEADING, 0, 146, Short.MAX_VALUE)
                         .addComponent(campoTextoCorreoElectronico, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(campoTextoMatricula, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addContainerGap(212, Short.MAX_VALUE))
+                        .addComponent(campoTextoMatricula, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(comboBoxDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(46, 46, 46)
+                                .addComponent(comboBoxMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(48, 48, 48)
+                                .addComponent(comboBoxAño, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(etiquetaExperienciaEducativa)
+                                .addGap(56, 56, 56)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(etiquetaSeccionCurso)
+                                    .addComponent(botonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(comboBoxSeccionCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(18, 18, 18)
+                        .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(82, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(etiquetaInscripcion)
-                        .addGap(328, 328, 328))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(botonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(69, 69, 69))))
+                .addComponent(etiquetaInscripcion)
+                .addGap(328, 328, 328))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,9 +197,13 @@ public class PantallaDarDeAltaInscripcion extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(comboBoxProgramaEducativo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(etiquetaExperienciaEducativa)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etiquetaExperienciaEducativa)
+                    .addComponent(etiquetaSeccionCurso))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(comboBoxExperienciaEducativa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(comboBoxExperienciaEducativa)
+                    .addComponent(comboBoxSeccionCurso))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(botonCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
@@ -202,6 +225,7 @@ public class PantallaDarDeAltaInscripcion extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> comboBoxExperienciaEducativa;
     private javax.swing.JComboBox<String> comboBoxMes;
     private javax.swing.JComboBox<String> comboBoxProgramaEducativo;
+    private javax.swing.JComboBox<String> comboBoxSeccionCurso;
     private javax.swing.JLabel etiquetaApellidos;
     private javax.swing.JLabel etiquetaCorreoElectronico;
     private javax.swing.JLabel etiquetaExperienciaEducativa;
@@ -210,6 +234,8 @@ public class PantallaDarDeAltaInscripcion extends javax.swing.JPanel {
     private javax.swing.JLabel etiquetaMatricula;
     private javax.swing.JLabel etiquetaNombres;
     private javax.swing.JLabel etiquetaProgramaEducativo;
+    private javax.swing.JLabel etiquetaSeccionCurso;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
 }

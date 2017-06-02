@@ -5,6 +5,8 @@
  */
 package GUI.Recepcionista;
 
+import javax.swing.JPanel;
+
 /**
  *
  * @author Irdevelo
@@ -16,7 +18,9 @@ public class PantallaPrincipalAdministrarInscripcion extends javax.swing.JPanel 
      */
     public PantallaPrincipalAdministrarInscripcion() {
         initComponents();
+        setVisible(true);
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -127,7 +131,9 @@ public class PantallaPrincipalAdministrarInscripcion extends javax.swing.JPanel 
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonNuevaInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevaInscripcionActionPerformed
-        // TODO add your handling code here:
+
+        PantallaDarDeAltaInscripcion panelDarAlta = new PantallaDarDeAltaInscripcion();
+        MenuRecepcionista.añadirPanelPrincipal(panelDarAlta);
     }//GEN-LAST:event_botonNuevaInscripcionActionPerformed
 
 
