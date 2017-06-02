@@ -5,21 +5,32 @@
  */
 package GUI.UsuarioAutonomo;
 
+import Negocio.UsuarioAutonomo;
+
 /**
  *
  * @author Irdevelo
  */
 public class MenuUsuarioAutonomo extends javax.swing.JFrame {
-
-    /**
-     * Creates new form MenuUsuarioAutonomo
-     */
-    public MenuUsuarioAutonomo() {
+    private UsuarioAutonomo usuarioAutonomo;
+    
+    
+    
+    
+    public MenuUsuarioAutonomo(){
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
     }
 
+     public MenuUsuarioAutonomo(UsuarioAutonomo usuarioAutonomo){
+         this.usuarioAutonomo = usuarioAutonomo;
+        initComponents();
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,6 +56,7 @@ public class MenuUsuarioAutonomo extends javax.swing.JFrame {
 
         botonPerfilUsuario.setBackground(new java.awt.Color(67, 136, 204));
         botonPerfilUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        botonPerfilUsuario.setLabel(usuarioAutonomo.getNombres());
 
         javax.swing.GroupLayout panelSuperiorLayout = new javax.swing.GroupLayout(panelSuperior);
         panelSuperior.setLayout(panelSuperiorLayout);
@@ -67,6 +79,11 @@ public class MenuUsuarioAutonomo extends javax.swing.JFrame {
 
         botonActividades.setBackground(new java.awt.Color(72, 190, 232));
         botonActividades.setLabel("Actividades");
+        botonActividades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonActividadesActionPerformed(evt);
+            }
+        });
 
         botonMiAvance.setBackground(new java.awt.Color(51, 129, 158));
         botonMiAvance.setForeground(new java.awt.Color(255, 255, 255));
@@ -128,6 +145,10 @@ public class MenuUsuarioAutonomo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonActividadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActividadesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonActividadesActionPerformed
 
     /**
      * @param args the command line arguments

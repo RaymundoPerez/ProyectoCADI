@@ -1,5 +1,7 @@
 package GUI.Coordinador;
 
+import Negocio.Empleado;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,16 +14,24 @@ package GUI.Coordinador;
  * @author Irdevelo
  */
 public class MenuCoordinador extends javax.swing.JFrame {
-
-    /**
-     * Creates new form NewJFrame
-     */
+    private Empleado coordinador;
+    
+    
+    
     public MenuCoordinador() {
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
     }
 
+    public MenuCoordinador(Empleado coordinador){
+        this.coordinador = coordinador;
+        initComponents();
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -53,6 +63,7 @@ public class MenuCoordinador extends javax.swing.JFrame {
 
         botonPerfilUsuario.setBackground(new java.awt.Color(67, 136, 204));
         botonPerfilUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        botonPerfilUsuario.setLabel(coordinador.getNombres());
 
         javax.swing.GroupLayout panelSuperiorLayout = new javax.swing.GroupLayout(panelSuperior);
         panelSuperior.setLayout(panelSuperiorLayout);

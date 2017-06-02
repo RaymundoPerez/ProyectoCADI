@@ -5,21 +5,31 @@
  */
 package GUI.Recepcionista;
 
+import Negocio.Empleado;
+
 /**
  *
  * @author Irdevelo
  */
 public class MenuRecepcionista extends javax.swing.JFrame {
-
-    /**
-     * Creates new form AdministrarInscripcion
-     */
+    private Empleado recepcionista;
+   
+    
     public MenuRecepcionista() {
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
     }
 
+    
+      public MenuRecepcionista(Empleado recepcionista) {
+        this.recepcionista = recepcionista; 
+        initComponents();
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -47,6 +57,7 @@ public class MenuRecepcionista extends javax.swing.JFrame {
         botonPerfilUsuario.setBackground(new java.awt.Color(67, 136, 204));
         botonPerfilUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         botonPerfilUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        botonPerfilUsuario.setLabel(recepcionista.getNombres());
         botonPerfilUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonPerfilUsuarioActionPerformed(evt);

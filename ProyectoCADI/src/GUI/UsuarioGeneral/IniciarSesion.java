@@ -10,6 +10,8 @@ import GUI.Recepcionista.MenuRecepcionista;
 import GUI.UsuarioAutonomo.MenuUsuarioAutonomo;
 import Negocio.Cuenta;
 import Negocio.CuentaDAO;
+import Negocio.EmpleadoDAO;
+import Negocio.UsuarioAutonomoDAO;
 import javax.swing.JOptionPane;
 
 /**
@@ -39,10 +41,10 @@ public class IniciarSesion extends javax.swing.JFrame {
         etiquetaNombreUsuario = new javax.swing.JLabel();
         campoTextoNombreUsuario = new javax.swing.JTextField();
         etiquetaContraseña = new javax.swing.JLabel();
-        campoTextoContraseña = new javax.swing.JTextField();
         botonIniciarSesion = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         etiquetaInicioSesion = new javax.swing.JLabel();
+        campoTextoContraseña = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -52,12 +54,6 @@ public class IniciarSesion extends javax.swing.JFrame {
 
         etiquetaContraseña.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         etiquetaContraseña.setText("Contraseña");
-
-        campoTextoContraseña.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoTextoContraseñaActionPerformed(evt);
-            }
-        });
 
         botonIniciarSesion.setText("Iniciar Sesion");
         botonIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
@@ -96,21 +92,22 @@ public class IniciarSesion extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(75, 75, 75)
+                        .addComponent(botonIniciarSesion))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(etiquetaContraseña)
-                                .addGap(54, 54, 54))
-                            .addComponent(campoTextoContraseña, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(campoTextoNombreUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(etiquetaNombreUsuario)
-                                .addGap(33, 33, 33))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addComponent(botonIniciarSesion)))
+                            .addComponent(campoTextoContraseña)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(etiquetaContraseña)
+                                    .addGap(54, 54, 54))
+                                .addComponent(campoTextoNombreUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(etiquetaNombreUsuario)
+                                    .addGap(33, 33, 33))))))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -123,19 +120,15 @@ public class IniciarSesion extends javax.swing.JFrame {
                 .addComponent(campoTextoNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(etiquetaContraseña)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(campoTextoContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(campoTextoContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botonIniciarSesion)
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void campoTextoContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoContraseñaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoTextoContraseñaActionPerformed
 
     private void botonIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIniciarSesionActionPerformed
        
@@ -154,20 +147,21 @@ public class IniciarSesion extends javax.swing.JFrame {
         switch(cuentaDAO.iniciarSesion(cuenta)){
         
             case usuarioAutonomo:
-                
-                new MenuUsuarioAutonomo();
+                UsuarioAutonomoDAO usuarioAutonomo = new UsuarioAutonomoDAO();
+                new MenuUsuarioAutonomo(usuarioAutonomo.obtenerUsuarioAutonomo(campoTextoNombreUsuario.getText()));
                 
                 break;
                 
             case recepcionista:
+                EmpleadoDAO recepcionista = new EmpleadoDAO();
                 
-                new MenuRecepcionista();
+                new MenuRecepcionista(recepcionista.obtenerEmpleado(campoTextoNombreUsuario.getText()));
                 
                 break;
                 
             case coordinador:
-                
-                new MenuCoordinador();
+                EmpleadoDAO coordinador = new EmpleadoDAO();
+                new MenuCoordinador(coordinador.obtenerEmpleado(campoTextoNombreUsuario.getText()));
                 
                 break;
                 
@@ -180,7 +174,7 @@ public class IniciarSesion extends javax.swing.JFrame {
             case errorConexionBD:
                 
                 JOptionPane.showMessageDialog(null, "Oops... No podemos conectarnos con el servidor"
-                        + "intente más tarde");
+                        + ", intente más tarde");
                 
                 break;
             
@@ -233,7 +227,7 @@ public class IniciarSesion extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonIniciarSesion;
-    private javax.swing.JTextField campoTextoContraseña;
+    private javax.swing.JPasswordField campoTextoContraseña;
     private javax.swing.JTextField campoTextoNombreUsuario;
     private javax.swing.JLabel etiquetaContraseña;
     private javax.swing.JLabel etiquetaInicioSesion;

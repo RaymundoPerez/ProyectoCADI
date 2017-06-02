@@ -18,31 +18,28 @@ public class CuentaDAO implements ICuentaDAO{
 
     @Override
     public InformacionInicioSesion iniciarSesion(Cuenta cuenta) {
-     
      InformacionInicioSesion mensaje = InformacionInicioSesion.errorConexionBD; 
      String tipoUsuario;
      ConexionSQL conexionBD = new ConexionSQL();
      PreparedStatement sentenciaConsulta;
-     if(conexionBD.conectarBaseDatos()== InformacionConexion.conexionBDExitosa){
-         
+     if(conexionBD.conectarBaseDatos()== InformacionConexion.conexionBDExitosa){ 
+         mensaje = InformacionInicioSesion.usuarioNoValido;
          String consultaSQL = "select tipoUsuario from CUENTA where nombreUsuario =? and contrasena = sha2(?,256)";
          try{
              sentenciaConsulta = conexionBD.getConexion().prepareStatement(consultaSQL);
              sentenciaConsulta.setString(1, cuenta.getNombreUsuario());
              sentenciaConsulta.setString(2, cuenta.getConstraseña());
-             
              ResultSet resultadoConsulta = sentenciaConsulta.executeQuery();
-             
              resultadoConsulta.next();
              tipoUsuario = resultadoConsulta.getString(1);
              mensaje = validarCuenta(tipoUsuario);
          }catch(SQLException exception){
-            
+      
+         }finally{
+             conexionBD.cerrarConexion();
          }      
      }
-     
      return mensaje;
-    
     }
 
     @Override
@@ -52,7 +49,7 @@ public class CuentaDAO implements ICuentaDAO{
 
     @Override
     public InformacionInicioSesion validarCuenta(String tipoUsuario) {
-        InformacionInicioSesion mensaje = InformacionInicioSesion.usuarioNoValido;
+        InformacionInicioSesion mensaje=null;
         switch(tipoUsuario){
             case "UsuarioAutonomo":
                     mensaje = InformacionInicioSesion.usuarioAutonomo;
