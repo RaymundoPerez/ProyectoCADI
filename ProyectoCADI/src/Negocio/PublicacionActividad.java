@@ -14,6 +14,8 @@ public class PublicacionActividad {
     private Time horaInicio;
     private String idPublicacion;
     private String nombreAsesor;
+    private String nombreExperienciaEducativa;
+    private String nombreActividad;
 
     public Date getFecha() {
         return fecha;
@@ -54,6 +56,24 @@ public class PublicacionActividad {
     public void setNombreAsesor(String nombreAsesor) {
         this.nombreAsesor = nombreAsesor;
     }
+
+    public String getNombreExperienciaEducativa() {
+        return nombreExperienciaEducativa;
+    }
+
+    public void setNombreExperienciaEducativa(String nombreExperienciaEducativa) {
+        this.nombreExperienciaEducativa = nombreExperienciaEducativa;
+    }
+
+    public String getNombreActividad() {
+        return nombreActividad;
+    }
+
+    public void setNombreActividad(String nombreActividad) {
+        this.nombreActividad = nombreActividad;
+    }
+    
+    
     
     
 }

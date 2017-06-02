@@ -6,6 +6,8 @@
 package GUI.UsuarioAutonomo;
 
 import Negocio.UsuarioAutonomo;
+import java.awt.Dimension;
+import javax.swing.JPanel;
 
 /**
  *
@@ -26,8 +28,18 @@ public class MenuUsuarioAutonomo extends javax.swing.JFrame {
      public MenuUsuarioAutonomo(UsuarioAutonomo usuarioAutonomo){
          this.usuarioAutonomo = usuarioAutonomo;
         initComponents();
+        PantallaPrincipalAdministrarReservaciones pantalla = new PantallaPrincipalAdministrarReservaciones();
+        añadirPanelPrincipal(pantalla);
         setLocationRelativeTo(null);
         setVisible(true);
+    }
+     
+    public void añadirPanelPrincipal(JPanel pantalla){
+        Dimension dimensiones = pantalla.getPreferredSize();
+        pantalla.setBounds(0,0,dimensiones.width, dimensiones.height);
+        panelPrincipalMenuUsuarioAutonomo.add(pantalla);
+        panelPrincipalMenuUsuarioAutonomo.repaint();
+        panelPrincipalMenuUsuarioAutonomo.revalidate();
     }
     
     
@@ -48,6 +60,7 @@ public class MenuUsuarioAutonomo extends javax.swing.JFrame {
         botonMiAvance = new java.awt.Button();
         botonPortafolioDeEvidencias = new java.awt.Button();
         botonAvisos = new java.awt.Button();
+        panelPrincipalMenuUsuarioAutonomo = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -126,6 +139,17 @@ public class MenuUsuarioAutonomo extends javax.swing.JFrame {
                 .addGap(0, 206, Short.MAX_VALUE))
         );
 
+        javax.swing.GroupLayout panelPrincipalMenuUsuarioAutonomoLayout = new javax.swing.GroupLayout(panelPrincipalMenuUsuarioAutonomo);
+        panelPrincipalMenuUsuarioAutonomo.setLayout(panelPrincipalMenuUsuarioAutonomoLayout);
+        panelPrincipalMenuUsuarioAutonomoLayout.setHorizontalGroup(
+            panelPrincipalMenuUsuarioAutonomoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        panelPrincipalMenuUsuarioAutonomoLayout.setVerticalGroup(
+            panelPrincipalMenuUsuarioAutonomoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -133,14 +157,18 @@ public class MenuUsuarioAutonomo extends javax.swing.JFrame {
             .addComponent(panelSuperior, javax.swing.GroupLayout.DEFAULT_SIZE, 740, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelPrincipalMenuUsuarioAutonomo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelSuperior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(panelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(panelPrincipalMenuUsuarioAutonomo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
@@ -193,6 +221,7 @@ public class MenuUsuarioAutonomo extends javax.swing.JFrame {
     private java.awt.Button botonPortafolioDeEvidencias;
     private javax.swing.JLabel etiquetaMenu;
     private javax.swing.JPanel panelMenu;
+    private javax.swing.JPanel panelPrincipalMenuUsuarioAutonomo;
     private javax.swing.JPanel panelSuperior;
     // End of variables declaration//GEN-END:variables
 }
