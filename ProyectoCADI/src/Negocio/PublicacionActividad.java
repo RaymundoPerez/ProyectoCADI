@@ -16,6 +16,9 @@ public class PublicacionActividad {
     private String nombreAsesor;
     private String nombreExperienciaEducativa;
     private String nombreActividad;
+    private String idAula;
+    
+    
 
     public Date getFecha() {
         return fecha;
@@ -72,6 +75,16 @@ public class PublicacionActividad {
     public void setNombreActividad(String nombreActividad) {
         this.nombreActividad = nombreActividad;
     }
+
+    public String getIdAula() {
+        return idAula;
+    }
+
+    public void setIdAula(String idAula) {
+        this.idAula = idAula;
+    }
+    
+    
     
     
     

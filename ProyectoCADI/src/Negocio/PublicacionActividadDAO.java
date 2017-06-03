@@ -15,50 +15,53 @@ import java.util.ArrayList;
  *
  * @author raymu
  */
-public class PublicacionActividadDAO implements IPublicacionActividadDAO{
+public class PublicacionActividadDAO implements IPublicacionActividadDAO {
 
     @Override
-    public ArrayList<PublicacionActividad> mostrarActividadesDisponiblesUsuarioAutonomo(String matricula){
+    public ArrayList<PublicacionActividad> mostrarActividadesDisponiblesUsuarioAutonomo(String matricula) {
         ArrayList<PublicacionActividad> publicacionesActividades = new ArrayList();
-        ArrayList<String> nrcsExperienciasEducativas = new ArrayList();
         ConexionSQL conexionBD = new ConexionSQL();
         conexionBD.conectarBaseDatos();
-        PreparedStatement sentenciaConsultaExperienciaEducativa;
-        String consultaSQLExperienciaEducativa = "select ExperienciaEducativa.nrc from USUARIOAUTONOMO,INSCRIPCION,"
-                + "SECCIONCURSO,CURSO,EXPERIENCIAEDUCATIVA where USUARIOAUTONOMO.matricula=? and "
-                + "USUARIOAUTONOMO.matricula = INSCRIPCION.matricula and"
-                + "INSCRIPCION.claveSeccion = SECCIONCURSO.claveSeccion and SECCIONCURSO.idCurso = CURSO.idCurso and "
-                + "CURSO.nrc= EXPERIENCIAEDUCATIVA.nrc";
-        try{
-            sentenciaConsultaExperienciaEducativa = conexionBD.getConexion().prepareStatement(consultaSQLExperienciaEducativa);
-            sentenciaConsultaExperienciaEducativa.setString(1, matricula);
-            ResultSet resultadoConsultaExperienciaEducativa = sentenciaConsultaExperienciaEducativa.executeQuery();
-            while(resultadoConsultaExperienciaEducativa.next()){
-                String nrcExperienciaEducativa = resultadoConsultaExperienciaEducativa.getString(1);
-                nrcsExperienciasEducativas.add(nrcExperienciaEducativa);
-            }
-            PreparedStatement sentenciaConsultaPublicacionActividad;
-            String consultaSQLPublicacionActividad;
-            ResultSet resultadoPublicacionActividad;
-            for (String nrcsExperienciasEducativa : nrcsExperienciasEducativas) {
-                consultaSQLPublicacionActividad = "";
+        PreparedStatement sentenciaConsultaPublicacionActividad;
+        String consultaSQLPublicacionActividad;
+        ResultSet resultadoPublicacionActividad;
+        try {
+            ExperienciaEducativaDAO experienciaEducativaDAO = new ExperienciaEducativaDAO();
+            EmpleadoDAO empleadoDAO = new EmpleadoDAO();
+            ArrayList<ExperienciaEducativa> experienciasEducativas = experienciaEducativaDAO.obtenerExperienciasEducativasUsuarioAutonomo(matricula);
+            for (ExperienciaEducativa experienciaEducativa : experienciasEducativas) {
+                consultaSQLPublicacionActividad = "select PUBLICACIONACTIVIDAD.idPublicacion,"
+                        + "PUBLICACIONACTIVIDAD.fecha, PUBLICACIONACTIVIDAD.horainicio, PUBLICACIONACTIVIDAD.horaFin,"
+                        + "PUBLICACIONACTIVIDAD.idAula, ACTIVIDAD.nombreActividad, PUBLICACIONACTIVIDAD.noPersonal"
+                        + "from PUBLICACIONACTIVIDAD,ACTIVIDAD,SECCION,MODULO,EXPERIENCIAEDUCATIVA"
+                        + "where PUBLICACIONACTIVIDAD.idActividad=ACTIVIDAD.idActividad and "
+                        + "ACTIVIDAD.idSeccion=SECCION.idSeccion and SECCION.idModulo = MODULO.idModulo and "
+                        + "MODULO.nrc=EXPERIENCIAEDUCATIVA.nrc and EXPERIENCIAEDUCATIVA.nrc=?";
                 sentenciaConsultaPublicacionActividad = conexionBD.getConexion().prepareStatement(consultaSQLPublicacionActividad);
+                sentenciaConsultaPublicacionActividad.setString(1, experienciaEducativa.getNrc());
                 resultadoPublicacionActividad = sentenciaConsultaPublicacionActividad.executeQuery();
-                while(resultadoPublicacionActividad.next()){
-                    
+                while (resultadoPublicacionActividad.next()) {
+                    PublicacionActividad publicacionActividad = new PublicacionActividad();
+                    publicacionActividad.setIdPublicacion(resultadoPublicacionActividad.getString(1));
+                    publicacionActividad.setFecha(resultadoPublicacionActividad.getDate(2));
+                    publicacionActividad.setHoraInicio(resultadoPublicacionActividad.getTime(3));
+                    publicacionActividad.setHoraFin(resultadoPublicacionActividad.getTime(4));
+                    publicacionActividad.setIdAula(resultadoPublicacionActividad.getString(5));
+                    publicacionActividad.setNombreActividad(resultadoPublicacionActividad.getString(6));
+                    publicacionActividad.setNombreAsesor(empleadoDAO.obtenerNombreEmpleado(resultadoPublicacionActividad.getString(7)));
+                    publicacionActividad.setNombreExperienciaEducativa(experienciaEducativa.getNombreExperienciaEducativa());
+                    publicacionesActividades.add(publicacionActividad);
                 }
-            }   
-         
-        }catch(SQLException exception){
-            
-        }finally{
+            }
+        } catch (SQLException exception) {
+
+        } finally {
             conexionBD.cerrarConexion();
         }
-        
+
         return publicacionesActividades;
     }
 
-    
     @Override
     public InformacionPublicacionActividad publicarActividad() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -73,5 +76,5 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO{
     public String buscarAulaDisponible() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

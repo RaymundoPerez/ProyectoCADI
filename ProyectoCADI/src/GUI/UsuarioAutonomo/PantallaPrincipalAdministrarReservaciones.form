@@ -31,7 +31,7 @@
                           <Component id="scrollPanelTablaActividadesReservadas" min="-2" pref="488" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="scrollPanelTablaActividadesDisponibles" min="-2" pref="488" max="-2" attributes="0"/>
-                              <EmptySpace pref="26" max="32767" attributes="0"/>
+                              <EmptySpace pref="15" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="comboBoxDia" max="32767" attributes="0"/>
@@ -109,7 +109,7 @@
               <Component id="jSeparator4" min="-2" pref="10" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="scrollPanelTablaActividadesDisponibles" min="-2" pref="205" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

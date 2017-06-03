@@ -5,6 +5,9 @@
  */
 package Negocio;
 
+import java.util.ArrayList;
+
+
 /**
  *
  * @author Irdevelo
@@ -12,5 +15,6 @@ package Negocio;
 public interface IExperienciaEducativaDAO {
     
     public String[] obtenerTodasLasExperienciasEducativas();
+    public ArrayList<ExperienciaEducativa> obtenerExperienciasEducativasUsuarioAutonomo(String matricula);
     
 }

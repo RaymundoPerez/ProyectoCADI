@@ -39,6 +39,28 @@ public class EmpleadoDAO implements IEmpleadoDAO{
         
         return empleado; 
     }
+
+    @Override
+    public String obtenerNombreEmpleado(String noPersonal) {
+        String nombreEmpleado="";
+        ConexionSQL conexionBD = new ConexionSQL();
+        conexionBD.conectarBaseDatos();
+        PreparedStatement sentenciaConsulta;
+            String consultaSQL = "select nombres,apellidos from EMPLEADO where noPersonal=?";
+            try{
+                sentenciaConsulta = conexionBD.getConexion().prepareStatement(consultaSQL);
+                sentenciaConsulta.setString(1, noPersonal);
+                ResultSet resultadoConsulta = sentenciaConsulta.executeQuery();
+                resultadoConsulta.next();
+                nombreEmpleado = resultadoConsulta.getString(1)+" "+resultadoConsulta.getString(2);
+            }catch(SQLException exception){
+            
+            }finally{
+                conexionBD.cerrarConexion();
+            }
+        
+        return nombreEmpleado;
+    }
     
     
 }

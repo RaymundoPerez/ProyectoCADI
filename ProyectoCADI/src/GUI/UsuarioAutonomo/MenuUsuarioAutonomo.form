@@ -23,11 +23,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="panelSuperior" pref="740" max="32767" attributes="0"/>
+          <Component id="panelSuperior" pref="875" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
               <Component id="panelMenu" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="panelPrincipalMenuUsuarioAutonomo" max="32767" attributes="0"/>
+              <Component id="panelPrincipalMenuUsuarioAutonomo" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -37,9 +38,9 @@
               <Component id="panelSuperior" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="panelMenu" max="32767" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                      <Component id="panelPrincipalMenuUsuarioAutonomo" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="panelPrincipalMenuUsuarioAutonomo" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -61,7 +62,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="580" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Component id="botonPerfilUsuario" min="-2" pref="114" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
               </Group>
@@ -123,7 +124,7 @@
                   <Component id="botonPortafolioDeEvidencias" min="-2" pref="51" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Component id="botonAvisos" min="-2" pref="51" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="206" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -191,12 +192,12 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="722" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="569" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>

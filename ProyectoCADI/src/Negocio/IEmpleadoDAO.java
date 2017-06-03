@@ -12,5 +12,6 @@ package Negocio;
 public interface IEmpleadoDAO {
     
     public Empleado obtenerEmpleado(String nombreUsuario);
+    public String obtenerNombreEmpleado(String noPersonal);
     
 }
