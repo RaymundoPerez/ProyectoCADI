@@ -37,9 +37,9 @@ public class ConexionSQL {
         
         public InformacionConexion conectarBaseDatos(){
             InformacionConexion mensaje;
-            usuarioBaseDatos = "USUARIOCADI";
-            contraseñaBaseDatos = "F56KwNvz#O$h";
-            urlBaseDatos = "jdbc:mysql://localhost:3306/CADI";
+            usuarioBaseDatos = "USUARIOPRUEBA";
+            contraseñaBaseDatos = "39hm168z$";
+            urlBaseDatos = "jdbc:mysql://192.168.0.14:3306/CADI";
             conexion = null;
                 try {
                     Class.forName("com.mysql.jdbc.Driver").newInstance();
