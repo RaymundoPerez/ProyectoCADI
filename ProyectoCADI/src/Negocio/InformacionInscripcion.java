@@ -11,7 +11,8 @@ package Negocio;
  */
 public enum InformacionInscripcion {
     
-    alumnoCreadoCorrectamente, alumnoNoCreado
+    inscripcionCreadaCorrectamente, 
+    inscripcionNoCreada
     
     
 }

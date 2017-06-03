@@ -11,6 +11,8 @@ package Negocio;
  */
 public interface ICuentaDAO {
     
+    public InformacionCuenta crearCuenta(Cuenta cuenta);
+    
     public InformacionInicioSesion iniciarSesion(Cuenta cuenta);
     
     public boolean cerrarSesión();

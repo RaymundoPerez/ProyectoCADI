@@ -90,11 +90,15 @@ public class PantallaPrincipalAdministrarInscripcion extends javax.swing.JPanel 
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(scrollPanelTablaAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonNuevaInscripcion)
-                    .addComponent(etiquetaTotalDeAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(398, 398, 398)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(botonNuevaInscripcion)
+                            .addComponent(etiquetaTotalDeAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(scrollPanelTablaAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(57, 57, 57)
@@ -131,8 +135,7 @@ public class PantallaPrincipalAdministrarInscripcion extends javax.swing.JPanel 
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonNuevaInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevaInscripcionActionPerformed
-
-        PantallaDarDeAltaInscripcion panelDarAlta = new PantallaDarDeAltaInscripcion();
+       PantallaDarDeAltaInscripcion panelDarAlta = new PantallaDarDeAltaInscripcion();
         MenuRecepcionista.añadirPanelPrincipal(panelDarAlta);
     }//GEN-LAST:event_botonNuevaInscripcionActionPerformed
 

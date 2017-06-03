@@ -5,7 +5,7 @@
  */
 package Negocio;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *
@@ -65,6 +65,9 @@ public class UsuarioAutonomo {
 
     public void setFechaNac(Date fechaNac) {
         this.fechaNac = fechaNac;
+    }
+    public void setFechaNac(int año,int mes, int dia) {
+        fechaNac = new Date(año,mes,dia);
     }
     
 }

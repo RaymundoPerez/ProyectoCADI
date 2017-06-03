@@ -11,6 +11,8 @@ package Negocio;
  */
 public interface IUsuarioAutonomoDAO {
     
+    public InformacionUsuarioAutonomo crearUsuarioAutonomo(UsuarioAutonomo usuarioAutonomo);
     public UsuarioAutonomo obtenerUsuarioAutonomo(String nombreUsuario);
+    public boolean validarExistenciaUsuarioAutonomo(String matricula);
     
 }

@@ -23,7 +23,6 @@ public class ConexionSQL {
 	private String urlBaseDatos;
         private Connection conexion;
 
-
     public Connection getConexion() {
         return conexion;
     }
@@ -32,9 +31,7 @@ public class ConexionSQL {
         this.conexion = conexion;
     }
 
- 
     public ConexionSQL(){
-    
     }
        
         
@@ -42,13 +39,13 @@ public class ConexionSQL {
             InformacionConexion mensaje;
             usuarioBaseDatos = "USUARIOCADI";
             contraseñaBaseDatos = "F56KwNvz#O$h";
-           urlBaseDatos = "jdbc:mysql://localhost:3306/CADI";
+            urlBaseDatos = "jdbc:mysql://localhost:3306/CADI";
             conexion = null;
                 try {
                     Class.forName("com.mysql.jdbc.Driver").newInstance();
                     conexion = DriverManager.getConnection(urlBaseDatos, usuarioBaseDatos, contraseñaBaseDatos);
                     mensaje = InformacionConexion.conexionBDExitosa;
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException  e) {
+		}catch(ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException  e) {
                     Logger.getLogger(ConexionSQL.class.getName()).log(Level.SEVERE, null, e);
                     mensaje = InformacionConexion.errorConexionBD;
 		}
@@ -60,16 +57,8 @@ public class ConexionSQL {
                 if(!conexion.isClosed()){
                    conexion.close();
                 }
-            } catch (SQLException ex) {
+            }catch(SQLException ex){
                 Logger.getLogger(ConexionSQL.class.getName()).log(Level.SEVERE, null, ex);
             }
-        
         }
-    
-    
-    
-    
-    
-    
-    
 }

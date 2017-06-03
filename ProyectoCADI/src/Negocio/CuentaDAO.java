@@ -17,6 +17,28 @@ import java.sql.SQLException;
 public class CuentaDAO implements ICuentaDAO{
 
     @Override
+    public InformacionCuenta crearCuenta(Cuenta cuenta) {
+         InformacionCuenta mensaje = InformacionCuenta.cuentaNoCreada;
+        ConexionSQL conexionBD = new ConexionSQL();
+        conexionBD.conectarBaseDatos();
+        PreparedStatement sentenciaConsulta;
+        String consultaSQL = "insert into CUENTA values(?,sha2(?,256),?)";
+        try {
+            sentenciaConsulta = conexionBD.getConexion().prepareStatement(consultaSQL);
+            sentenciaConsulta.setString(1, cuenta.getNombreUsuario());
+            sentenciaConsulta.setString(2, cuenta.getConstraseña());
+            sentenciaConsulta.setString(3, cuenta.getTipoUsuario());
+            sentenciaConsulta.executeUpdate();
+            mensaje = InformacionCuenta.cuentaCreadaCorrectamente;
+        } catch (SQLException exception) {
+
+        } finally {
+            conexionBD.cerrarConexion();
+        }
+        return mensaje;
+    }
+    
+    @Override
     public InformacionInicioSesion iniciarSesion(Cuenta cuenta) {
      InformacionInicioSesion mensaje = InformacionInicioSesion.errorConexionBD; 
      String tipoUsuario;

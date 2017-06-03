@@ -15,27 +15,26 @@ import java.util.ArrayList;
  *
  * @author Irdevelo
  */
-public class SeccionCursoDAO implements ISeccionCursoDAO{
+public class ExperienciaEducativaDAO implements IExperienciaEducativaDAO{
 
     @Override
-    public String[] obtenerTodasLasSeecionesPorEE(String nombreEE) {
-        ArrayList<String> nombreSeccionCurso = new ArrayList<>();
+    public String[] obtenerTodasLasExperienciasEducativas() {
+       
+       ArrayList<String> experienciasEducativas = new ArrayList<>();
         ConexionSQL conexionBD = new ConexionSQL();
         conexionBD.conectarBaseDatos();
         PreparedStatement sentenciaConsulta;
-        String[] arregloNombreSeccionCurso = null;
-        String consultaSQL = "select claveSeccion from SeccionCurso,ExperienciaEducativa,Curso where ExperienciaEducativa.nombreExperienciaEducativa ="
-                + "? and ExperienciaEducativa.nrc = Curso.nrc and Curso.idCurso = SeccionCurso.idCurso";
+        String[] arregloExperienciasEducativas = null;
+        String consultaSQL = "select nombreExperienciaEducativa from EXPERIENCIAEDUCATIVA";
         try{
             sentenciaConsulta = conexionBD.getConexion().prepareStatement(consultaSQL);
-            sentenciaConsulta.setString(1, nombreEE);
             ResultSet resultadoConsulta = sentenciaConsulta.executeQuery();
             while(resultadoConsulta.next()){
-                nombreSeccionCurso.add(resultadoConsulta.getString(1));
+                experienciasEducativas.add(resultadoConsulta.getString(1));
             }
             
-            arregloNombreSeccionCurso = new String[nombreSeccionCurso.size()];
-            arregloNombreSeccionCurso = nombreSeccionCurso.toArray(arregloNombreSeccionCurso);
+            arregloExperienciasEducativas = new String[experienciasEducativas.size()];
+            arregloExperienciasEducativas = experienciasEducativas.toArray(arregloExperienciasEducativas);
             
         }catch(SQLException exception){
         
@@ -43,8 +42,8 @@ public class SeccionCursoDAO implements ISeccionCursoDAO{
         conexionBD.cerrarConexion();
         }
         
-        return arregloNombreSeccionCurso;
-    }
+        return arregloExperienciasEducativas;
 
-  
+    }
+    
 }

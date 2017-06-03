@@ -9,8 +9,8 @@ package Negocio;
  *
  * @author Irdevelo
  */
-public interface ISeccionCursoDAO {
-    
-    public String[] obtenerTodasLasSeecionesPorEE(String nombreEE);
+public enum InformacionUsuarioAutonomo {
+    usuarioAutonomoCreadoCorrectamente,
+    usuarioAutonomoNoCreado
     
 }

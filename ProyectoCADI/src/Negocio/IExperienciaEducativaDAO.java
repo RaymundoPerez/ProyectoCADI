@@ -9,8 +9,8 @@ package Negocio;
  *
  * @author Irdevelo
  */
-public interface ISeccionCursoDAO {
+public interface IExperienciaEducativaDAO {
     
-    public String[] obtenerTodasLasSeecionesPorEE(String nombreEE);
+    public String[] obtenerTodasLasExperienciasEducativas();
     
 }

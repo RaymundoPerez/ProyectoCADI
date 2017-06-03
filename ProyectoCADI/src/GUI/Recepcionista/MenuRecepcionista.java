@@ -34,7 +34,7 @@ public class MenuRecepcionista extends javax.swing.JFrame {
     }
     
       public static void añadirPanelPrincipal(JPanel pantalla){
-         panelPrincipalMenuRecepcionista.removeAll();
+        panelPrincipalMenuRecepcionista.removeAll();
         Dimension dimensiones = pantalla.getPreferredSize();
         pantalla.setBounds(0,0,dimensiones.width, dimensiones.height);
         panelPrincipalMenuRecepcionista.add(pantalla);
@@ -157,13 +157,13 @@ public class MenuRecepcionista extends javax.swing.JFrame {
         scrollPaneMenuRecepcionista.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPaneMenuRecepcionista.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
-        panelPrincipalMenuRecepcionista.setPreferredSize(new java.awt.Dimension(0, 500));
+        panelPrincipalMenuRecepcionista.setPreferredSize(new java.awt.Dimension(0, 600));
 
         javax.swing.GroupLayout panelPrincipalMenuRecepcionistaLayout = new javax.swing.GroupLayout(panelPrincipalMenuRecepcionista);
         panelPrincipalMenuRecepcionista.setLayout(panelPrincipalMenuRecepcionistaLayout);
         panelPrincipalMenuRecepcionistaLayout.setHorizontalGroup(
             panelPrincipalMenuRecepcionistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 712, Short.MAX_VALUE)
+            .addGap(0, 733, Short.MAX_VALUE)
         );
         panelPrincipalMenuRecepcionistaLayout.setVerticalGroup(
             panelPrincipalMenuRecepcionistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,7 +180,7 @@ public class MenuRecepcionista extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollPaneMenuRecepcionista, javax.swing.GroupLayout.DEFAULT_SIZE, 731, Short.MAX_VALUE))
+                .addComponent(scrollPaneMenuRecepcionista, javax.swing.GroupLayout.DEFAULT_SIZE, 752, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
