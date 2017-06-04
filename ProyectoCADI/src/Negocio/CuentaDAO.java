@@ -18,7 +18,7 @@ public class CuentaDAO implements ICuentaDAO{
 
     @Override
     public InformacionCuenta crearCuenta(Cuenta cuenta) {
-         InformacionCuenta mensaje = InformacionCuenta.cuentaNoCreada;
+        InformacionCuenta mensaje = InformacionCuenta.cuentaNoCreada;
         ConexionSQL conexionBD = new ConexionSQL();
         conexionBD.conectarBaseDatos();
         PreparedStatement sentenciaConsulta;

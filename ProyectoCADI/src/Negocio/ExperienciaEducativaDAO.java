@@ -53,7 +53,7 @@ public class ExperienciaEducativaDAO implements IExperienciaEducativaDAO {
         String consultaSQLExperienciaEducativa = "select EXPERIENCIAEDUCATIVA.nrc, "
                 + "EXPERIENCIAEDUCATIVA.nombreExperienciaEducativa from USUARIOAUTONOMO,INSCRIPCION,"
                 + "SECCIONCURSO,CURSO,EXPERIENCIAEDUCATIVA where USUARIOAUTONOMO.matricula=? and "
-                + "USUARIOAUTONOMO.matricula = INSCRIPCION.matricula and"
+                + "USUARIOAUTONOMO.matricula = INSCRIPCION.matricula and "
                 + "INSCRIPCION.claveSeccion = SECCIONCURSO.claveSeccion and SECCIONCURSO.idCurso = CURSO.idCurso and "
                 + "CURSO.nrc= EXPERIENCIAEDUCATIVA.nrc";
         try {
@@ -67,7 +67,7 @@ public class ExperienciaEducativaDAO implements IExperienciaEducativaDAO {
                 experienciasEducativas.add(experienciaEducativa);
             }
         } catch (SQLException exception) {
-
+            System.out.println(exception.getMessage());
         } finally {
             conexionBD.cerrarConexion();
         }

@@ -5,17 +5,105 @@
  */
 package GUI.UsuarioAutonomo;
 
+import Negocio.PublicacionActividad;
+import Negocio.PublicacionActividadDAO;
+import Negocio.UsuarioAutonomo;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author sony
  */
 public class PantallaPrincipalAdministrarReservaciones extends javax.swing.JPanel {
 
+    private UsuarioAutonomo usuarioAutonomo;
+
     /**
      * Creates new form PantallaPrincipalAdministrarReservaciones
      */
     public PantallaPrincipalAdministrarReservaciones() {
         initComponents();
+    }
+
+    public PantallaPrincipalAdministrarReservaciones(UsuarioAutonomo usuarioAutonomo) {
+        this.usuarioAutonomo = usuarioAutonomo;
+        initComponents();
+        insertarActividadesDisponibles();
+        insertarActividadesReservadas();
+    }
+
+    public void insertarActividadesDisponibles() {
+        PublicacionActividadDAO publicacionActividadDAO = new PublicacionActividadDAO();
+        ArrayList<PublicacionActividad> publicacionesActividades;
+        publicacionesActividades = publicacionActividadDAO.obtenerActividadesDisponiblesUsuarioAutonomo(usuarioAutonomo.getMatricula());
+        String[][] matrizTablaActividadesDisponibles = new String[publicacionesActividades.size()][tablaActividadesDisponibles.getColumnCount()];
+        for (int i = 0; i < publicacionesActividades.size(); i++) {
+            matrizTablaActividadesDisponibles[i][0] = publicacionesActividades.get(i).getNombreExperienciaEducativa();
+            matrizTablaActividadesDisponibles[i][1] = publicacionesActividades.get(i).getNombreActividad();
+            matrizTablaActividadesDisponibles[i][2] = String.valueOf(publicacionesActividades.get(i).getFecha());
+            matrizTablaActividadesDisponibles[i][3] = String.valueOf(publicacionesActividades.get(i).getHoraInicio());
+            matrizTablaActividadesDisponibles[i][4] = publicacionesActividades.get(i).getIdAula();
+            matrizTablaActividadesDisponibles[i][5] = publicacionesActividades.get(i).getNombreAsesor();
+            
+        }
+        crearTabalaActividadesDisponibles(matrizTablaActividadesDisponibles);
+    }
+
+    public void crearTabalaActividadesDisponibles(String[][] matrizTablaActividadesDisponibles) {
+        tablaActividadesDisponibles.setModel(new DefaultTableModel(
+                matrizTablaActividadesDisponibles,
+                new String[]{
+                    "EE", "Actividad", "Fecha", "Hora", "Aula", "Profesor", ""
+                }
+        ));
+        tablaActividadesDisponibles.setEnabled(false);
+
+        tablaActividadesDisponibles.getColumnModel().getColumn(1).setPreferredWidth(220);
+        tablaActividadesDisponibles.getColumnModel().getColumn(5).setPreferredWidth(210);
+
+        tablaActividadesDisponibles.getColumnModel().getColumn(0).setResizable(false);
+        tablaActividadesDisponibles.getColumnModel().getColumn(1).setResizable(false);
+        tablaActividadesDisponibles.getColumnModel().getColumn(2).setResizable(false);
+        tablaActividadesDisponibles.getColumnModel().getColumn(3).setResizable(false);
+        tablaActividadesDisponibles.getColumnModel().getColumn(4).setResizable(false);
+        tablaActividadesDisponibles.getColumnModel().getColumn(5).setResizable(false);
+    }
+
+    public void insertarActividadesReservadas() {
+        PublicacionActividadDAO publicacionActividadDAO = new PublicacionActividadDAO();
+        ArrayList<PublicacionActividad> publicacionesActividades;
+        publicacionesActividades = publicacionActividadDAO.obtenerActividadesReservadasUsuarioAutonomo(usuarioAutonomo.getMatricula());
+        String[][] matrizTablaActividadesReservadas = new String[publicacionesActividades.size()][tablaActividadesDisponibles.getColumnCount()];
+        for (int i = 0; i < publicacionesActividades.size(); i++) {
+            matrizTablaActividadesReservadas[i][0] = publicacionesActividades.get(i).getNombreExperienciaEducativa();
+            matrizTablaActividadesReservadas[i][1] = publicacionesActividades.get(i).getNombreActividad();
+            matrizTablaActividadesReservadas[i][2] = String.valueOf(publicacionesActividades.get(i).getFecha());
+            matrizTablaActividadesReservadas[i][3] = String.valueOf(publicacionesActividades.get(i).getHoraInicio());
+            matrizTablaActividadesReservadas[i][4] = publicacionesActividades.get(i).getIdAula();
+            matrizTablaActividadesReservadas[i][5] = publicacionesActividades.get(i).getNombreAsesor();
+        }
+        crearTablaActividadesReservadas(matrizTablaActividadesReservadas);
+    }
+    
+    public void crearTablaActividadesReservadas(String[][] matrizTablaActividadesReservadas){
+        tablaActividadesReservadas.setModel(new DefaultTableModel(
+                matrizTablaActividadesReservadas,
+                new String[]{
+                    "EE", "Actividad", "Fecha", "Hora", "Aula", "Profesor", ""
+                }
+        ));
+        tablaActividadesReservadas.setEnabled(false);
+
+        tablaActividadesReservadas.getColumnModel().getColumn(1).setPreferredWidth(220);
+        tablaActividadesReservadas.getColumnModel().getColumn(5).setPreferredWidth(210);
+
+        tablaActividadesReservadas.getColumnModel().getColumn(0).setResizable(false);
+        tablaActividadesReservadas.getColumnModel().getColumn(1).setResizable(false);
+        tablaActividadesReservadas.getColumnModel().getColumn(2).setResizable(false);
+        tablaActividadesReservadas.getColumnModel().getColumn(3).setResizable(false);
+        tablaActividadesReservadas.getColumnModel().getColumn(4).setResizable(false);
+        tablaActividadesReservadas.getColumnModel().getColumn(5).setResizable(false);
     }
 
     /**
@@ -139,60 +227,46 @@ public class PantallaPrincipalAdministrarReservaciones extends javax.swing.JPane
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(181, 181, 181)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jSeparator1)
-                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(scrollPanelTablaActividadesReservadas, javax.swing.GroupLayout.DEFAULT_SIZE, 771, Short.MAX_VALUE)
+                            .addComponent(scrollPanelTablaActividadesDisponibles))
+                        .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(scrollPanelTablaActividadesReservadas, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(scrollPanelTablaActividadesDisponibles, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(comboBoxDia, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(etiquetaHora)
-                                        .addComponent(etiquetaDia)
-                                        .addComponent(etiquetaPregunta)
-                                        .addComponent(comboBoxHora, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(botonBuscar)
-                                        .addGap(54, 54, 54)))))))
-                .addGap(22, 22, 22))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(226, 226, 226)
-                                .addComponent(etiquetaActividadesDisponibles))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(183, 183, 183)
-                                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(comboBoxDia, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(etiquetaHora)
+                                .addComponent(etiquetaDia)
+                                .addComponent(etiquetaPregunta)
+                                .addComponent(comboBoxHora, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(botonBuscar)
+                                .addGap(54, 54, 54))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(218, 218, 218)
-                        .addComponent(etiquetaActividadesReservadas)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(299, 299, 299)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(43, 43, 43)
+                                            .addComponent(etiquetaActividadesDisponibles))
+                                        .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(288, 288, 288)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jSeparator1)
+                                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(37, 37, 37)
+                                        .addComponent(etiquetaActividadesReservadas)))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(etiquetaPregunta)
-                .addGap(18, 18, 18)
-                .addComponent(etiquetaDia)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(comboBoxDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
-                .addComponent(etiquetaHora)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(comboBoxHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(botonBuscar)
-                .addGap(85, 85, 85))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -209,7 +283,20 @@ public class PantallaPrincipalAdministrarReservaciones extends javax.swing.JPane
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(scrollPanelTablaActividadesDisponibles, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scrollPanelTablaActividadesDisponibles, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(etiquetaPregunta)
+                        .addGap(18, 18, 18)
+                        .addComponent(etiquetaDia)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(comboBoxDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(7, 7, 7)
+                        .addComponent(etiquetaHora)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(comboBoxHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(botonBuscar)))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents

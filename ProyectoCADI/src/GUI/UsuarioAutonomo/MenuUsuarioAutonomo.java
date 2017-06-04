@@ -28,7 +28,7 @@ public class MenuUsuarioAutonomo extends javax.swing.JFrame {
      public MenuUsuarioAutonomo(UsuarioAutonomo usuarioAutonomo){
          this.usuarioAutonomo = usuarioAutonomo;
         initComponents();
-        PantallaPrincipalAdministrarReservaciones pantalla = new PantallaPrincipalAdministrarReservaciones();
+        PantallaPrincipalAdministrarReservaciones pantalla = new PantallaPrincipalAdministrarReservaciones(usuarioAutonomo);
         añadirPanelPrincipal(pantalla);
         setLocationRelativeTo(null);
         setVisible(true);
@@ -63,6 +63,7 @@ public class MenuUsuarioAutonomo extends javax.swing.JFrame {
         panelPrincipalMenuUsuarioAutonomo = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         panelSuperior.setBackground(new java.awt.Color(84, 146, 207));
         panelSuperior.setPreferredSize(new java.awt.Dimension(143, 34));
@@ -143,7 +144,7 @@ public class MenuUsuarioAutonomo extends javax.swing.JFrame {
         panelPrincipalMenuUsuarioAutonomo.setLayout(panelPrincipalMenuUsuarioAutonomoLayout);
         panelPrincipalMenuUsuarioAutonomoLayout.setHorizontalGroup(
             panelPrincipalMenuUsuarioAutonomoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 722, Short.MAX_VALUE)
+            .addGap(0, 999, Short.MAX_VALUE)
         );
         panelPrincipalMenuUsuarioAutonomoLayout.setVerticalGroup(
             panelPrincipalMenuUsuarioAutonomoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,7 +155,7 @@ public class MenuUsuarioAutonomo extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelSuperior, javax.swing.GroupLayout.DEFAULT_SIZE, 875, Short.MAX_VALUE)
+            .addComponent(panelSuperior, javax.swing.GroupLayout.DEFAULT_SIZE, 1152, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

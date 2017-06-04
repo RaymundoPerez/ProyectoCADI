@@ -18,8 +18,8 @@ import java.util.ArrayList;
 public class PublicacionActividadDAO implements IPublicacionActividadDAO {
 
     @Override
-    public ArrayList<PublicacionActividad> mostrarActividadesDisponiblesUsuarioAutonomo(String matricula) {
-        ArrayList<PublicacionActividad> publicacionesActividades = new ArrayList();
+    public ArrayList<PublicacionActividad> obtenerActividadesDisponiblesUsuarioAutonomo(String matricula) {
+        ArrayList<PublicacionActividad> publicacionesActividades = new ArrayList<>();
         ConexionSQL conexionBD = new ConexionSQL();
         conexionBD.conectarBaseDatos();
         PreparedStatement sentenciaConsultaPublicacionActividad;
@@ -32,8 +32,8 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
             for (ExperienciaEducativa experienciaEducativa : experienciasEducativas) {
                 consultaSQLPublicacionActividad = "select PUBLICACIONACTIVIDAD.idPublicacion,"
                         + "PUBLICACIONACTIVIDAD.fecha, PUBLICACIONACTIVIDAD.horainicio, PUBLICACIONACTIVIDAD.horaFin,"
-                        + "PUBLICACIONACTIVIDAD.idAula, ACTIVIDAD.nombreActividad, PUBLICACIONACTIVIDAD.noPersonal"
-                        + "from PUBLICACIONACTIVIDAD,ACTIVIDAD,SECCION,MODULO,EXPERIENCIAEDUCATIVA"
+                        + "PUBLICACIONACTIVIDAD.idAula, ACTIVIDAD.nombreActividad, PUBLICACIONACTIVIDAD.noPersonal "
+                        + "from PUBLICACIONACTIVIDAD,ACTIVIDAD,SECCION,MODULO,EXPERIENCIAEDUCATIVA "
                         + "where PUBLICACIONACTIVIDAD.idActividad=ACTIVIDAD.idActividad and "
                         + "ACTIVIDAD.idSeccion=SECCION.idSeccion and SECCION.idModulo = MODULO.idModulo and "
                         + "MODULO.nrc=EXPERIENCIAEDUCATIVA.nrc and EXPERIENCIAEDUCATIVA.nrc=?";
@@ -54,12 +54,101 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
                 }
             }
         } catch (SQLException exception) {
-
+            System.out.println(exception.getMessage());
         } finally {
             conexionBD.cerrarConexion();
         }
 
         return publicacionesActividades;
+    }
+
+    @Override
+    public ArrayList<PublicacionActividad> obtenerActividadesReservadasUsuarioAutonomo(String matricula) {
+        ArrayList<PublicacionActividad> publicacionesActividades = new ArrayList<>();
+        ConexionSQL conexionBD = new ConexionSQL();
+        conexionBD.conectarBaseDatos();
+        PreparedStatement sentenciaConsultaPublicacionActividad;
+        String consultaSQLPublicacionActividad;
+        ResultSet resultadoPublicacionActividad;
+        try {
+            ExperienciaEducativaDAO experienciaEducativaDAO = new ExperienciaEducativaDAO();
+            EmpleadoDAO empleadoDAO = new EmpleadoDAO();
+            ArrayList<ExperienciaEducativa> experienciasEducativas = experienciaEducativaDAO.obtenerExperienciasEducativasUsuarioAutonomo(matricula);
+            for (ExperienciaEducativa experienciaEducativa : experienciasEducativas) {
+                consultaSQLPublicacionActividad = "select PUBLICACIONACTIVIDAD.idPublicacion,"
+                        + "PUBLICACIONACTIVIDAD.fecha, PUBLICACIONACTIVIDAD.horainicio, PUBLICACIONACTIVIDAD.horaFin,"
+                        + "PUBLICACIONACTIVIDAD.idAula, ACTIVIDAD.nombreActividad, PUBLICACIONACTIVIDAD.noPersonal "
+                        + "from PUBLICACIONACTIVIDAD,ACTIVIDAD,SECCION,MODULO,EXPERIENCIAEDUCATIVA,RESERVACION "
+                        + "where RESERVACION.matricula=? and RESERVACION.idPublicacion=PUBLICACIONACTIVIDAD.idPublicacion and "
+                        + "PUBLICACIONACTIVIDAD.idActividad=ACTIVIDAD.idActividad and "
+                        + "ACTIVIDAD.idSeccion=SECCION.idSeccion and SECCION.idModulo = MODULO.idModulo and "
+                        + "MODULO.nrc=EXPERIENCIAEDUCATIVA.nrc and EXPERIENCIAEDUCATIVA.nrc=?";
+                sentenciaConsultaPublicacionActividad = conexionBD.getConexion().prepareStatement(consultaSQLPublicacionActividad);
+                sentenciaConsultaPublicacionActividad.setString(1, matricula);
+                sentenciaConsultaPublicacionActividad.setString(2, experienciaEducativa.getNrc());
+                resultadoPublicacionActividad = sentenciaConsultaPublicacionActividad.executeQuery();
+                while (resultadoPublicacionActividad.next()) {
+                    PublicacionActividad publicacionActividad = new PublicacionActividad();
+                    publicacionActividad.setIdPublicacion(resultadoPublicacionActividad.getString(1));
+                    publicacionActividad.setFecha(resultadoPublicacionActividad.getDate(2));
+                    publicacionActividad.setHoraInicio(resultadoPublicacionActividad.getTime(3));
+                    publicacionActividad.setHoraFin(resultadoPublicacionActividad.getTime(4));
+                    publicacionActividad.setIdAula(resultadoPublicacionActividad.getString(5));
+                    publicacionActividad.setNombreActividad(resultadoPublicacionActividad.getString(6));
+                    publicacionActividad.setNombreAsesor(empleadoDAO.obtenerNombreEmpleado(resultadoPublicacionActividad.getString(7)));
+                    publicacionActividad.setNombreExperienciaEducativa(experienciaEducativa.getNombreExperienciaEducativa());
+                    publicacionesActividades.add(publicacionActividad);
+                }
+            }
+        } catch (SQLException exception) {
+            System.out.println(exception.getMessage());
+        } finally {
+            conexionBD.cerrarConexion();
+        }
+
+        return publicacionesActividades;
+    }
+
+    @Override
+    public InformacionPublicacionActividad agregarReservacionPublicacionActividad(String idPublicacionActividad, String matricula) {
+        InformacionPublicacionActividad mensaje = InformacionPublicacionActividad.reservacionNoguardada;
+        ConexionSQL conexionBD = new ConexionSQL();
+        conexionBD.conectarBaseDatos();
+        PreparedStatement sentenciaConsulta;
+        String consultaSQL = "insert into RESERVACION values(?,?)";
+        try {
+            sentenciaConsulta = conexionBD.getConexion().prepareStatement(consultaSQL);
+            sentenciaConsulta.setString(1, idPublicacionActividad);
+            sentenciaConsulta.setString(2, matricula);
+            sentenciaConsulta.executeUpdate();
+            mensaje = InformacionPublicacionActividad.reservacionGuardada;
+        } catch (SQLException exception) {
+
+        } finally {
+            conexionBD.cerrarConexion();
+        }
+        return mensaje;
+    }
+
+    @Override
+    public InformacionPublicacionActividad eliminarReservacionPublicacionActividad(String idPublicacionActividad, String matricula) {
+        InformacionPublicacionActividad mensaje = InformacionPublicacionActividad.reservacionNoEliminada;
+        ConexionSQL conexionBD = new ConexionSQL();
+        conexionBD.conectarBaseDatos();
+        PreparedStatement sentenciaConsulta;
+        String consultaSQL = "delete from RESERVACION WHERE idPublicacion=? and matricula=?";
+        try {
+            sentenciaConsulta = conexionBD.getConexion().prepareStatement(consultaSQL);
+            sentenciaConsulta.setString(1, idPublicacionActividad);
+            sentenciaConsulta.setString(2, matricula);
+            sentenciaConsulta.executeUpdate();
+            mensaje = InformacionPublicacionActividad.reservacionEliminada;
+        } catch (SQLException exception) {
+
+        } finally {
+            conexionBD.cerrarConexion();
+        }
+        return mensaje;
     }
 
     @Override
