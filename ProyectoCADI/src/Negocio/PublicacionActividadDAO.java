@@ -36,9 +36,12 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
                         + "from PUBLICACIONACTIVIDAD,ACTIVIDAD,SECCION,MODULO,EXPERIENCIAEDUCATIVA "
                         + "where PUBLICACIONACTIVIDAD.idActividad=ACTIVIDAD.idActividad and "
                         + "ACTIVIDAD.idSeccion=SECCION.idSeccion and SECCION.idModulo = MODULO.idModulo and "
-                        + "MODULO.nrc=EXPERIENCIAEDUCATIVA.nrc and EXPERIENCIAEDUCATIVA.nrc=?";
+                        + "MODULO.nrc=EXPERIENCIAEDUCATIVA.nrc and EXPERIENCIAEDUCATIVA.nrc=? and "
+                        + "PUBLICACIONACTIVIDAD.idPublicacion not in(select RESERVACION.idPublicacion from "
+                        + "RESERVACION where ?=RESERVACION.matricula)";
                 sentenciaConsultaPublicacionActividad = conexionBD.getConexion().prepareStatement(consultaSQLPublicacionActividad);
                 sentenciaConsultaPublicacionActividad.setString(1, experienciaEducativa.getNrc());
+                sentenciaConsultaPublicacionActividad.setString(2, matricula);
                 resultadoPublicacionActividad = sentenciaConsultaPublicacionActividad.executeQuery();
                 while (resultadoPublicacionActividad.next()) {
                     PublicacionActividad publicacionActividad = new PublicacionActividad();
