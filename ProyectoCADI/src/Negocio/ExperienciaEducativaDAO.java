@@ -74,4 +74,13 @@ public class ExperienciaEducativaDAO implements IExperienciaEducativaDAO {
         return experienciasEducativas;
     }
 
+    @Override
+    public String[] generarListaDeExperienciasEducativas(ArrayList<ExperienciaEducativa> experienciasEducativas) {
+        String[] nombresExperienciaEducativa = new String[experienciasEducativas.size()];
+        for (int i = 0; i < experienciasEducativas.size(); i++) {
+            nombresExperienciaEducativa[i] = experienciasEducativas.get(i).getNombreExperienciaEducativa();
+        }
+        return nombresExperienciaEducativa;
+    }
+
 }

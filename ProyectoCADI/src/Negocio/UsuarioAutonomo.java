@@ -18,6 +18,7 @@ public class UsuarioAutonomo {
     private String matricula;
     private String programaEducativo;
     private Date fechaNac;
+    private String experienciaEducativa;
 
     public String getApellidos() {
         return apellidos;
@@ -69,5 +70,14 @@ public class UsuarioAutonomo {
     public void setFechaNac(int año,int mes, int dia) {
         fechaNac = new Date(año,mes,dia);
     }
+
+    public String getExperienciaEducativa() {
+        return experienciaEducativa;
+    }
+
+    public void setExperienciaEducativa(String experienciaEducativa) {
+        this.experienciaEducativa = experienciaEducativa;
+    }
+    
     
 }

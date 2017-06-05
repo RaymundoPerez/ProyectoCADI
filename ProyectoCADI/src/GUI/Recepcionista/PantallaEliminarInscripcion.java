@@ -5,16 +5,26 @@
  */
 package GUI.Recepcionista;
 
-/**
- *
- * @author Irdevelo
- */
+import Negocio.ExperienciaEducativa;
+import Negocio.ExperienciaEducativaDAO;
+import Negocio.InscripcionDAO;
+import Negocio.UsuarioAutonomo;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 public class PantallaEliminarInscripcion extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PantallaEliminarInscripcion
-     */
+    private UsuarioAutonomo usuarioAutonomo;
+    private ArrayList<ExperienciaEducativa> experienciasEducativas;
+
     public PantallaEliminarInscripcion() {
+        initComponents();
+    }
+
+    public PantallaEliminarInscripcion(UsuarioAutonomo usuarioAutonomo) {
+        this.usuarioAutonomo = usuarioAutonomo;
+        ExperienciaEducativaDAO experienciaEducativaDAO = new ExperienciaEducativaDAO();
+        experienciasEducativas = experienciaEducativaDAO.obtenerExperienciasEducativasUsuarioAutonomo(usuarioAutonomo.getMatricula());
         initComponents();
     }
 
@@ -76,28 +86,39 @@ public class PantallaEliminarInscripcion extends javax.swing.JPanel {
         etiquetaExperienciaEducativa.setText("Experiencia educativa:");
 
         nombresAlumno.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        nombresAlumno.setText("jLabel9");
+        nombresAlumno.setText(usuarioAutonomo.getNombres());
 
         apellidosAlumno.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        apellidosAlumno.setText("jLabel10");
+        apellidosAlumno.setText(usuarioAutonomo.getApellidos());
 
         fechaDeNacimientoAlumno.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        fechaDeNacimientoAlumno.setText("jLabel11");
+        fechaDeNacimientoAlumno.setText(String.valueOf(usuarioAutonomo.getFechaNac()));
 
         matriculaAlumno.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        matriculaAlumno.setText("jLabel12");
+        matriculaAlumno.setText(usuarioAutonomo.getMatricula());
 
         correoElectronicoAlumno.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        correoElectronicoAlumno.setText("jLabel13");
+        correoElectronicoAlumno.setText(usuarioAutonomo.getCorreoElectronico());
 
         programaEducativoAlumno.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        programaEducativoAlumno.setText("jLabel14");
+        programaEducativoAlumno.setText(usuarioAutonomo.getProgramaEducativo());
 
         comboBoxExperienciaEducativa.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        comboBoxExperienciaEducativa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBoxExperienciaEducativa.setModel(new javax.swing.DefaultComboBoxModel<>(generarListaDeExperienciasEducativas(experienciasEducativas)));
+        comboBoxExperienciaEducativa.setSelectedIndex(-1);
+        comboBoxExperienciaEducativa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxExperienciaEducativaActionPerformed(evt);
+            }
+        });
 
         botonEliminarInscrpcion.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         botonEliminarInscrpcion.setText("Eliminar Inscripción");
+        botonEliminarInscrpcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarInscrpcionActionPerformed(evt);
+            }
+        });
 
         botonCancelar.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         botonCancelar.setText("Cancelar");
@@ -140,7 +161,7 @@ public class PantallaEliminarInscripcion extends javax.swing.JPanel {
                 .addContainerGap(239, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(botonEliminarInscrpcion, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botonEliminarInscrpcion, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
@@ -193,9 +214,43 @@ public class PantallaEliminarInscripcion extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
-        // TODO add your handling code here:
+        PantallaPrincipalAdministrarInscripcion pantalla = new PantallaPrincipalAdministrarInscripcion();
+        MenuRecepcionista.añadirPanelPrincipal(pantalla);
     }//GEN-LAST:event_botonCancelarActionPerformed
 
+    private void comboBoxExperienciaEducativaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxExperienciaEducativaActionPerformed
+
+
+    }//GEN-LAST:event_comboBoxExperienciaEducativaActionPerformed
+
+    private void botonEliminarInscrpcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarInscrpcionActionPerformed
+        if (comboBoxExperienciaEducativa.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(null, "Seleccione la Experiencia Educativa que desea eliminar");
+        } else {
+            InscripcionDAO inscripcionDAO = new InscripcionDAO();
+            switch (inscripcionDAO.eliminarInscripcion(usuarioAutonomo.getMatricula(),
+                    inscripcionDAO.buscarInscripcion(experienciasEducativas.get(comboBoxExperienciaEducativa.getSelectedIndex()).getNrc()))) {
+                case inscripcionEliminadaCorrectamente:
+                    JOptionPane.showMessageDialog(null, "Inscripcion eliminada");
+                    
+                    break;
+
+                case inscripcionNoEliminada:
+                    JOptionPane.showMessageDialog(null, "La inscripcion no se pudo eliminar");
+                    break;
+            }
+        }
+        PantallaPrincipalAdministrarInscripcion pantalla = new PantallaPrincipalAdministrarInscripcion();
+        MenuRecepcionista.añadirPanelPrincipal(pantalla);
+    }//GEN-LAST:event_botonEliminarInscrpcionActionPerformed
+
+    public String[] generarListaDeExperienciasEducativas(ArrayList<ExperienciaEducativa> experienciasEducativas) {
+        String[] nombresExperienciaEducativa = new String[experienciasEducativas.size()];
+        for (int i = 0; i < experienciasEducativas.size(); i++) {
+            nombresExperienciaEducativa[i] = experienciasEducativas.get(i).getNombreExperienciaEducativa();
+        }
+        return nombresExperienciaEducativa;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel apellidosAlumno;

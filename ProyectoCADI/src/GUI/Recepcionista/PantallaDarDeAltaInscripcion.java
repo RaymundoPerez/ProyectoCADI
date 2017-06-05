@@ -138,6 +138,11 @@ public class PantallaDarDeAltaInscripcion extends javax.swing.JPanel {
         etiquetaMatricula.setText("Matrícula:");
 
         campoTextoMatricula.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        campoTextoMatricula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoTextoMatriculaActionPerformed(evt);
+            }
+        });
         campoTextoMatricula.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 campoTextoMatriculaKeyTyped(evt);
@@ -196,6 +201,12 @@ public class PantallaDarDeAltaInscripcion extends javax.swing.JPanel {
 
         etiquetaSeccionCurso.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         etiquetaSeccionCurso.setText("Sección curso:");
+
+        comboBoxSeccionCurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxSeccionCursoActionPerformed(evt);
+            }
+        });
 
         radioButtonNuevoUsuario.setText("Nuevo usuario");
         radioButtonNuevoUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -317,7 +328,7 @@ public class PantallaDarDeAltaInscripcion extends javax.swing.JPanel {
         comboBoxAño.setSelectedItem(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    public void limitarCaracteres(java.awt.event.KeyEvent evt, JTextField campo, int caracteresMaximos) {
+    public static void limitarCaracteres(java.awt.event.KeyEvent evt, JTextField campo, int caracteresMaximos) {
         if (campo.getText().length() >= caracteresMaximos) {
             evt.consume();
         }
@@ -342,7 +353,7 @@ public class PantallaDarDeAltaInscripcion extends javax.swing.JPanel {
     public String[] calcularRangoAños() {
         ArrayList<Integer> años = new ArrayList();
         Calendar fecha = new GregorianCalendar();
-        for (int i = fecha.get(Calendar.YEAR)-18; i >= 1950; i--) {
+        for (int i = fecha.get(Calendar.YEAR) - 18; i >= 1950; i--) {
             años.add(i);
         }
         String[] rangoDeAños = new String[años.size()];
@@ -363,12 +374,15 @@ public class PantallaDarDeAltaInscripcion extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Algunos campos estan vacios");
         } else if (validarCorreo(campoTextoCorreoElectronico.getText()) == false) {
             JOptionPane.showMessageDialog(null, "Introduzca un correo electrónico correcto");
-        } else {
+        } else if (campoTextoMatricula.getText().length() == 9) {
             validarNuevoUsuario();
+        } else {
+            JOptionPane.showMessageDialog(null, "Introduzca el formato de matricula "
+                    + "correcto, el cual empieza con 'S' y seguido de 8 números");
         }
     }
-    
-    public void validarNuevoUsuario(){
+
+    public void validarNuevoUsuario() {
         UsuarioAutonomoDAO usuarioAutonomoDAO = new UsuarioAutonomoDAO();
         if (!usuarioAutonomoDAO.validarExistenciaUsuarioAutonomo(campoTextoMatricula.getText())) {
             agregarInscripcionNuevoUsuario();
@@ -376,13 +390,13 @@ public class PantallaDarDeAltaInscripcion extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "El usuario ya existe");
         }
     }
-    
-    public void agregarInscripcionNuevoUsuario(){
+
+    public void agregarInscripcionNuevoUsuario() {
         CuentaDAO cuentaDAO = new CuentaDAO();
         UsuarioAutonomoDAO usuarioAutonomoDAO = new UsuarioAutonomoDAO();
-        InscripcionDAO inscripcionDAO =new InscripcionDAO();
+        InscripcionDAO inscripcionDAO = new InscripcionDAO();
         Cuenta cuenta = new Cuenta();
-        cuenta.setNombreUsuario("z"+campoTextoMatricula.getText());
+        cuenta.setNombreUsuario("z" + campoTextoMatricula.getText());
         cuenta.setConstraseña(campoTextoMatricula.getText());
         cuenta.setTipoUsuario("UsuarioAutonomo");
         cuentaDAO.crearCuenta(cuenta);
@@ -392,10 +406,10 @@ public class PantallaDarDeAltaInscripcion extends javax.swing.JPanel {
         usuarioAutonomo.setMatricula(campoTextoMatricula.getText());
         usuarioAutonomo.setProgramaEducativo((String) comboBoxProgramaEducativo.getSelectedItem());
         usuarioAutonomo.setCorreoElectronico(campoTextoCorreoElectronico.getText());
-        usuarioAutonomo.setFechaNac(Integer.parseInt((String)comboBoxAño.getSelectedItem())-1900,comboBoxMes.getSelectedIndex(),
-                                           comboBoxDia.getSelectedIndex()+1);
+        usuarioAutonomo.setFechaNac(Integer.parseInt((String) comboBoxAño.getSelectedItem()) - 1900, comboBoxMes.getSelectedIndex(),
+                comboBoxDia.getSelectedIndex() + 1);
         usuarioAutonomoDAO.crearUsuarioAutonomo(usuarioAutonomo);
-        inscripcionDAO.crearInscripcion(campoTextoMatricula.getText(),(String) comboBoxSeccionCurso.getSelectedItem());
+        inscripcionDAO.crearInscripcion(campoTextoMatricula.getText(), (String) comboBoxSeccionCurso.getSelectedItem());
         JOptionPane.showMessageDialog(null, "El alumno se ha inscrito correctamente");
     }
 
@@ -433,7 +447,6 @@ public class PantallaDarDeAltaInscripcion extends javax.swing.JPanel {
 
     }
 
-    
 
     private void campoTextoNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoNombresActionPerformed
 
@@ -477,6 +490,8 @@ public class PantallaDarDeAltaInscripcion extends javax.swing.JPanel {
             inscribirNuevoUsuario();
         } else {
             inscribirUsuarioExistente();
+            PantallaPrincipalAdministrarInscripcion pantalla = new PantallaPrincipalAdministrarInscripcion();
+            MenuRecepcionista.añadirPanelPrincipal(pantalla);
         }
     }//GEN-LAST:event_botonGuardarActionPerformed
 
@@ -491,7 +506,6 @@ public class PantallaDarDeAltaInscripcion extends javax.swing.JPanel {
     }//GEN-LAST:event_radioButtonNuevoUsuarioActionPerformed
 
     private void radioButtonUsuarioExistenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioButtonUsuarioExistenteActionPerformed
-
         activarCampos(false);
     }//GEN-LAST:event_radioButtonUsuarioExistenteActionPerformed
 
@@ -503,6 +517,14 @@ public class PantallaDarDeAltaInscripcion extends javax.swing.JPanel {
         PantallaPrincipalAdministrarInscripcion pantalla = new PantallaPrincipalAdministrarInscripcion();
         MenuRecepcionista.añadirPanelPrincipal(pantalla);
     }//GEN-LAST:event_botonCancelarActionPerformed
+
+    private void comboBoxSeccionCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxSeccionCursoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxSeccionCursoActionPerformed
+
+    private void campoTextoMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoMatriculaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoTextoMatriculaActionPerformed
 
     public void activarCampos(boolean estaActivo) {
         etiquetaNombres.setVisible(estaActivo);

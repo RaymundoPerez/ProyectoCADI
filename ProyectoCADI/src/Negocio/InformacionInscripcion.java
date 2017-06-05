@@ -12,7 +12,7 @@ package Negocio;
 public enum InformacionInscripcion {
     
     inscripcionCreadaCorrectamente, 
-    inscripcionNoCreada
-    
-    
+    inscripcionNoCreada,
+    inscripcionEliminadaCorrectamente,
+    inscripcionNoEliminada
 }

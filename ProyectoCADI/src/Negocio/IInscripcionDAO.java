@@ -11,9 +11,10 @@ package Negocio;
  */
 public interface IInscripcionDAO {
     
-    public InformacionInscripcion crearInscripcion(String matricula, String claveSeccionCurso);
-    public InformacionInscripcion elimnarInscripcion();     
+    public InformacionInscripcion crearInscripcion(String matricula, String claveSeccionCurso);    
     public boolean validarExistenciaInscripcion(String matricula, String claveSeccionCurso);
-    public void buscarInscripcion();
+    public String buscarInscripcion(String nrc);
+    public InformacionInscripcion eliminarInscripcion(String matricula,String claveSeccion);
+    
     
 }

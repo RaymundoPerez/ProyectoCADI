@@ -163,7 +163,7 @@ public class MenuRecepcionista extends javax.swing.JFrame {
         panelPrincipalMenuRecepcionista.setLayout(panelPrincipalMenuRecepcionistaLayout);
         panelPrincipalMenuRecepcionistaLayout.setHorizontalGroup(
             panelPrincipalMenuRecepcionistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 733, Short.MAX_VALUE)
+            .addGap(0, 782, Short.MAX_VALUE)
         );
         panelPrincipalMenuRecepcionistaLayout.setVerticalGroup(
             panelPrincipalMenuRecepcionistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,7 +180,7 @@ public class MenuRecepcionista extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollPaneMenuRecepcionista, javax.swing.GroupLayout.DEFAULT_SIZE, 752, Short.MAX_VALUE))
+                .addComponent(scrollPaneMenuRecepcionista, javax.swing.GroupLayout.DEFAULT_SIZE, 801, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

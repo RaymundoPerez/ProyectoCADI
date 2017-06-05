@@ -38,11 +38,6 @@ public class InscripcionDAO implements IInscripcionDAO {
     }
 
     @Override
-    public InformacionInscripcion elimnarInscripcion() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public boolean validarExistenciaInscripcion(String matricula, String claveSeccionCurso) {
         boolean existeInscripcion = false;
         ConexionSQL conexionBD = new ConexionSQL();
@@ -64,8 +59,49 @@ public class InscripcionDAO implements IInscripcionDAO {
     }
 
     @Override
-    public void buscarInscripcion() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String buscarInscripcion(String nrc) {
+        String claveSeccion=null;
+        ConexionSQL conexionBD = new ConexionSQL();
+        conexionBD.conectarBaseDatos(); 
+        PreparedStatement sentenciaConsulta;
+        String consultaSQL = "Select claveSeccion from SECCIONCURSO,CURSO where ? = CURSO.nrc and CURSO.idCurso = SECCIONCURSO.idCurso";
+        try {
+            sentenciaConsulta = conexionBD.getConexion().prepareStatement(consultaSQL);
+            sentenciaConsulta.setString(1, nrc);
+            ResultSet resultadoConsulta = sentenciaConsulta.executeQuery();
+            resultadoConsulta.next();
+            claveSeccion = resultadoConsulta.getString(1);
+        } catch (SQLException exception) {
+
+        } finally {
+            conexionBD.cerrarConexion();
+        }
+        return claveSeccion;
     }
 
+    @Override
+    public InformacionInscripcion eliminarInscripcion(String matricula, String claveSeccion) {
+        InformacionInscripcion mensaje = InformacionInscripcion.inscripcionNoEliminada;
+       int resultadoConsulta;
+       ConexionSQL conexionBD = new ConexionSQL();
+        conexionBD.conectarBaseDatos();
+        PreparedStatement sentenciaConsulta;
+        String consultaSQL = "DELETE from INSCRIPCION where matricula=? and claveSeccion=?";
+        try {
+            sentenciaConsulta = conexionBD.getConexion().prepareStatement(consultaSQL);
+            sentenciaConsulta.setString(1, matricula);
+            sentenciaConsulta.setString(2, claveSeccion);
+            resultadoConsulta = sentenciaConsulta.executeUpdate();
+            
+            if (resultadoConsulta == 1)
+                mensaje = InformacionInscripcion.inscripcionEliminadaCorrectamente;
+            
+        } catch (SQLException exception) {
+
+        } finally {
+            conexionBD.cerrarConexion();
+        }
+            return mensaje;
+    }
+        
 }

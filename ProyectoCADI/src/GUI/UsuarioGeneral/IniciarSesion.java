@@ -7,6 +7,7 @@ package GUI.UsuarioGeneral;
 
 import GUI.Coordinador.MenuCoordinador;
 import GUI.Recepcionista.MenuRecepcionista;
+import static GUI.Recepcionista.PantallaDarDeAltaInscripcion.limitarCaracteres;
 import GUI.UsuarioAutonomo.MenuUsuarioAutonomo;
 import Negocio.Cuenta;
 import Negocio.CuentaDAO;
@@ -46,6 +47,12 @@ public class IniciarSesion extends javax.swing.JFrame {
         etiquetaNombreUsuario.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         etiquetaNombreUsuario.setText("Nombre de usuario");
 
+        campoTextoNombreUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoTextoNombreUsuarioKeyTyped(evt);
+            }
+        });
+
         etiquetaContraseña.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         etiquetaContraseña.setText("Contraseña");
 
@@ -79,6 +86,12 @@ public class IniciarSesion extends javax.swing.JFrame {
                 .addComponent(etiquetaInicioSesion)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        campoTextoContraseña.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoTextoContraseñaKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -158,6 +171,14 @@ public class IniciarSesion extends javax.swing.JFrame {
         }
         }   
     }//GEN-LAST:event_botonIniciarSesionActionPerformed
+
+    private void campoTextoNombreUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoTextoNombreUsuarioKeyTyped
+        limitarCaracteres(evt, campoTextoNombreUsuario, 9);
+    }//GEN-LAST:event_campoTextoNombreUsuarioKeyTyped
+
+    private void campoTextoContraseñaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoTextoContraseñaKeyTyped
+        limitarCaracteres(evt, campoTextoContraseña, 30);        // TODO add your handling code here:
+    }//GEN-LAST:event_campoTextoContraseñaKeyTyped
 
     /**
      * @param args the command line arguments
