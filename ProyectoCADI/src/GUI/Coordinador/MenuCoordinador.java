@@ -183,8 +183,8 @@ public class MenuCoordinador extends javax.swing.JFrame {
         scrollPanelPrincipal.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPanelPrincipal.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
-        panelPrincipal.setMinimumSize(new java.awt.Dimension(0, 600));
-        panelPrincipal.setPreferredSize(new java.awt.Dimension(0, 600));
+        panelPrincipal.setMinimumSize(new java.awt.Dimension(0, 700));
+        panelPrincipal.setPreferredSize(new java.awt.Dimension(0, 1000));
 
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);

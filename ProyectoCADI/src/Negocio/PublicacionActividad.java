@@ -17,6 +17,7 @@ public class PublicacionActividad {
     private String nombreExperienciaEducativa;
     private String nombreActividad;
     private String idAula;
+    private int cupo;
     
     
 
@@ -82,6 +83,14 @@ public class PublicacionActividad {
 
     public void setIdAula(String idAula) {
         this.idAula = idAula;
+    }
+
+    public int getCupo() {
+        return cupo;
+    }
+
+    public void setCupo(int cupo) {
+        this.cupo = cupo;
     }
     
     

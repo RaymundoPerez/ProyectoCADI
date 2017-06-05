@@ -12,8 +12,6 @@ public interface IPublicacionActividadDAO {
     public ArrayList<PublicacionActividad> obtenerActividadesReservadasUsuarioAutonomo(String matricula);
     public InformacionPublicacionActividad agregarReservacionPublicacionActividad(String idPublicacionActividad, String matricula);
     public InformacionPublicacionActividad eliminarReservacionPublicacionActividad(String idPublicacionActividad, String matricula);
-    public InformacionPublicacionActividad publicarActividad();
-    public String buscarAsesorDisponible();
-    public String buscarAulaDisponible();
-     public ArrayList<PublicacionActividad> obtenerActividadesDisponibles();
+    public InformacionPublicacionActividad publicarActividad(PublicacionActividad publicacionActividad);
+    public ArrayList<PublicacionActividad> obtenerActividadesDisponibles();
 }

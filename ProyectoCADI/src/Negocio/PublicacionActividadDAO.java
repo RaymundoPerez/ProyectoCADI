@@ -157,19 +157,31 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
     }
 
     @Override
-    public InformacionPublicacionActividad publicarActividad() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public InformacionPublicacionActividad publicarActividad(PublicacionActividad publicacionActividad) {
+       InformacionPublicacionActividad mensaje = InformacionPublicacionActividad.actividadNoPublicada;
+       ConexionSQL conexionBD = new ConexionSQL();
+        conexionBD.conectarBaseDatos();
+        PreparedStatement sentenciaConsulta;
+        String consultaSQL = "insert into PUBLICIACIONACTIVIDAD values('PA0005',?,?,?,?,?,?,?)";
+        try {
+            sentenciaConsulta = conexionBD.getConexion().prepareStatement(consultaSQL);
+            sentenciaConsulta.setDate(1,new java.sql.Date(publicacionActividad.getFecha().getTime()));
+            sentenciaConsulta.setTime(2, publicacionActividad.getHoraInicio());
+            sentenciaConsulta.setTime(3, publicacionActividad.getHoraFin());
+            sentenciaConsulta.setString(4, publicacionActividad.getIdAula());
+            sentenciaConsulta.setString(5, publicacionActividad.getNombreActividad());
+            sentenciaConsulta.setString(6,publicacionActividad.getNombreAsesor());
+            sentenciaConsulta.setInt(7, publicacionActividad.getCupo());
+            sentenciaConsulta.executeUpdate();
+            mensaje = InformacionPublicacionActividad.actividadPublicada;
+        } catch (SQLException exception) {
+
+        } finally {
+            conexionBD.cerrarConexion();
+        }
+       return mensaje;
     }
 
-    @Override
-    public String buscarAsesorDisponible() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String buscarAulaDisponible() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     public ArrayList<PublicacionActividad> obtenerActividadesDisponibles() {

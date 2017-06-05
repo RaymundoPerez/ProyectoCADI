@@ -11,11 +11,8 @@ import java.util.ArrayList;
 
 /**
  *
- * @author raymu
+ * @author alonso
  */
-public interface IEmpleadoDAO {
-    
-    public Empleado obtenerEmpleado(String nombreUsuario);
-    public String obtenerNombreEmpleado(String noPersonal);
-    public ArrayList<Empleado> obtenerEmpleadosDisponibles(Time hora, String idIdioma, Date fecha);
+public interface IAulaDAO {
+    public ArrayList<Aula> obtenerAulasDisponibles(Time hora, Date fecha);
 }

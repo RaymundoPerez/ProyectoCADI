@@ -81,7 +81,6 @@ public class PantallaPrincipalCalendarioActividades extends javax.swing.JPanel {
 
         botonBuscar.setText("Buscar");
 
-        tablaActividadesDisponibles.setBackground(new java.awt.Color(51, 51, 255));
         tablaActividadesDisponibles.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
