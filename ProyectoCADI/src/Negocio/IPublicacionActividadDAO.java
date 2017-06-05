@@ -14,4 +14,8 @@ public interface IPublicacionActividadDAO {
     public InformacionPublicacionActividad eliminarReservacionPublicacionActividad(String idPublicacionActividad, String matricula);
     public InformacionPublicacionActividad publicarActividad(PublicacionActividad publicacionActividad);
     public ArrayList<PublicacionActividad> obtenerActividadesDisponibles();
+    public InformacionPublicacionActividad eliminarPublicacionActividad(String idPublicacion);
+    public ArrayList<PublicacionActividad> obtenerActividadesDisponiblesPorEE(String nrc);
+    public InformacionPublicacionActividad reducirCupoPublicacionActividad(String idPublicacionActividad);
+    public InformacionPublicacionActividad aumentarCupoPublicacionActividad(String idPublicacionActividad);
 }

@@ -25,6 +25,7 @@ import Negocio.SeccionDAO;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -173,9 +174,9 @@ public class PanelAgregarActividadCalendario extends javax.swing.JPanel {
 
         jLabel1.setText("Seleccione el asesor:");
 
-        comboBoxAsesor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBoxAsesor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
 
-        comboBoxAula.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBoxAula.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { }));
 
         jLabel2.setText("Seleccione el aula:");
 
@@ -190,10 +191,16 @@ public class PanelAgregarActividadCalendario extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botonAgregarActividad)
+                .addGap(49, 49, 49)
+                .addComponent(botonCancelar)
+                .addGap(94, 94, 94))
             .addGroup(layout.createSequentialGroup()
-                .addGap(332, 332, 332)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(332, 332, 332)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(comboBoxIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
@@ -201,33 +208,23 @@ public class PanelAgregarActividadCalendario extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(etiquetaAgregarActividad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jSeparator1)
-                                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(326, Short.MAX_VALUE))
+                                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(comboBoxModulo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(50, 50, 50)
+                                    .addComponent(etiquetaIdioma))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(etiquetaSeccion)
+                                    .addGap(57, 57, 57))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(etiquetaModulo)
+                                    .addGap(56, 56, 56))
+                                .addComponent(comboBoxExperienciaEducativa, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(etiquetaExperienciaEducativa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(comboBoxSeccion, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(comboBoxModulo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(50, 50, 50)
-                                .addComponent(etiquetaIdioma))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(etiquetaSeccion)
-                                .addGap(57, 57, 57))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(etiquetaModulo)
-                                .addGap(56, 56, 56))
-                            .addComponent(comboBoxExperienciaEducativa, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(etiquetaExperienciaEducativa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(comboBoxSeccion, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(botonAgregarActividad)
-                        .addGap(49, 49, 49)
-                        .addComponent(botonCancelar)
-                        .addGap(94, 94, 94))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(147, 147, 147)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -261,8 +258,8 @@ public class PanelAgregarActividadCalendario extends javax.swing.JPanel {
                                     .addGap(37, 37, 37)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(comboBoxAula, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel2)))))
-                        .addGap(148, 148, 148))))
+                                        .addComponent(jLabel2)))))))
+                .addContainerGap(161, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -366,13 +363,21 @@ public class PanelAgregarActividadCalendario extends javax.swing.JPanel {
         PublicacionActividad publicacionActividad = new PublicacionActividad();
         publicacionActividad.setFecha(calendario.getDate());
         publicacionActividad.setHoraInicio(new Time(comboBoxHoraInicio.getSelectedIndex()+8,00,00));
-        publicacionActividad.setHoraFin(new Time(comboBoxHoraFin.getSelectedIndex()+8,00,00));
+        publicacionActividad.setHoraFin(new Time(comboBoxHoraInicio.getSelectedIndex()+9 +comboBoxHoraFin.getSelectedIndex(),00,00));
         publicacionActividad.setIdAula(aulasDisponibles.get(comboBoxAula.getSelectedIndex()).getIdAula());
         publicacionActividad.setNombreActividad(actividades.get(comboBoxActividad.getSelectedIndex()).getIdActividad());
         publicacionActividad.setNombreAsesor(asesoresDisponibles.get(comboBoxAsesor.getSelectedIndex()).getNoPersonal());
         publicacionActividad.setCupo(aulasDisponibles.get(comboBoxAula.getSelectedIndex()).getCupo());
         PublicacionActividadDAO publicacionDAO = new PublicacionActividadDAO();
-        publicacionDAO.publicarActividad(publicacionActividad);
+        switch(publicacionDAO.publicarActividad(publicacionActividad)){
+            case actividadPublicada:
+                JOptionPane.showMessageDialog(null, "Publicación guardada");
+                break;
+            
+            case actividadNoPublicada:
+                JOptionPane.showMessageDialog(null, "Publicacion no guardada");
+                break;
+        }
         
     }//GEN-LAST:event_botonAgregarActividadActionPerformed
 

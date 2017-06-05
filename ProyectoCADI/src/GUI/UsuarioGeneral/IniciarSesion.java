@@ -173,7 +173,7 @@ public class IniciarSesion extends javax.swing.JFrame {
     }//GEN-LAST:event_botonIniciarSesionActionPerformed
 
     private void campoTextoNombreUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoTextoNombreUsuarioKeyTyped
-        limitarCaracteres(evt, campoTextoNombreUsuario, 9);
+        limitarCaracteres(evt, campoTextoNombreUsuario, 10);
     }//GEN-LAST:event_campoTextoNombreUsuarioKeyTyped
 
     private void campoTextoContraseñaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoTextoContraseñaKeyTyped

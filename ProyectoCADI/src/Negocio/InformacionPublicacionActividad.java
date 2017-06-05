@@ -11,5 +11,11 @@ public enum InformacionPublicacionActividad {
     reservacionGuardada,
     reservacionNoguardada,
     reservacionEliminada,
-    reservacionNoEliminada
+    reservacionNoEliminada,
+    publicacionEliminada,
+    publicacionNoEliminada,
+    cupoRestado,
+    cupoNoRestado,
+    cupoAumentado,
+    cupoNoAumentado
 }
