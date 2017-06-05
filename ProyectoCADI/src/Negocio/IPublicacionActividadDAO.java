@@ -15,4 +15,5 @@ public interface IPublicacionActividadDAO {
     public InformacionPublicacionActividad publicarActividad();
     public String buscarAsesorDisponible();
     public String buscarAulaDisponible();
+     public ArrayList<PublicacionActividad> obtenerActividadesDisponibles();
 }

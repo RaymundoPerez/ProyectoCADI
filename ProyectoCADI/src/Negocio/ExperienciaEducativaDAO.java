@@ -83,4 +83,30 @@ public class ExperienciaEducativaDAO implements IExperienciaEducativaDAO {
         return nombresExperienciaEducativa;
     }
 
+    @Override
+    public ArrayList<ExperienciaEducativa> obtenerExperienciaEducativaPorIdioma(String idIdioma) {
+        ArrayList<ExperienciaEducativa> experienciasEducativas = new ArrayList();
+        ConexionSQL conexionBD = new ConexionSQL();
+        conexionBD.conectarBaseDatos();
+        PreparedStatement sentenciaConsulta;
+        String consultaSQL = "select nrc,nombreExperienciaEducativa from EXPERIENCIAEDUCATIVA where idIdioma = ?";
+        try {
+            sentenciaConsulta = conexionBD.getConexion().prepareStatement(consultaSQL);
+            sentenciaConsulta.setString(1, idIdioma);
+            ResultSet resultadoConsulta = sentenciaConsulta.executeQuery();
+            while(resultadoConsulta.next()){
+                ExperienciaEducativa experienciaEducativa = new ExperienciaEducativa();
+                experienciaEducativa.setNrc(resultadoConsulta.getString(1));
+                experienciaEducativa.setNombreExperienciaEducativa(resultadoConsulta.getString(2));
+                experienciasEducativas.add(experienciaEducativa);
+            }
+           
+        } catch (SQLException exception) {
+            
+        } finally {
+            conexionBD.cerrarConexion();
+        }
+        return experienciasEducativas;
+    }
+
 }

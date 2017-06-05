@@ -1,10 +1,12 @@
 
 package Negocio;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author alonso
  */
 public interface IActividadDAO {
-    public Actividad seleccionarActividadPorId();
+    public ArrayList<Actividad> seleccionarActividadPorSeccion(String idSeccion);
 }

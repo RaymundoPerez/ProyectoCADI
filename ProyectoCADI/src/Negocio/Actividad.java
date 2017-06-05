@@ -7,7 +7,7 @@ package Negocio;
  */
 public class Actividad {
     private String idActividad;
-    private String nombreUsuario;
+    private String nombreActividad;
 
     public String getIdActividad() {
         return idActividad;
@@ -17,13 +17,15 @@ public class Actividad {
         this.idActividad = idActividad;
     }
 
-    public String getNombreUsuario() {
-        return nombreUsuario;
+    public String getNombreActividad() {
+        return nombreActividad;
     }
 
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
+    public void setNombreActividad(String nombreActividad) {
+        this.nombreActividad = nombreActividad;
     }
+
+    
     
     
 }

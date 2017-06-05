@@ -10,6 +10,7 @@ import Negocio.PublicacionActividadDAO;
 import Negocio.UsuarioAutonomo;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -53,31 +54,7 @@ public class PantallaPrincipalAdministrarReservaciones extends javax.swing.JPane
             matrizTablaActividadesDisponibles[i][5] = publicacionesActividadesDisponibles.get(i).getNombreAsesor();
 
         }
-        crearTabalaActividadesDisponibles(matrizTablaActividadesDisponibles);
-    }
-
-    public void crearTabalaActividadesDisponibles(String[][] matrizTablaActividadesDisponibles) {
-        tablaActividadesDisponibles.setModel(new DefaultTableModel(
-                matrizTablaActividadesDisponibles,
-                new String[]{
-                    "EE", "Actividad", "Fecha", "Hora", "Aula", "Profesor"
-                }
-        ) {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        });
-
-        tablaActividadesDisponibles.getColumnModel().getColumn(1).setPreferredWidth(220);
-        tablaActividadesDisponibles.getColumnModel().getColumn(5).setPreferredWidth(210);
-
-        tablaActividadesDisponibles.getColumnModel().getColumn(0).setResizable(false);
-        tablaActividadesDisponibles.getColumnModel().getColumn(1).setResizable(false);
-        tablaActividadesDisponibles.getColumnModel().getColumn(2).setResizable(false);
-        tablaActividadesDisponibles.getColumnModel().getColumn(3).setResizable(false);
-        tablaActividadesDisponibles.getColumnModel().getColumn(4).setResizable(false);
-        tablaActividadesDisponibles.getColumnModel().getColumn(5).setResizable(false);
+        crearTablaActividades(matrizTablaActividadesDisponibles,tablaActividadesDisponibles);
     }
 
     public void insertarActividadesReservadas() {
@@ -92,12 +69,12 @@ public class PantallaPrincipalAdministrarReservaciones extends javax.swing.JPane
             matrizTablaActividadesReservadas[i][4] = publicacionesActividadesReservadas.get(i).getIdAula();
             matrizTablaActividadesReservadas[i][5] = publicacionesActividadesReservadas.get(i).getNombreAsesor();
         }
-        crearTablaActividadesReservadas(matrizTablaActividadesReservadas);
+        crearTablaActividades(matrizTablaActividadesReservadas,tablaActividadesReservadas);
     }
 
-    public void crearTablaActividadesReservadas(String[][] matrizTablaActividadesReservadas) {
-        tablaActividadesReservadas.setModel(new DefaultTableModel(
-                matrizTablaActividadesReservadas,
+    public void crearTablaActividades(String[][] matriz,JTable tabla) {
+        tabla.setModel(new DefaultTableModel(
+                matriz,
                 new String[]{
                     "EE", "Actividad", "Fecha", "Hora", "Aula", "Profesor"
                 }
@@ -109,15 +86,15 @@ public class PantallaPrincipalAdministrarReservaciones extends javax.swing.JPane
         }
         );
 
-        tablaActividadesReservadas.getColumnModel().getColumn(1).setPreferredWidth(220);
-        tablaActividadesReservadas.getColumnModel().getColumn(5).setPreferredWidth(210);
+        tabla.getColumnModel().getColumn(1).setPreferredWidth(220);
+        tabla.getColumnModel().getColumn(5).setPreferredWidth(210);
 
-        tablaActividadesReservadas.getColumnModel().getColumn(0).setResizable(false);
-        tablaActividadesReservadas.getColumnModel().getColumn(1).setResizable(false);
-        tablaActividadesReservadas.getColumnModel().getColumn(2).setResizable(false);
-        tablaActividadesReservadas.getColumnModel().getColumn(3).setResizable(false);
-        tablaActividadesReservadas.getColumnModel().getColumn(4).setResizable(false);
-        tablaActividadesReservadas.getColumnModel().getColumn(5).setResizable(false);
+        tabla.getColumnModel().getColumn(0).setResizable(false);
+        tabla.getColumnModel().getColumn(1).setResizable(false);
+        tabla.getColumnModel().getColumn(2).setResizable(false);
+        tabla.getColumnModel().getColumn(3).setResizable(false);
+        tabla.getColumnModel().getColumn(4).setResizable(false);
+        tabla.getColumnModel().getColumn(5).setResizable(false);
     }
 
     /**

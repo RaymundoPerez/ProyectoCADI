@@ -1,6 +1,8 @@
 package GUI.Coordinador;
 
 import Negocio.Empleado;
+import java.awt.Dimension;
+import javax.swing.JPanel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -27,10 +29,20 @@ public class MenuCoordinador extends javax.swing.JFrame {
     public MenuCoordinador(Empleado coordinador){
         this.coordinador = coordinador;
         initComponents();
+        PantallaPrincipalCalendarioActividades pantallaPrincipalCalendarioActividades = new PantallaPrincipalCalendarioActividades();
+        añadirPanelPrincipalCoordinador(pantallaPrincipalCalendarioActividades);
         setLocationRelativeTo(null);
         setVisible(true);
     }
     
+    public static void añadirPanelPrincipalCoordinador(JPanel pantalla){
+        panelPrincipal.removeAll();
+        Dimension dimensiones = pantalla.getPreferredSize();
+        pantalla.setBounds(0,0,dimensiones.width, dimensiones.height);
+        panelPrincipal.add(pantalla);
+        panelPrincipal.repaint();
+        panelPrincipal.revalidate();
+      }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -54,6 +66,7 @@ public class MenuCoordinador extends javax.swing.JFrame {
         botonExperienciasEducativas = new java.awt.Button();
         botonSeguimientoDelAlumno = new java.awt.Button();
         botonActividad = new java.awt.Button();
+        scrollPanelPrincipal = new javax.swing.JScrollPane();
         panelPrincipal = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -64,13 +77,18 @@ public class MenuCoordinador extends javax.swing.JFrame {
         botonPerfilUsuario.setBackground(new java.awt.Color(67, 136, 204));
         botonPerfilUsuario.setForeground(new java.awt.Color(255, 255, 255));
         botonPerfilUsuario.setLabel(coordinador.getNombres());
+        botonPerfilUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonPerfilUsuarioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelSuperiorLayout = new javax.swing.GroupLayout(panelSuperior);
         panelSuperior.setLayout(panelSuperiorLayout);
         panelSuperiorLayout.setHorizontalGroup(
             panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSuperiorLayout.createSequentialGroup()
-                .addContainerGap(725, Short.MAX_VALUE)
+                .addContainerGap(924, Short.MAX_VALUE)
                 .addComponent(botonPerfilUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46))
         );
@@ -162,16 +180,24 @@ public class MenuCoordinador extends javax.swing.JFrame {
                 .addContainerGap(42, Short.MAX_VALUE))
         );
 
+        scrollPanelPrincipal.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPanelPrincipal.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+        panelPrincipal.setMinimumSize(new java.awt.Dimension(0, 600));
+        panelPrincipal.setPreferredSize(new java.awt.Dimension(0, 600));
+
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);
         panelPrincipalLayout.setHorizontalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 906, Short.MAX_VALUE)
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
+
+        scrollPanelPrincipal.setViewportView(panelPrincipal);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -181,20 +207,25 @@ public class MenuCoordinador extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(scrollPanelPrincipal))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelSuperior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)
-                    .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(scrollPanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonPerfilUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPerfilUsuarioActionPerformed
+        
+    }//GEN-LAST:event_botonPerfilUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -245,7 +276,8 @@ public class MenuCoordinador extends javax.swing.JFrame {
     private java.awt.Button botonUsuarios;
     private javax.swing.JLabel etiquetaMenu;
     private javax.swing.JPanel panelMenu;
-    private javax.swing.JPanel panelPrincipal;
+    private static javax.swing.JPanel panelPrincipal;
     private javax.swing.JPanel panelSuperior;
+    private javax.swing.JScrollPane scrollPanelPrincipal;
     // End of variables declaration//GEN-END:variables
 }

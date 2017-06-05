@@ -5,17 +5,25 @@
  */
 package GUI.Coordinador;
 
+import static GUI.Coordinador.MenuCoordinador.añadirPanelPrincipalCoordinador;
+import Negocio.PublicacionActividad;
+import Negocio.PublicacionActividadDAO;
+import java.util.ArrayList;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author alonso
  */
 public class PantallaPrincipalCalendarioActividades extends javax.swing.JPanel {
-
+    private ArrayList<PublicacionActividad> publicacionesActividadesReservadas;
     /**
      * Creates new form PantallaPrincipalCalendarioActividades
      */
     public PantallaPrincipalCalendarioActividades() {
         initComponents();
+        insertarActividadesReservadas();
     }
 
     /**
@@ -55,7 +63,7 @@ public class PantallaPrincipalCalendarioActividades extends javax.swing.JPanel {
         ));
         jScrollPane3.setViewportView(jTable1);
 
-        setPreferredSize(new java.awt.Dimension(726, 541));
+        setPreferredSize(new java.awt.Dimension(900, 541));
 
         etiquetaActividadesDisponibles.setText("Actividades disponibles");
 
@@ -79,14 +87,14 @@ public class PantallaPrincipalCalendarioActividades extends javax.swing.JPanel {
 
             },
             new String [] {
-                "EE", "Actividad", "Fecha", "Hora", "Aula", "Profesor", ""
+                "EE", "Actividad", "Fecha", "Hora", "Aula", "Profesor"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -100,6 +108,11 @@ public class PantallaPrincipalCalendarioActividades extends javax.swing.JPanel {
         scrollPanelTablaActividades.setViewportView(tablaActividadesDisponibles);
 
         botonAgregarActividad.setText("Agregar actividad");
+        botonAgregarActividad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgregarActividadActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -108,7 +121,7 @@ public class PantallaPrincipalCalendarioActividades extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrollPanelTablaActividades, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
+                    .addComponent(scrollPanelTablaActividades, javax.swing.GroupLayout.DEFAULT_SIZE, 704, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(botonAgregarActividad)))
@@ -168,7 +181,50 @@ public class PantallaPrincipalCalendarioActividades extends javax.swing.JPanel {
         comboBoxDia.setSelectedItem(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void botonAgregarActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActividadActionPerformed
+        PanelAgregarActividadCalendario panelAgregarActividadCalendario = new PanelAgregarActividadCalendario();
+        añadirPanelPrincipalCoordinador(panelAgregarActividadCalendario);
+    }//GEN-LAST:event_botonAgregarActividadActionPerformed
+    
+    public void insertarActividadesReservadas() {
+        PublicacionActividadDAO publicacionActividadDAO = new PublicacionActividadDAO();
+        publicacionesActividadesReservadas = publicacionActividadDAO.obtenerActividadesDisponibles();
+        String[][] matrizTablaActividadesReservadas = new String[publicacionesActividadesReservadas.size()][tablaActividadesDisponibles.getColumnCount()];
+        for (int i = 0; i < publicacionesActividadesReservadas.size(); i++) {
+            matrizTablaActividadesReservadas[i][0] = publicacionesActividadesReservadas.get(i).getNombreExperienciaEducativa();
+            matrizTablaActividadesReservadas[i][1] = publicacionesActividadesReservadas.get(i).getNombreActividad();
+            matrizTablaActividadesReservadas[i][2] = String.valueOf(publicacionesActividadesReservadas.get(i).getFecha());
+            matrizTablaActividadesReservadas[i][3] = String.valueOf(publicacionesActividadesReservadas.get(i).getHoraInicio());
+            matrizTablaActividadesReservadas[i][4] = publicacionesActividadesReservadas.get(i).getIdAula();
+            matrizTablaActividadesReservadas[i][5] = publicacionesActividadesReservadas.get(i).getNombreAsesor();
+        }
+        crearTablaActividades(matrizTablaActividadesReservadas,tablaActividadesDisponibles);
+    }
+    
+    public void crearTablaActividades(String[][] matriz,JTable tabla) {
+        tabla.setModel(new DefaultTableModel(
+                matriz,
+                new String[]{
+                    "EE", "Actividad", "Fecha", "Hora", "Aula", "Profesor"
+                }
+        ) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        }
+        );
 
+        tabla.getColumnModel().getColumn(1).setPreferredWidth(220);
+        tabla.getColumnModel().getColumn(5).setPreferredWidth(210);
+
+        tabla.getColumnModel().getColumn(0).setResizable(false);
+        tabla.getColumnModel().getColumn(1).setResizable(false);
+        tabla.getColumnModel().getColumn(2).setResizable(false);
+        tabla.getColumnModel().getColumn(3).setResizable(false);
+        tabla.getColumnModel().getColumn(4).setResizable(false);
+        tabla.getColumnModel().getColumn(5).setResizable(false);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAgregarActividad;
     private javax.swing.JButton botonBuscar;
