@@ -23,7 +23,7 @@ public class PublicacionActividadDAOIT {
     /**
      * Test of obtenerActividadesDisponiblesUsuarioAutonomo method, of class PublicacionActividadDAO.
      */
-    @Test // YA ESTA PROBADA
+    @Test //APROBADO 
     public void testObtenerActividadesDisponiblesUsuarioAutonomo() {
         System.out.println("obtenerActividadesDisponiblesUsuarioAutonomo");
         String matricula = "S15011613";
@@ -38,7 +38,7 @@ public class PublicacionActividadDAOIT {
     /**
      * Test of obtenerActividadesReservadasUsuarioAutonomo method, of class PublicacionActividadDAO.
      */
-    @Test // YA ESTA PROBADA
+    @Test //APROBADO 
     public void testObtenerActividadesReservadasUsuarioAutonomo() {
         System.out.println("obtenerActividadesReservadasUsuarioAutonomo");
         String matricula = "S15011613";
@@ -53,7 +53,7 @@ public class PublicacionActividadDAOIT {
     /**
      * Test of agregarReservacionPublicacionActividad method, of class PublicacionActividadDAO.
      */
-    @Test // YA ESTA PROBADA
+    @Test //APROBADO 
     public void testAgregarReservacionPublicacionActividad() {
         System.out.println("agregarReservacionPublicacionActividad");
         String idPublicacionActividad = "PA0010";
@@ -67,7 +67,7 @@ public class PublicacionActividadDAOIT {
     /**
      * Test of eliminarReservacionPublicacionActividad method, of class PublicacionActividadDAO.
      */
-    @Test // YA ESTA PROBADA
+    @Test //APROBADO 
     public void testEliminarReservacionPublicacionActividad() {
         System.out.println("eliminarReservacionPublicacionActividad");
         String idPublicacionActividad = "PA0010";
@@ -81,7 +81,7 @@ public class PublicacionActividadDAOIT {
     /**
      * Test of publicarActividad method, of class PublicacionActividadDAO.
      */
-    @Test // YA ESTA PROBADA
+    @Test //APROBADO 
     public void testPublicarActividad() {
         System.out.println("publicarActividad");
         PublicacionActividad publicacionActividad = new PublicacionActividad();
@@ -101,7 +101,7 @@ public class PublicacionActividadDAOIT {
     /**
      * Test of obtenerActividadesDisponibles method, of class PublicacionActividadDAO.
      */
-    @Test // YA ESTA PROBADA
+    @Test //APROBADO 
     public void testObtenerActividadesDisponibles() {
         System.out.println("obtenerActividadesDisponibles");
         PublicacionActividadDAO instance = new PublicacionActividadDAO();
@@ -115,7 +115,7 @@ public class PublicacionActividadDAOIT {
     /**
      * Test of eliminarPublicacionActividad method, of class PublicacionActividadDAO.
      */
-    @Test // YA ESTA PROBADA
+    @Test //APROBADO 
     public void testEliminarPublicacionActividad() {
         System.out.println("eliminarPublicacionActividad");
         String idPublicacion = "PA0003";
@@ -128,7 +128,7 @@ public class PublicacionActividadDAOIT {
     /**
      * Test of obtenerActividadesDisponiblesPorEE method, of class PublicacionActividadDAO.
      */
-    @Test // YA ESTA PROBADA
+    @Test //APROBADO 
     public void testObtenerActividadesDisponiblesPorEE() {
         System.out.println("obtenerActividadesDisponiblesPorEE");
         String nrc = "39870";
@@ -142,7 +142,7 @@ public class PublicacionActividadDAOIT {
     /**
      * Test of reducirCupoPublicacionActividad method, of class PublicacionActividadDAO.
      */
-   @Test // YA ESTA PROBADA
+   @Test //APROBADO 
     public void testReducirCupoPublicacionActividad() {
         System.out.println("reducirCupoPublicacionActividad");
         String idPublicacionActividad = "PA0003";
@@ -155,7 +155,7 @@ public class PublicacionActividadDAOIT {
     /**
      * Test of aumentarCupoPublicacionActividad method, of class PublicacionActividadDAO.
      */
-    @Test // YA ESTA PROBADA
+    @Test //APROBADO 
     public void testAumentarCupoPublicacionActividad() {
         System.out.println("aumentarCupoPublicacionActividad");
         String idPublicacionActividad = "PA0001";

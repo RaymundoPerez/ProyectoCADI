@@ -26,8 +26,8 @@ public class CuentaDAOIT {
     /**
      * Test of crearCuenta method, of class CuentaDAO.
      */
-    @Test
-    public void testCrearCuenta() {
+    @Test //APROBADO 
+    public void testCrearCuentaNoValida() {
         System.out.println("crearCuenta");
         Cuenta cuenta = new Cuenta();
         cuenta.setNombreUsuario("14800");
@@ -40,7 +40,7 @@ public class CuentaDAOIT {
       
     }
     
-    @Test
+    @Test //APROBADO 
     public void testCrearCuentaValida() {
         System.out.println("crearCuenta");
         Cuenta cuenta = new Cuenta();
@@ -56,7 +56,7 @@ public class CuentaDAOIT {
     /**
      * Test of iniciarSesion method, of class CuentaDAO.
      */
-    @Test
+    @Test //APROBADO 
     public void testIniciarSesion() {
         System.out.println("iniciarSesion");
         Cuenta cuenta = new Cuenta();
@@ -70,23 +70,9 @@ public class CuentaDAOIT {
     }
 
     /**
-     * Test of cerrarSesión method, of class CuentaDAO.
-     */
-    /* @Test
-    public void testCerrarSesión() {
-        System.out.println("cerrarSesi\u00f3n");
-        CuentaDAO instance = new CuentaDAO();
-        boolean expResult = false;
-        boolean result = instance.cerrarSesión();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of validarCuenta method, of class CuentaDAO.
      */
-    @Test
+    @Test //APROBADO 
     public void testValidarCuenta() {
         System.out.println("validarCuenta");
         String tipoUsuario = "Coordinador";

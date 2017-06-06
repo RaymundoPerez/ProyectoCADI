@@ -25,7 +25,7 @@ public class EmpleadoDAOIT {
     /**
      * Test of obtenerEmpleado method, of class EmpleadoDAO.
      */
-    @Test
+    @Test //APROBADO 
     public void testObtenerEmpleado() {
         System.out.println("obtenerEmpleado");
         String nombreUsuario = "13101";
@@ -39,7 +39,7 @@ public class EmpleadoDAOIT {
     /**
      * Test of obtenerNombreEmpleado method, of class EmpleadoDAO.
      */
-    @Test
+    @Test //APROBADO 
     public void testObtenerNombreEmpleado() {
         System.out.println("obtenerNombreEmpleado");
         String noPersonal = "13101";
@@ -52,7 +52,7 @@ public class EmpleadoDAOIT {
     /**
      * Test of obtenerEmpleadosDisponibles method, of class EmpleadoDAO.
      */
-    @Test
+    @Test //APROBADO 
     public void testObtenerEmpleadosDisponibles() {
         System.out.println("obtenerEmpleadosDisponibles");
         Time hora = new Time(2,0,0);

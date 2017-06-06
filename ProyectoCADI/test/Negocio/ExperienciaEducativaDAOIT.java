@@ -26,7 +26,7 @@ public class ExperienciaEducativaDAOIT {
     /**
      * Test of obtenerTodasLasExperienciasEducativas method, of class ExperienciaEducativaDAO.
      */
-    @Test
+    @Test //APROBADO 
     public void testObtenerTodasLasExperienciasEducativas() {
         System.out.println("obtenerTodasLasExperienciasEducativas");
         ExperienciaEducativaDAO instance = new ExperienciaEducativaDAO();
@@ -38,7 +38,7 @@ public class ExperienciaEducativaDAOIT {
     /**
      * Test of obtenerExperienciasEducativasUsuarioAutonomo method, of class ExperienciaEducativaDAO.
      */
-    @Test
+    @Test //APROBADO 
     public void testObtenerExperienciasEducativasUsuarioAutonomo() {
         System.out.println("obtenerExperienciasEducativasUsuarioAutonomo");
         String matricula = "S15011613";
@@ -46,13 +46,13 @@ public class ExperienciaEducativaDAOIT {
         String resultadoEsperado = "39870";
         ArrayList<ExperienciaEducativa> result = instance.obtenerExperienciasEducativasUsuarioAutonomo(matricula);
         String resultado = result.get(0).getNrc();
-        assertEquals(resultadoEsperado, result);
+        assertEquals(resultadoEsperado, resultado);
     }
 
     /**
      * Test of obtenerExperienciaEducativaPorIdioma method, of class ExperienciaEducativaDAO.
      */
-    @Test
+    @Test //APROBADO 
     public void testObtenerExperienciaEducativaPorIdioma() {
         System.out.println("obtenerExperienciaEducativaPorIdioma");
         String idIdioma = "Ing01";

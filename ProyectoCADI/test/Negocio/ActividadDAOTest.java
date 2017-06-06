@@ -25,7 +25,7 @@ public class ActividadDAOTest {
     /**
      * Test of seleccionarActividadPorSeccion method, of class ActividadDAO.
      */
-    @Test
+    @Test //APROBADO 
     public void testSeleccionarActividadPorSeccion() {
         System.out.println("seleccionarActividadPorSeccion");
         String idSeccion = "Sec10";

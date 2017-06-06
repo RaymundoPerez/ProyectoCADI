@@ -25,13 +25,15 @@ public class IdiomaDAOIT {
     /**
      * Test of obtenerTodosLosIdiomas method, of class IdiomaDAO.
      */
-    @Test
+    @Test //APROBADO 
     public void testObtenerTodosLosIdiomas() {
         System.out.println("obtenerTodosLosIdiomas");
         IdiomaDAO instance = new IdiomaDAO();
         ArrayList<Idioma> expResult = null;
+        String resultadoEsperado = "Fra02";
         ArrayList<Idioma> result = instance.obtenerTodosLosIdiomas();
-        assertEquals(expResult, result);
+        String resultado = result.get(0).getIdIdioma();
+        assertEquals(resultadoEsperado, resultado);
     }
     
 }
