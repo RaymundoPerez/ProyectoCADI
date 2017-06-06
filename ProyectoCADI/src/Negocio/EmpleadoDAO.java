@@ -34,6 +34,7 @@ public class EmpleadoDAO implements IEmpleadoDAO {
             empleado.setNoPersonal(resultadoConsulta.getString(1));
             empleado.setNombres(resultadoConsulta.getString(2));
             empleado.setApellidos(resultadoConsulta.getString(3));
+            empleado.setNombreUsuario(resultadoConsulta.getString(4));
         } catch (SQLException exception) {
 
         } finally {

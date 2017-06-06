@@ -164,7 +164,7 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
        ConexionSQL conexionBD = new ConexionSQL();
         conexionBD.conectarBaseDatos();
         PreparedStatement sentenciaConsulta;
-        String consultaSQL = "insert into PUBLICACIONACTIVIDAD values('PA0008',?,?,?,?,?,?,?)";
+        String consultaSQL = "insert into PUBLICACIONACTIVIDAD values('PA0001',?,?,?,?,?,?,?)";
         try {
             sentenciaConsulta = conexionBD.getConexion().prepareStatement(consultaSQL);
             sentenciaConsulta.setDate(1,new java.sql.Date(publicacionActividad.getFecha().getTime()));
@@ -236,12 +236,14 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
         PreparedStatement sentenciaConsulta;
         String consultaSQL = "delete from PUBLICACIONACTIVIDAD WHERE idPublicacion=?";
         try {
+             eliminarTodasLasReservacionesDeUnaPublicacion(idPublicacion);
             sentenciaConsulta = conexionBD.getConexion().prepareStatement(consultaSQL);
             sentenciaConsulta.setString(1, idPublicacion);
-            sentenciaConsulta.executeUpdate();
-            mensaje = InformacionPublicacionActividad.publicacionNoEliminada;
+            int resultadoConsulta = sentenciaConsulta.executeUpdate();
+            if (resultadoConsulta == 1)
+                mensaje = InformacionPublicacionActividad.publicacionEliminada;
         } catch (SQLException exception) {
-            
+            mensaje = InformacionPublicacionActividad.publicacionNoEliminada;
         } finally {
             conexionBD.cerrarConexion();
         }
@@ -322,9 +324,30 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
             sentenciaConsulta = conexionBD.getConexion().prepareStatement(consultaSQL);
             sentenciaConsulta.setString(1, idPublicacionActividad);
             sentenciaConsulta.executeUpdate();
-            mensaje = InformacionPublicacionActividad.cupoNoAumentado;
+            mensaje = InformacionPublicacionActividad.cupoAumentado;
         } catch (SQLException exception) {
 
+        } finally {
+            conexionBD.cerrarConexion();
+        }
+        return mensaje;
+    }
+
+    @Override
+    public InformacionPublicacionActividad eliminarTodasLasReservacionesDeUnaPublicacion(String idPublicacionActividad) {
+        InformacionPublicacionActividad mensaje = InformacionPublicacionActividad.reservacionNoEliminada;
+        ConexionSQL conexionBD = new ConexionSQL();
+        conexionBD.conectarBaseDatos();
+        PreparedStatement sentenciaConsulta;
+        String consultaSQL = "delete from RESERVACION WHERE idPublicacion=?";
+        try {
+            sentenciaConsulta = conexionBD.getConexion().prepareStatement(consultaSQL);
+            sentenciaConsulta.setString(1, idPublicacionActividad);
+            sentenciaConsulta.executeUpdate();
+            aumentarCupoPublicacionActividad(idPublicacionActividad);
+            mensaje = InformacionPublicacionActividad.reservacionEliminada;
+        } catch (SQLException exception) {
+            mensaje = InformacionPublicacionActividad.reservacionNoEliminada;
         } finally {
             conexionBD.cerrarConexion();
         }

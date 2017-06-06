@@ -13,6 +13,15 @@ public class Empleado {
     private String apellidos;
     private String nombres;
     private String noPersonal;
+    private String nombreUsuario;
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
 
     public String getApellidos() {
         return apellidos;

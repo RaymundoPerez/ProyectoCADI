@@ -8,10 +8,6 @@ package Negocio;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -24,34 +20,20 @@ public class AulaDAOIT {
     public AulaDAOIT() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
 
     /**
      * Test of obtenerAulasDisponibles method, of class AulaDAO.
      */
-    @Test
+    @Test //APROBADO 
     public void testObtenerAulasDisponibles() {
         System.out.println("obtenerAulasDisponibles");
-        Time hora = null;
-        Date fecha = null;
+        Time hora = new Time(18,0,0);
+        Date fecha = new Date(2017,05,21);
         AulaDAO instance = new AulaDAO();
-        ArrayList<Aula> expResult = null;
+        String resultadoEsperado = "SC1";
         ArrayList<Aula> result = instance.obtenerAulasDisponibles(hora, fecha);
-        assertEquals(expResult, result);
+        String resultado = result.get(0).getIdAula();
+        assertEquals(resultadoEsperado, resultado);
       
     }
     

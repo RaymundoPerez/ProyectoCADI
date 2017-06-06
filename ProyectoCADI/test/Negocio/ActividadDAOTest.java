@@ -21,22 +21,6 @@ public class ActividadDAOTest {
     
     public ActividadDAOTest() {
     }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
 
     /**
      * Test of seleccionarActividadPorSeccion method, of class ActividadDAO.
@@ -44,11 +28,12 @@ public class ActividadDAOTest {
     @Test
     public void testSeleccionarActividadPorSeccion() {
         System.out.println("seleccionarActividadPorSeccion");
-        String idSeccion = "";
+        String idSeccion = "Sec10";
         ActividadDAO instance = new ActividadDAO();
-        ArrayList<Actividad> expResult = null;
+        String resultadoEsperado = "Act001";
         ArrayList<Actividad> result = instance.seleccionarActividadPorSeccion(idSeccion);
-        assertEquals(expResult, result);
+        String resultado = result.get(0).getIdActividad();
+        assertEquals(resultadoEsperado, resultado);
       
     }
     

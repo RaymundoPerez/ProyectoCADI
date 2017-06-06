@@ -27,7 +27,7 @@ public class AulaDAO implements IAulaDAO{
         PreparedStatement sentenciaConsulta;
         String consultaSQL = "select aula.idAula, aula.cupo from aula where aula.idAula not in(select publicacionactividad.idAula "
                 + "from publicacionactividad, aula where aula.idAula = publicacionactividad.idAula and ? = publicacionactividad.horaInicio "
-                + "and ? = publicacionactividad.fecha);";
+                + "and ? = publicacionactividad.fecha)";
         try {
             sentenciaConsulta = conexionBD.getConexion().prepareStatement(consultaSQL);
             sentenciaConsulta.setTime(1, hora);

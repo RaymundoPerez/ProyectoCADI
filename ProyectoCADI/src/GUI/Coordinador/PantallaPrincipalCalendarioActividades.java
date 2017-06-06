@@ -252,8 +252,16 @@ public class PantallaPrincipalCalendarioActividades extends javax.swing.JPanel {
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
         if (filaSeleccionada != -1) {
             PublicacionActividadDAO publicacionActividadDAO = new PublicacionActividadDAO();
-            publicacionActividadDAO.eliminarPublicacionActividad(actividadesDisponibles.get(filaSeleccionada).getIdPublicacion());
-            JOptionPane.showMessageDialog(null, "Se ha eliminado la publicación");
+            switch(publicacionActividadDAO.eliminarPublicacionActividad(actividadesDisponibles.get(filaSeleccionada).getIdPublicacion())){
+                case publicacionEliminada:
+                    JOptionPane.showMessageDialog(null, "Se ha eliminado la publicación");
+                    break;
+                    
+                case publicacionNoEliminada:
+                    JOptionPane.showMessageDialog(null, "No se ha eliminado la publicación");
+                    break;
+            }
+            
             actividadesDisponibles = publicacionActividadDAO.obtenerActividadesDisponibles();
             insertarActividades(actividadesDisponibles);
         } else {
