@@ -1,9 +1,10 @@
-
 package Negocio;
 
 /**
  *
- * @author alonso
+ * @author Irvin Vera.
+ * @author Alonso Lora.
+ * @author Raymundo Pérez.
  */
 public enum InformacionPublicacionActividad {
     actividadPublicada, 

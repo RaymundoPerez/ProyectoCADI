@@ -7,9 +7,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
- * Permite realizar las acciones vinculadas con <PublicacionActividad>.
+ * Permite realizar las acciones vinculadas con PublicacionActividad.
  *
  * @author Irvin Vera.
  * @author Alonso Lora.
@@ -18,13 +20,13 @@ import java.util.ArrayList;
 public class PublicacionActividadDAO implements IPublicacionActividadDAO {
 
     /**
-     * Permite obtener las actividades disponibles para un <UsuarioAutonomo>.
+     * Permite obtener las actividades disponibles para un UsuarioAutonomo.
      *
-     * @param matricula
+     * @param matricula clave del UsuarioAutonomo
      * @exception SQLException. La excepción se puede mandar cuando no se
      * obtiene el resultado esperado por un error en la consulta a la base de
      * datos
-     * @return Una lista de objetos de la clase <PublicacionActividad>.
+     * @return Una lista de objetos de la clase PublicacionActividad.
      */
     @Override
     public ArrayList<PublicacionActividad> obtenerActividadesDisponiblesUsuarioAutonomo(String matricula) {
@@ -66,7 +68,7 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
                 }
             }
         } catch (SQLException exception) {
-            System.out.println(exception.getMessage());
+            Logger.getLogger(PublicacionActividadDAO.class.getName()).log(Level.SEVERE, null, exception);
         } finally {
             conexionBD.cerrarConexion();
         }
@@ -75,13 +77,13 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
     }
 
     /**
-     * Permite obtener las reservaciones que tiene un <UsuarioAutonomo>.
+     * Permite obtener las reservaciones que tiene un UsuarioAutonomo.
      *
      * @param matricula
      * @exception SQLException. La excepción se puede mandar cuando no se
      * obtiene el resultado esperado por un error en la consulta a la base de
      * datos
-     * @return Una lista con objetos de la clase <PublicacionActividad>.
+     * @return Una lista con objetos de la clase PublicacionActividad.
      */
     @Override
     public ArrayList<PublicacionActividad> obtenerActividadesReservadasUsuarioAutonomo(String matricula) {
@@ -122,7 +124,7 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
                 }
             }
         } catch (SQLException exception) {
-            System.out.println(exception.getMessage());
+            Logger.getLogger(PublicacionActividadDAO.class.getName()).log(Level.SEVERE, null, exception);
         } finally {
             conexionBD.cerrarConexion();
         }
@@ -131,14 +133,14 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
     }
 
     /**
-     * Permite agregar una nueva publicación de alguna <Actividad>
+     * Permite agregar una nueva publicación de alguna Actividad
      *
      * @param idPublicacionActividad
      * @param matricula
      * @exception SQLException. La excepción se puede mandar cuando no se
      * obtiene el resultado esperado por un error en la consulta a la base de
      * datos
-     * @return Un objeto de la clase <InformacionPublicacionActividad>.
+     * @return Un objeto de la clase InformacionPublicacionActividad.
      */
     @Override
     public InformacionPublicacionActividad agregarReservacionPublicacionActividad(int idPublicacionActividad, String matricula) {
@@ -155,7 +157,7 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
             reducirCupoPublicacionActividad(idPublicacionActividad);
             mensaje = InformacionPublicacionActividad.reservacionGuardada;
         } catch (SQLException exception) {
-
+            Logger.getLogger(PublicacionActividadDAO.class.getName()).log(Level.SEVERE, null, exception);
         } finally {
             conexionBD.cerrarConexion();
         }
@@ -163,14 +165,14 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
     }
 
     /**
-     * Permite eliminar una reservación de algún <UsuarioAutonmo>.
+     * Permite eliminar una reservación de algún UsuarioAutonmo.
      *
      * @param idPublicacionActividad
      * @param matricula
      * @exception SQLException. La excepción se puede mandar cuando no se
      * obtiene el resultado esperado por un error en la consulta a la base de
      * datos
-     * @return Un objeto de la clase <InformacionPublicacionActividad>.
+     * @return Un objeto de la clase InformacionPublicacionActividad.
      */
     @Override
     public InformacionPublicacionActividad eliminarReservacionPublicacionActividad(int idPublicacionActividad, String matricula) {
@@ -187,7 +189,7 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
             aumentarCupoPublicacionActividad(idPublicacionActividad);
             mensaje = InformacionPublicacionActividad.reservacionEliminada;
         } catch (SQLException exception) {
-
+            Logger.getLogger(PublicacionActividadDAO.class.getName()).log(Level.SEVERE, null, exception);
         } finally {
             conexionBD.cerrarConexion();
         }
@@ -201,7 +203,7 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
      * @exception SQLException. La excepción se puede mandar cuando no se
      * obtiene el resultado esperado por un error en la consulta a la base de
      * datos.
-     * @return Un objeto de la clase <InformacionPublicacionActividad>.
+     * @return Un objeto de la clase InformacionPublicacionActividad.
      */
     @Override
     public InformacionPublicacionActividad publicarActividad(PublicacionActividad publicacionActividad) {
@@ -222,7 +224,7 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
             sentenciaConsulta.executeUpdate();
             mensaje = InformacionPublicacionActividad.actividadPublicada;
         } catch (SQLException exception) {
-            System.out.println(exception.getMessage());
+            Logger.getLogger(PublicacionActividadDAO.class.getName()).log(Level.SEVERE, null, exception);
         } finally {
             conexionBD.cerrarConexion();
         }
@@ -235,7 +237,7 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
      * @exception SQLException. La excepción se puede mandar cuando no se
      * obtiene el resultado esperado por un error en la consulta a la base de
      * datos
-     * @return Una lista con objetos de la clase <PublicacionActividad>.
+     * @return Una lista con objetos de la clase PublicacionActividad.
      */
     @Override
     public ArrayList<PublicacionActividad> obtenerActividadesDisponibles() {
@@ -272,7 +274,7 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
             }
 
         } catch (SQLException exception) {
-            System.out.println(exception.getMessage());
+            Logger.getLogger(PublicacionActividadDAO.class.getName()).log(Level.SEVERE, null, exception);
         } finally {
             conexionBD.cerrarConexion();
         }
@@ -287,7 +289,7 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
      * @exception SQLException. La excepción se puede mandar cuando no se
      * obtiene el resultado esperado por un error en la consulta a la base de
      * datos
-     * @return Un objeto de la clase <InformacionPublicacionActividad>.
+     * @return Un objeto de la clase InformacionPublicacionActividad.
      */
     @Override
     public InformacionPublicacionActividad eliminarPublicacionActividad(int idPublicacion) {
@@ -305,6 +307,7 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
                 mensaje = InformacionPublicacionActividad.publicacionEliminada;
             }
         } catch (SQLException exception) {
+            Logger.getLogger(PublicacionActividadDAO.class.getName()).log(Level.SEVERE, null, exception);
             mensaje = InformacionPublicacionActividad.publicacionNoEliminada;
         } finally {
             conexionBD.cerrarConexion();
@@ -313,13 +316,13 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
     }
 
     /**
-     * Permite obtener las actividades disponibles por <ExperienciaEducativa>
+     * Permite obtener las actividades disponibles por ExperienciaEducativa
      *
      * @param nrc
      * @exception SQLException. La excepción se puede mandar cuando no se
      * obtiene el resultado esperado por un error en la consulta a la base de
      * datos
-     * @return Una lista de obejtos de tipo <PublicacionActividad>.
+     * @return Una lista de obejtos de tipo PublicacionActividad.
      */
     @Override
     public ArrayList<PublicacionActividad> obtenerActividadesDisponiblesPorEE(String nrc) {
@@ -356,7 +359,7 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
             }
 
         } catch (SQLException exception) {
-            System.out.println(exception.getMessage());
+            Logger.getLogger(PublicacionActividadDAO.class.getName()).log(Level.SEVERE, null, exception);
         } finally {
             conexionBD.cerrarConexion();
         }
@@ -365,13 +368,13 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
     }
 
     /**
-     * Permite reducir el cupo de una <Actividad> cuando es reservada.
+     * Permite reducir el cupo de una Actividad cuando es reservada.
      *
      * @param idPublicacionActividad
      * @exception SQLException. La excepción se puede mandar cuando no se
      * obtiene el resultado esperado por un error en la consulta a la base de
      * datos
-     * @return Un objeto de la clase <InformacionPublicacionActividad>.
+     * @return Un objeto de la clase InformacionPublicacionActividad.
      */
     @Override
     public InformacionPublicacionActividad reducirCupoPublicacionActividad(int idPublicacionActividad) {
@@ -386,7 +389,7 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
             sentenciaConsulta.executeUpdate();
             mensaje = InformacionPublicacionActividad.cupoRestado;
         } catch (SQLException exception) {
-
+            Logger.getLogger(PublicacionActividadDAO.class.getName()).log(Level.SEVERE, null, exception);
         } finally {
             conexionBD.cerrarConexion();
         }
@@ -394,14 +397,14 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
     }
 
     /**
-     * Permite aumentar el cupo de una <Actividad> cuando se elimina alguna
+     * Permite aumentar el cupo de una Actividad cuando se elimina alguna
      * reservación.
      *
      * @param idPublicacionActividad
      * @exception SQLException. La excepción se puede mandar cuando no se
      * obtiene el resultado esperado por un error en la consulta a la base de
      * datos
-     * @return Un objeto de la clase <InformacionPublicacionActividad>.
+     * @return Un objeto de la clase InformacionPublicacionActividad.
      */
     @Override
     public InformacionPublicacionActividad aumentarCupoPublicacionActividad(int idPublicacionActividad) {
@@ -416,7 +419,7 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
             sentenciaConsulta.executeUpdate();
             mensaje = InformacionPublicacionActividad.cupoAumentado;
         } catch (SQLException exception) {
-
+            Logger.getLogger(PublicacionActividadDAO.class.getName()).log(Level.SEVERE, null, exception);
         } finally {
             conexionBD.cerrarConexion();
         }
@@ -424,13 +427,13 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
     }
 
     /**
-     * Permite eliminar todas las reservaciones de una <Actividad>.
+     * Permite eliminar todas las reservaciones de una Actividad.
      *
      * @param idPublicacionActividad
      * @exception SQLException. La excepción se puede mandar cuando no se
      * obtiene el resultado esperado por un error en la consulta a la base de
      * datos
-     * @return Un objeto de la clase <InformacionPublicacionActividad>.
+     * @return Un objeto de la clase InformacionPublicacionActividad.
      */
     @Override
     public InformacionPublicacionActividad eliminarTodasLasReservacionesDeUnaPublicacion(int idPublicacionActividad) {
@@ -446,6 +449,7 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
             aumentarCupoPublicacionActividad(idPublicacionActividad);
             mensaje = InformacionPublicacionActividad.reservacionEliminada;
         } catch (SQLException exception) {
+            Logger.getLogger(PublicacionActividadDAO.class.getName()).log(Level.SEVERE, null, exception);
             mensaje = InformacionPublicacionActividad.reservacionNoEliminada;
         } finally {
             conexionBD.cerrarConexion();
@@ -453,8 +457,19 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
         return mensaje;
     }
 
+    /**
+     * Permite validar que no se crucen los horarios al intentar reservar una
+     * Actividad
+     *
+     * @param matricula
+     * @param horaInicio
+     * @param horaFin
+     * @param fecha
+     * @return Un valor entero que corresponde al numero de actividades
+     * reservadas que no se cruzan con la actividad que se deea reservar
+     */
     @Override
-    public int validarCruceHorarios(String matricula, Time horaInicio, Time horaFin,Date fecha) {
+    public int validarCruceHorarios(String matricula, Time horaInicio, Time horaFin, Date fecha) {
         int numeroActividadesValidas = 0;
         ConexionSQL conexionBD = new ConexionSQL();
         conexionBD.conectarBaseDatos();
@@ -480,13 +495,13 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
                 sentenciaConsultaPublicacionActividad = conexionBD.getConexion().prepareStatement(consultaSQLPublicacionActividad);
                 sentenciaConsultaPublicacionActividad.setString(1, matricula);
                 sentenciaConsultaPublicacionActividad.setString(2, experienciaEducativa.getNrc());
-                sentenciaConsultaPublicacionActividad.setTime(3,horaInicio);
-                sentenciaConsultaPublicacionActividad.setTime(4,horaInicio);
-                sentenciaConsultaPublicacionActividad.setTime(5,horaInicio);
-                sentenciaConsultaPublicacionActividad.setTime(6,horaFin);
-                sentenciaConsultaPublicacionActividad.setTime(7,horaFin);
-                sentenciaConsultaPublicacionActividad.setTime(8,horaInicio);
-                sentenciaConsultaPublicacionActividad.setTime(9,horaFin);
+                sentenciaConsultaPublicacionActividad.setTime(3, horaInicio);
+                sentenciaConsultaPublicacionActividad.setTime(4, horaInicio);
+                sentenciaConsultaPublicacionActividad.setTime(5, horaInicio);
+                sentenciaConsultaPublicacionActividad.setTime(6, horaFin);
+                sentenciaConsultaPublicacionActividad.setTime(7, horaFin);
+                sentenciaConsultaPublicacionActividad.setTime(8, horaInicio);
+                sentenciaConsultaPublicacionActividad.setTime(9, horaFin);
                 sentenciaConsultaPublicacionActividad.setDate(10, fecha);
                 resultadoPublicacionActividad = sentenciaConsultaPublicacionActividad.executeQuery();
                 while (resultadoPublicacionActividad.next()) {
@@ -494,7 +509,7 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
                 }
             }
         } catch (SQLException exception) {
-            System.out.println(exception.getMessage());
+            Logger.getLogger(PublicacionActividadDAO.class.getName()).log(Level.SEVERE, null, exception);
         } finally {
             conexionBD.cerrarConexion();
         }

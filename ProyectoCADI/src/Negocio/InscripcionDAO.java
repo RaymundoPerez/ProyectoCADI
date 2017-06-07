@@ -4,9 +4,11 @@ import Datos.ConexionSQL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
- * Permite realizar todas las acciones vinculadas con <Inscripción>.
+ * Permite realizar todas las acciones vinculadas con Inscripción.
  *
  * @author Irvin Vera.
  * @author Alonso Lora.
@@ -17,12 +19,12 @@ public class InscripcionDAO implements IInscripcionDAO {
     /**
      * Permite inscribir a un UsuarioAutonomo en algun curso.
      *
-     * @param matricula
-     * @param claveSeccionCurso
+     * @param matricula clave del UsuarioAutonomo
+     * @param claveSeccionCurso seccion del curso en la que se inscribira el usuario.
      * @exception SQLException. La excepción se puede mandar cuando no se
      * obtiene el resultado esperado por un error en la consulta a la base de
      * datos.
-     * @return Un objeto de la clase <InformacionInscripcion>
+     * @return Un objeto de la clase InformacionInscripcion
      */
     @Override
     public InformacionInscripcion crearInscripcion(String matricula, String claveSeccionCurso) {
@@ -38,7 +40,7 @@ public class InscripcionDAO implements IInscripcionDAO {
             sentenciaConsulta.executeUpdate();
             mensaje = InformacionInscripcion.inscripcionCreadaCorrectamente;
         } catch (SQLException exception) {
-
+             Logger.getLogger(InscripcionDAO.class.getName()).log(Level.SEVERE, null, exception);
         } finally {
             conexionBD.cerrarConexion();
         }
@@ -49,8 +51,8 @@ public class InscripcionDAO implements IInscripcionDAO {
      * Permite validar si un UsuarioAutonomo está inscrito en una Experiencia
      * Educativa.
      *
-     * @param matricula
-     * @param claveSeccionCurso
+     * @param matricula clave del UsuarioAutonomo
+     * @param claveSeccionCurso seccion del curso a la que se desea inscribir al usuario autonomo.
      * @exception SQLException. La excepción se puede mandar cuando no se
      * obtiene el resultado esperado por un error en la consulta a la base de
      * datos.
@@ -71,15 +73,23 @@ public class InscripcionDAO implements IInscripcionDAO {
             ResultSet resultadoConsulta = sentenciaConsulta.executeQuery();
             existeInscripcion = resultadoConsulta.next();
         } catch (SQLException exception) {
-
+            Logger.getLogger(InscripcionDAO.class.getName()).log(Level.SEVERE, null, exception);
         } finally {
             conexionBD.cerrarConexion();
         }
         return existeInscripcion;
     }
 
+    /**
+     * Permite buscar la clave secciòn por de una SeccionCurso por
+     * Inscripcion
+     *
+     * @param nrc clave de la materia.
+     * @param matricula clave del UsuarioAutonomo
+     * @return la claveSeccion del curso
+     */
     @Override
-    public String buscarSeccionPorInscripcion(String nrc,String matricula) {
+    public String buscarSeccionPorInscripcion(String nrc, String matricula) {
         String claveSeccion = null;
         ConexionSQL conexionBD = new ConexionSQL();
         conexionBD.conectarBaseDatos();
@@ -94,7 +104,7 @@ public class InscripcionDAO implements IInscripcionDAO {
             resultadoConsulta.next();
             claveSeccion = resultadoConsulta.getString(1);
         } catch (SQLException exception) {
-            System.out.println(exception);
+            Logger.getLogger(InscripcionDAO.class.getName()).log(Level.SEVERE, null, exception);
         } finally {
             conexionBD.cerrarConexion();
         }
@@ -104,12 +114,12 @@ public class InscripcionDAO implements IInscripcionDAO {
     /**
      * Permite eliminar una Inscripción.
      *
-     * @param matricula.
-     * @param claveSeccion.
+     * @param matricula clave del UsuarioAutonomo.
+     * @param claveSeccion clave de la Seccion.
      * @exception SQLException. La excepción se puede mandar cuando no se
      * obtiene el resultado esperado por un error en la consulta a la base de
      * datos.
-     * @return Un objeto de tipo <InformacionInscripcion>.
+     * @return Un objeto de tipo InformacionInscripcion.
      */
     @Override
     public InformacionInscripcion eliminarInscripcion(String matricula, String claveSeccion) {
@@ -130,7 +140,7 @@ public class InscripcionDAO implements IInscripcionDAO {
             }
 
         } catch (SQLException exception) {
-
+            Logger.getLogger(InscripcionDAO.class.getName()).log(Level.SEVERE, null, exception);
         } finally {
             conexionBD.cerrarConexion();
         }

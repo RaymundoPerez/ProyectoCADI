@@ -5,9 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
- * Permite realizar las acciones vinculadas con la clase <Seccion>.
+ * Permite realizar las acciones vinculadas con la clase Seccion.
  *
  * @author Irvin Vera.
  * @author Alonso Lora.
@@ -22,7 +24,7 @@ public class SeccionDAO implements ISeccionDAO {
      * @exception SQLException. La excepción se puede mandar cuando no se
      * obtiene el resultado esperado por un error en la consulta a la base de
      * datos
-     * @return Una lista de objetos de la clase <Seccion>.
+     * @return Una lista de objetos de la clase Seccion.
      */
 
     @Override
@@ -44,7 +46,7 @@ public class SeccionDAO implements ISeccionDAO {
             }
 
         } catch (SQLException exception) {
-
+            Logger.getLogger(SeccionDAO.class.getName()).log(Level.SEVERE, null, exception);
         } finally {
             conexionBD.cerrarConexion();
         }

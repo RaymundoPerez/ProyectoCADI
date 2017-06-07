@@ -53,7 +53,7 @@ public class EmpleadoDAOIT {
      * Test of obtenerEmpleadosDisponibles method, of class EmpleadoDAO.
      */
     @Test //APROBADO 
-    public void testObtenerEmpleadosDisponibles() {
+    public void testObtenerAsesoresDisponibles() {
         System.out.println("obtenerEmpleadosDisponibles");
         Time horaInicio = new Time(2,0,0);
         Time horaFin = new Time(3,0,0);
@@ -61,7 +61,7 @@ public class EmpleadoDAOIT {
         Date fecha = new Date(2017,6,8);
         EmpleadoDAO instance = new EmpleadoDAO();
         String resultadoEsperado = "83500";
-        ArrayList<Empleado> result = instance.obtenerEmpleadosDisponibles(horaInicio,horaFin, idIdioma, fecha);
+        ArrayList<Empleado> result = instance.obtenerAsesoresDisponibles(horaInicio,horaFin, idIdioma, fecha);
         String resultado = result.get(0).getNoPersonal();
         assertEquals(resultadoEsperado, resultado);
         

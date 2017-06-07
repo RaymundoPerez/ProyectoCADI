@@ -5,9 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
- * Permite realizar las acciones que están vinculadas con <Modulo>.
+ * Permite realizar las acciones que están vinculadas con Modulo.
  *
  * @author Irvin Vera.
  * @author Alonso Lora.
@@ -17,11 +19,11 @@ public class ModuloDAO implements IModuloDAO {
 
     /**
      * Permite obtener los Módulos por Experiencia Educativa.
-     * @param NRC
+     * @param NRC clave de la experiencia educativa.
      * @exception SQLException. La excepción se puede mandar cuando no se
      * obtiene el resultado esperado por un error en la consulta a la base de
      * datos
-     * @return Una lista de Objetos de tipo <Modulo>.
+     * @return Una lista de Objetos de tipo Modulo.
      */
     @Override
     public ArrayList<Modulo> obtenerModulosPorEE(String NRC) {
@@ -42,7 +44,7 @@ public class ModuloDAO implements IModuloDAO {
             }
 
         } catch (SQLException exception) {
-
+            Logger.getLogger(ModuloDAO.class.getName()).log(Level.SEVERE, null, exception);
         } finally {
             conexionBD.cerrarConexion();
         }

@@ -5,10 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
- * Permite realizar todas las acciones que están vinculadas con las <Experiencia
- * Educativa>.
+ * Permite realizar todas las acciones que están vinculadas con las Experiencia
+ * Educativa.
  *
  * @author Irvin Vera.
  * @author Alonso Lora.
@@ -45,7 +47,7 @@ public class ExperienciaEducativaDAO implements IExperienciaEducativaDAO {
             arregloExperienciasEducativas = experienciasEducativas.toArray(arregloExperienciasEducativas);
 
         } catch (SQLException exception) {
-
+            Logger.getLogger(ExperienciaEducativaDAO.class.getName()).log(Level.SEVERE, null, exception);
         } finally {
             conexionBD.cerrarConexion();
         }
@@ -59,8 +61,8 @@ public class ExperienciaEducativaDAO implements IExperienciaEducativaDAO {
      * @exception SQLException. La excepción se puede mandar cuando no se
      * obtiene el resultado esperado por un error en la consulta a la base de
      * datos.
-     * @param matricula
-     * @return Una lista de objetos de la clase <ExperienciaEducativa>.
+     * @param matricula matricula del usuario autonomo.
+     * @return Una lista de objetos de la clase ExperienciaEducativa.
      */
     @Override
     public ArrayList<ExperienciaEducativa> obtenerExperienciasEducativasUsuarioAutonomo(String matricula) {
@@ -85,7 +87,7 @@ public class ExperienciaEducativaDAO implements IExperienciaEducativaDAO {
                 experienciasEducativas.add(experienciaEducativa);
             }
         } catch (SQLException exception) {
-            System.out.println(exception.getMessage());
+             Logger.getLogger(ExperienciaEducativaDAO.class.getName()).log(Level.SEVERE, null, exception);
         } finally {
             conexionBD.cerrarConexion();
         }
@@ -95,11 +97,11 @@ public class ExperienciaEducativaDAO implements IExperienciaEducativaDAO {
     /**
      * Permite obtener las experiencias educativas que tiene creadas un idioma.
      *
-     * @param idIdioma
+     * @param idIdioma idioma para obtener la experiencia educativa.
      * @exception SQLException. La excepción se puede mandar cuando no se
      * obtiene el resultado esperado por un error en la consulta a la base de
      * datos.
-     * @return Una lista de objetos de la clase <ExperienciaEducativa>.
+     * @return Una lista de objetos de la clase ExperienciaEducativa.
      */
     @Override
     public ArrayList<ExperienciaEducativa> obtenerExperienciaEducativaPorIdioma(String idIdioma) {
@@ -120,7 +122,7 @@ public class ExperienciaEducativaDAO implements IExperienciaEducativaDAO {
             }
 
         } catch (SQLException exception) {
-
+             Logger.getLogger(ExperienciaEducativaDAO.class.getName()).log(Level.SEVERE, null, exception);
         } finally {
             conexionBD.cerrarConexion();
         }

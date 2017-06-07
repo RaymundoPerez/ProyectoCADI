@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GUI.UsuarioGeneral;
 
 import GUI.Coordinador.MenuCoordinador;
@@ -16,8 +11,11 @@ import Negocio.UsuarioAutonomoDAO;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author raymu
+ *Esta clase permite la visualizacion de la GUI IniciarSesion
+ * 
+ * @author Irvin Vera.
+ * @author Alonso Lora.
+ * @author Raymundo Pérez.
  */
 public class IniciarSesion extends javax.swing.JFrame {
 

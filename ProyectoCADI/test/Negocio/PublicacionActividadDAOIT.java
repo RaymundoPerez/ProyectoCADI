@@ -43,7 +43,7 @@ public class PublicacionActividadDAOIT {
         System.out.println("obtenerActividadesReservadasUsuarioAutonomo");
         String matricula = "S15011613";
         PublicacionActividadDAO instance = new PublicacionActividadDAO();
-        String resultadoEsperado = "PA0008";
+        int resultadoEsperado = 13;
         ArrayList<PublicacionActividad> result = instance.obtenerActividadesReservadasUsuarioAutonomo(matricula);
         int resultado = result.get(0).getIdPublicacion();
         assertEquals(resultadoEsperado, resultado);
@@ -70,7 +70,7 @@ public class PublicacionActividadDAOIT {
     @Test //APROBADO 
     public void testEliminarReservacionPublicacionActividad() {
         System.out.println("eliminarReservacionPublicacionActividad");
-        int idPublicacionActividad = 12;
+        int idPublicacionActividad = 5;
         String matricula = "S15011613";
         PublicacionActividadDAO instance = new PublicacionActividadDAO();
         InformacionPublicacionActividad expResult = InformacionPublicacionActividad.reservacionEliminada;
@@ -106,7 +106,7 @@ public class PublicacionActividadDAOIT {
         System.out.println("obtenerActividadesDisponibles");
         PublicacionActividadDAO instance = new PublicacionActividadDAO();
         ArrayList<PublicacionActividad> expResult = null;
-        String resultadoEsperado = "PA0002";
+        int resultadoEsperado = 6;
         ArrayList<PublicacionActividad> result = instance.obtenerActividadesDisponibles();
         int resultado = result.get(0).getIdPublicacion();
         assertEquals(resultadoEsperado, resultado);
@@ -133,7 +133,7 @@ public class PublicacionActividadDAOIT {
         System.out.println("obtenerActividadesDisponiblesPorEE");
         String nrc = "39870";
         PublicacionActividadDAO instance = new PublicacionActividadDAO();
-        String resultadoEsperado = "PA0003";
+        int resultadoEsperado = 5;
         ArrayList<PublicacionActividad> result = instance.obtenerActividadesDisponiblesPorEE(nrc);
         int resultado = result.get(0).getIdPublicacion();
         assertEquals(resultadoEsperado, resultado);
@@ -162,6 +162,35 @@ public class PublicacionActividadDAOIT {
         PublicacionActividadDAO instance = new PublicacionActividadDAO();
         InformacionPublicacionActividad expResult = InformacionPublicacionActividad.cupoAumentado;
         InformacionPublicacionActividad result = instance.aumentarCupoPublicacionActividad(idPublicacionActividad);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of eliminarTodasLasReservacionesDeUnaPublicacion method, of class PublicacionActividadDAO.
+     */
+    @Test
+    public void testEliminarTodasLasReservacionesDeUnaPublicacion() {
+        System.out.println("eliminarTodasLasReservacionesDeUnaPublicacion");
+        int idPublicacionActividad = 3;
+        PublicacionActividadDAO instance = new PublicacionActividadDAO();
+        InformacionPublicacionActividad expResult = InformacionPublicacionActividad.reservacionEliminada;
+        InformacionPublicacionActividad result = instance.eliminarTodasLasReservacionesDeUnaPublicacion(idPublicacionActividad);
+        assertEquals(expResult, result);
+    }
+    
+     /**
+     * Test of validarCruceHorarios method, of class PublicacionActividadDAO.
+     */
+    @Test
+    public void testValidarCruceHorarios() {
+        System.out.println("validarCruceHorarios");
+        String matricula = "";
+        Time horaInicio = new Time(9,0,0);
+        Time horaFin = new Time(11,0,0);
+        java.sql.Date fecha = new java.sql.Date(2017,6,8);
+        PublicacionActividadDAO instance = new PublicacionActividadDAO();
+        int expResult = 1;
+        int result = instance.validarCruceHorarios(matricula, horaInicio, horaFin, fecha);
         assertEquals(expResult, result);
     }
     

@@ -27,11 +27,12 @@ public class AulaDAOIT {
     @Test //APROBADO 
     public void testObtenerAulasDisponibles() {
         System.out.println("obtenerAulasDisponibles");
-        Time hora = new Time(18,0,0);
+        Time horaInicio = new Time(2,0,0);
+        Time horaFin = new Time(3,0,0);
         Date fecha = new Date(2017,05,21);
         AulaDAO instance = new AulaDAO();
         String resultadoEsperado = "SC1";
-        ArrayList<Aula> result = instance.obtenerAulasDisponibles(hora, fecha);
+        ArrayList<Aula> result = instance.obtenerAulasDisponibles(horaInicio,horaFin, fecha);
         String resultado = result.get(0).getIdAula();
         assertEquals(resultadoEsperado, resultado);
       

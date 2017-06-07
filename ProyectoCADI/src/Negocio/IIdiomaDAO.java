@@ -1,15 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Negocio;
 
 import java.util.ArrayList;
 
 /**
  *
- * @author alonso
+ * @author Irvin Vera.
+ * @author Alonso Lora.
+ * @author Raymundo Pérez.
  */
 public interface IIdiomaDAO {
     public ArrayList<Idioma> obtenerTodosLosIdiomas();

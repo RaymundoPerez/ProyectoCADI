@@ -31,7 +31,7 @@ public class ActividadDAOTest {
         String idSeccion = "Sec10";
         ActividadDAO instance = new ActividadDAO();
         String resultadoEsperado = "Act001";
-        ArrayList<Actividad> result = instance.obtenerActividadPorSeccion(idSeccion);
+        ArrayList<Actividad> result = instance.obtenerActividadesPorSeccion(idSeccion);
         String resultado = result.get(0).getIdActividad();
         assertEquals(resultadoEsperado, resultado);
       

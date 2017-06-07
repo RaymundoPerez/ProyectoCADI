@@ -326,10 +326,6 @@
           <Connection code="fecha" type="code"/>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="calendarioMousePressed"/>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="calendarioMouseClicked"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="comboBoxExperienciaEducativa">
       <Properties>

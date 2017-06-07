@@ -5,8 +5,10 @@ import java.util.ArrayList;
 
 /**
  *
- * @author alonso
+ * @author Irvin Vera.
+ * @author Alonso Lora.
+ * @author Raymundo Pérez.
  */
 public interface IActividadDAO {
-    public ArrayList<Actividad> obtenerActividadPorSeccion(String idSeccion);
+    public ArrayList<Actividad> obtenerActividadesPorSeccion(String idSeccion);
 }

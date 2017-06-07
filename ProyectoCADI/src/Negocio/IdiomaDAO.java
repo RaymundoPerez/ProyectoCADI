@@ -5,9 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
- * Permite realizar todas las acciones vinculadas con <Idioma>.
+ * Permite realizar todas las acciones vinculadas con Idioma.
  *
  * @author Irvin Vera.
  * @author Alonso Lora.
@@ -19,7 +21,7 @@ public class IdiomaDAO implements IIdiomaDAO {
      * Permite obtener todos los idiomas que se imparten en el Centro de
      * idiomas.
      *
-     * @return Una lista con Objetos de la clase <Idioma>
+     * @return Una lista con Objetos de la clase Idioma
      */
     @Override
     public ArrayList<Idioma> obtenerTodosLosIdiomas() {
@@ -39,7 +41,7 @@ public class IdiomaDAO implements IIdiomaDAO {
             }
 
         } catch (SQLException exception) {
-
+             Logger.getLogger(IdiomaDAO.class.getName()).log(Level.SEVERE, null, exception);
         } finally {
             conexionBD.cerrarConexion();
         }

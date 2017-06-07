@@ -4,9 +4,11 @@ import Datos.ConexionSQL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
- * Permite realizar todas las acciones vinculadas con <Cuenta>
+ * Permite realizar todas las acciones vinculadas con Cuenta
  *
  * @author Irvin Vera.
  * @author Alonso Lora.
@@ -17,11 +19,11 @@ public class CuentaDAO implements ICuentaDAO {
     /**
      * Perminte crear una cuenta para un nuevo usuario.
      *
-     * @param cuenta.
+     * @param cuenta contiene los datos de la cuenta del usuario.
      * @exception SQLException. La excepción se puede mandar cuando no se
      * obtiene el resultado esperado por un error en la consulta a la base de
      * datos.
-     * @return Un objeto de la clase <InformacionCuenta>.
+     * @return Un objeto de la clase InformacionCuenta.
      */
     @Override
     public InformacionCuenta crearCuenta(Cuenta cuenta) {
@@ -38,7 +40,7 @@ public class CuentaDAO implements ICuentaDAO {
             sentenciaConsulta.executeUpdate();
             mensaje = InformacionCuenta.cuentaCreadaCorrectamente;
         } catch (SQLException exception) {
-
+            Logger.getLogger(CuentaDAO.class.getName()).log(Level.SEVERE, null, exception);
         } finally {
             conexionBD.cerrarConexion();
         }
@@ -48,11 +50,11 @@ public class CuentaDAO implements ICuentaDAO {
     /**
      * Permite a un usuario iniciar sesión en el sistema.
      *
-     * @param cuenta.
+     * @param cuenta contiene los datos de la cuenta del usuario.
      * @exception SQLException. La excepción se puede mandar cuando no se
      * obtiene el resultado esperado por un error en la consulta a la base de
      * datos.
-     * @return Un objeto de la clase <InformacionInicioSesion>.
+     * @return Un objeto de la clase InformacionInicioSesion.
      */
     @Override
     public InformacionInicioSesion iniciarSesion(Cuenta cuenta) {
@@ -72,7 +74,7 @@ public class CuentaDAO implements ICuentaDAO {
                 tipoUsuario = resultadoConsulta.getString(1);
                 mensaje = validarCuenta(tipoUsuario);
             } catch (SQLException exception) {
-
+                Logger.getLogger(CuentaDAO.class.getName()).log(Level.SEVERE, null, exception);
             } finally {
                 conexionBD.cerrarConexion();
             }
@@ -88,8 +90,8 @@ public class CuentaDAO implements ICuentaDAO {
     /**
      * Permite validar el tipo de usuario que inicio sesión en sistema.
      *
-     * @param tipoUsuario.
-     * @return Un objeto de la clase <InformacionInicioSesion>.
+     * @param tipoUsuario contiene el tipo de usuario obtenido de la base de datos.
+     * @return Un objeto de la clase InformacionInicioSesion.
      */
     @Override
     public InformacionInicioSesion validarCuenta(String tipoUsuario) {

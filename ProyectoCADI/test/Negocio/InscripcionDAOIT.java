@@ -85,7 +85,7 @@ public class InscripcionDAOIT {
      * Test of buscarInscripcion method, of class InscripcionDAO.
      */
     @Test //APROBADO 
-    public void testBuscarInscripcion() {
+    public void testBuscarSeccionPorInscripcion() {
         System.out.println("buscarInscripcion");
         String nrc = "39870";
         String matricula = "S15011613";

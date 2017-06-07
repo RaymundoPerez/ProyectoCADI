@@ -1,4 +1,3 @@
-
 package Negocio;
 
 import java.sql.Date;
@@ -7,7 +6,9 @@ import java.util.ArrayList;
 
 /**
  *
- * @author alonso
+ * @author Irvin Vera.
+ * @author Alonso Lora.
+ * @author Raymundo Pérez.
  */
 public interface IPublicacionActividadDAO {
     public ArrayList<PublicacionActividad> obtenerActividadesDisponiblesUsuarioAutonomo(String matricula);

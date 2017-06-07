@@ -7,9 +7,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
- * Permite realizar todas las acciones vinculadas con <Empleado>.
+ * Permite realizar todas las acciones vinculadas con Empleado.
  *
  * @author Irvin Vera.
  * @author Alonso Lora.
@@ -20,11 +22,11 @@ public class EmpleadoDAO implements IEmpleadoDAO {
     /**
      * Permite obtener la informacion de un empleado.
      *
-     * @param nombreUsuario
+     * @param nombreUsuario nombre del Empleado.
      * @exception SQLException. La excepción se puede mandar cuando no se
      * obtiene el resultado esperado por un error en la consulta a la base de
      * datos.
-     * @return Un Objeto de la clase <Empleado>.
+     * @return Un Objeto de la clase Empleado.
      */
     @Override
     public Empleado obtenerEmpleado(String nombreUsuario) {
@@ -43,7 +45,7 @@ public class EmpleadoDAO implements IEmpleadoDAO {
             empleado.setApellidos(resultadoConsulta.getString(3));
             empleado.setNombreUsuario(resultadoConsulta.getString(4));
         } catch (SQLException exception) {
-
+            Logger.getLogger(EmpleadoDAO.class.getName()).log(Level.SEVERE, null, exception);
         } finally {
             conexionBD.cerrarConexion();
         }
@@ -54,7 +56,7 @@ public class EmpleadoDAO implements IEmpleadoDAO {
     /**
      * Permite obtener el nombre de un empleado.
      *
-     * @param noPersonal
+     * @param noPersonal numero de personal del Empleado
      * @exception SQLException. La excepción se puede mandar cuando no se
      * obtiene el resultado esperado por un error en la consulta a la base de
      * datos.
@@ -74,7 +76,7 @@ public class EmpleadoDAO implements IEmpleadoDAO {
             resultadoConsulta.next();
             nombreEmpleado = resultadoConsulta.getString(1) + " " + resultadoConsulta.getString(2);
         } catch (SQLException exception) {
-
+            Logger.getLogger(EmpleadoDAO.class.getName()).log(Level.SEVERE, null, exception);
         } finally {
             conexionBD.cerrarConexion();
         }
@@ -86,16 +88,17 @@ public class EmpleadoDAO implements IEmpleadoDAO {
      * Permite obtener a partir de una hora, un idioma y una fecha los asesores
      * dsponibles.
      *
-     * @param hora
-     * @param idIdioma
-     * @param fecha
+     * @param horaInicio hora inicio de la actividad
+     * @param idIdioma idioma del asesor.
+     * @param fecha fecha de la activiad.
+     * @param horaFin hora fin de la actividad.
      * @exception SQLException. La excepción se puede mandar cuando no se
      * obtiene el resultado esperado por un error en la consulta a la base de
      * datos.
-     * @return Una lista con objetos de la clase <Empleado>.
+     * @return Una lista con objetos de la clase Empleado.
      */
     @Override
-    public ArrayList<Empleado> obtenerEmpleadosDisponibles(Time horaInicio, Time horaFin, String idIdioma, Date fecha) {
+    public ArrayList<Empleado> obtenerAsesoresDisponibles(Time horaInicio, Time horaFin, String idIdioma, Date fecha) {
         ArrayList<Empleado> asesoresDisponibles = new ArrayList();
         ConexionSQL conexionBD = new ConexionSQL();
         conexionBD.conectarBaseDatos();
@@ -125,7 +128,7 @@ public class EmpleadoDAO implements IEmpleadoDAO {
                 asesoresDisponibles.add(empleado);
             }
         } catch (SQLException exception) {
-
+            Logger.getLogger(EmpleadoDAO.class.getName()).log(Level.SEVERE, null, exception);
         } finally {
             conexionBD.cerrarConexion();
         }

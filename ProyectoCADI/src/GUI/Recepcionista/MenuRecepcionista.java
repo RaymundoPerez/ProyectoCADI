@@ -5,7 +5,7 @@ import java.awt.Dimension;
 import javax.swing.JPanel;
 
 /**
- * Permite la visualización de la GUI <MenuPrincipal>.
+ * Permite la visualización de la GUI MenuPrincipal.
  *
  * @author Irvin Vera.
  * @author Alonso Lora.
@@ -31,9 +31,9 @@ public class MenuRecepcionista extends javax.swing.JFrame {
     }
 
     /**
-     * Permite el añadir un panel al <MenuRecepcionista>.
+     * Permite el añadir un panel al MenuRecepcionista.
      *
-     * @param pantalla
+     * @param pantalla recibe la pantalla que se colocara en el la pantalla principal
      */
     public static void añadirPanelPrincipal(JPanel pantalla) {
         panelPrincipalMenuRecepcionista.removeAll();

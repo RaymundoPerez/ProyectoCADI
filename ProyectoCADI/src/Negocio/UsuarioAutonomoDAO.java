@@ -5,10 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Permite realizar todas las acciones vinculadas con la clase
- * <UsuarioAutonomo>.
+ * UsuarioAutonomo.
  *
  * @author Irvin Vera.
  * @author Alonso Lora.
@@ -17,13 +19,13 @@ import java.util.ArrayList;
 public class UsuarioAutonomoDAO implements IUsuarioAutonomoDAO {
 
     /**
-     * Permite crear un nuevo <UsuarioAutonomo>.
+     * Permite crear un nuevo UsuarioAutonomo.
      *
      * @param usuarioAutonomo
      * @exception SQLException. La excepción se puede mandar cuando no se
      * obtiene el resultado esperado por un error en la consulta a la base de
      * datos
-     * @return Un objeto de la clase <InformacionUsuarioAutonomo>.
+     * @return Un objeto de la clase InformacionUsuarioAutonomo.
      */
     @Override
     public InformacionUsuarioAutonomo crearUsuarioAutonomo(UsuarioAutonomo usuarioAutonomo) {
@@ -44,7 +46,7 @@ public class UsuarioAutonomoDAO implements IUsuarioAutonomoDAO {
             sentenciaConsulta.executeUpdate();
             mensaje = InformacionUsuarioAutonomo.usuarioAutonomoCreadoCorrectamente;
         } catch (SQLException exception) {
-
+            Logger.getLogger(UsuarioAutonomoDAO.class.getName()).log(Level.SEVERE, null, exception);
         } finally {
             conexionBD.cerrarConexion();
         }
@@ -52,13 +54,13 @@ public class UsuarioAutonomoDAO implements IUsuarioAutonomoDAO {
     }
 
     /**
-     * Permite obtener la inforamción de un <UsuarioAutonomo>.
+     * Permite obtener la inforamción de un UsuarioAutonomo.
      *
      * @param nombreUsuario
      * @exception SQLException. La excepción se puede mandar cuando no se
      * obtiene el resultado esperado por un error en la consulta a la base de
      * datos
-     * @return Un objeto de la clase <UsuarioAutonomo>.
+     * @return Un objeto de la clase UsuarioAutonomo.
      */
     @Override
     public UsuarioAutonomo obtenerUsuarioAutonomo(String nombreUsuario) {
@@ -79,7 +81,7 @@ public class UsuarioAutonomoDAO implements IUsuarioAutonomoDAO {
             usuarioAutonomo.setFechaNac(resultadoConsulta.getDate(5));
             usuarioAutonomo.setMatricula(resultadoConsulta.getString(6));
         } catch (SQLException exception) {
-
+            Logger.getLogger(UsuarioAutonomoDAO.class.getName()).log(Level.SEVERE, null, exception);
         } finally {
             conexionBD.cerrarConexion();
         }
@@ -87,7 +89,7 @@ public class UsuarioAutonomoDAO implements IUsuarioAutonomoDAO {
     }
 
     /**
-     * Permite validar la existencia de un <UsuarioAutonomo>.
+     * Permite validar la existencia de un UsuarioAutonomo.
      *
      * @param matricula
      * @exception SQLException. La excepción se puede mandar cuando no se
@@ -109,7 +111,7 @@ public class UsuarioAutonomoDAO implements IUsuarioAutonomoDAO {
             ResultSet resultadoConsulta = sentenciaConsulta.executeQuery();
             existeUsuarioAutonomo = resultadoConsulta.next();
         } catch (SQLException exception) {
-
+            Logger.getLogger(UsuarioAutonomoDAO.class.getName()).log(Level.SEVERE, null, exception);
         } finally {
             conexionBD.cerrarConexion();
         }
@@ -117,13 +119,13 @@ public class UsuarioAutonomoDAO implements IUsuarioAutonomoDAO {
     }
 
     /**
-     * Permite obtener todos los <UsuariosAutonomos> inscritos en alguna
-     * <ExperienciaEducativa>.
+     * Permite obtener todos los UsuariosAutonomos inscritos en alguna
+     * ExperienciaEducativa.
      *
      * @exception SQLException. La excepción se puede mandar cuando no se
      * obtiene el resultado esperado por un error en la consulta a la base de
      * datos
-     * @return Una lista de objetos de la clase <UsuarioAutonomo>.
+     * @return Una lista de objetos de la clase UsuarioAutonomo.
      */
     @Override
     public ArrayList<UsuarioAutonomo> obtenerTodosLosAlumnosInscritos() {
@@ -147,7 +149,7 @@ public class UsuarioAutonomoDAO implements IUsuarioAutonomoDAO {
                 usuariosAutonomos.add(usuario);
             }
         } catch (SQLException exception) {
-
+            Logger.getLogger(UsuarioAutonomoDAO.class.getName()).log(Level.SEVERE, null, exception);
         } finally {
             conexionBD.cerrarConexion();
         }
@@ -155,13 +157,13 @@ public class UsuarioAutonomoDAO implements IUsuarioAutonomoDAO {
     }
 
     /**
-     * Permite validar la existencia de un <UsuarioAutonomo>
+     * Permite validar la existencia de un UsuarioAutonomo
      *
      * @param matricula
      * @exception SQLException. La excepción se puede mandar cuando no se
      * obtiene el resultado esperado por un error en la consulta a la base de
      * datos
-     * @return Un valor verdadero si el <UsuarioAutonomo> ya está insrito o un
+     * @return Un valor verdadero si el UsuarioAutonomo ya está insrito o un
      * valor falso de lo contrario.
      */
     @Override
@@ -177,7 +179,7 @@ public class UsuarioAutonomoDAO implements IUsuarioAutonomoDAO {
             ResultSet resultadoConsulta = sentenciaConsulta.executeQuery();
             usuarioExistente = resultadoConsulta.next();
         } catch (SQLException exception) {
-
+            Logger.getLogger(UsuarioAutonomoDAO.class.getName()).log(Level.SEVERE, null, exception);
         } finally {
             conexionBD.cerrarConexion();
         }
@@ -186,13 +188,13 @@ public class UsuarioAutonomoDAO implements IUsuarioAutonomoDAO {
     }
 
     /**
-     * Permite obtener la información de un <UsuarioAutonomo> dada su matrícula.
+     * Permite obtener la información de un UsuarioAutonomo dada su matrícula.
      *
      * @param matricula
      * @exception SQLException. La excepción se puede mandar cuando no se
      * obtiene el resultado esperado por un error en la consulta a la base de
      * datos
-     * @return Un objeto de la clase<UsuarioAutonomo>.
+     * @return Un objeto de la clase UsuarioAutonomo.
      */
     @Override
     public UsuarioAutonomo obtenerUsuarioAutonomoPorMatricula(String matricula) {
@@ -213,7 +215,7 @@ public class UsuarioAutonomoDAO implements IUsuarioAutonomoDAO {
             usuarioAutonomo.setFechaNac(resultadoConsulta.getDate(5));
             usuarioAutonomo.setMatricula(resultadoConsulta.getString(6));
         } catch (SQLException exception) {
-
+            Logger.getLogger(UsuarioAutonomoDAO.class.getName()).log(Level.SEVERE, null, exception);
         } finally {
             conexionBD.cerrarConexion();
         }

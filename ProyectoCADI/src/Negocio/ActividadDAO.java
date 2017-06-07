@@ -5,9 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
- * Permite realizar todas las acciones vinculadas a <Actividad>.
+ * Permite realizar todas las acciones vinculadas a Actividad.
  *
  * @author Irvin Vera.
  * @author Alonso Lora.
@@ -21,14 +23,14 @@ public class ActividadDAO implements IActividadDAO {
      * @author Irvin Vera.
      * @author Alonso Lora.
      * @author Raymundo Pérez.
-     * @param idSeccion.
+     * @param idSeccion el id de la seccion de la que se desean obtener las actividades.
      * @exception SQLException. La excepción se puede mandar cuando no se
      * obtiene el resultado esperado por un error en la consulta a la base de
      * datos.
-     * @return Una lista de objetos de la clase <Actividad>
+     * @return Una lista de objetos de la clase Actividad
      */
     @Override
-    public ArrayList<Actividad> obtenerActividadPorSeccion(String idSeccion) {
+    public ArrayList<Actividad> obtenerActividadesPorSeccion(String idSeccion) {
         ArrayList<Actividad> actividades = new ArrayList();
         ConexionSQL conexionBD = new ConexionSQL();
         conexionBD.conectarBaseDatos();
@@ -46,7 +48,7 @@ public class ActividadDAO implements IActividadDAO {
             }
 
         } catch (SQLException exception) {
-
+            Logger.getLogger(ActividadDAO.class.getName()).log(Level.SEVERE, null, exception);
         } finally {
             conexionBD.cerrarConexion();
         }
