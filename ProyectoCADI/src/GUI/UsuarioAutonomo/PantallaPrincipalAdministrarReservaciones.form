@@ -149,11 +149,12 @@
         <Component class="javax.swing.JTable" name="tablaActividadesReservadas">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="6" rowCount="0">
+              <Table columnCount="7" rowCount="0">
                 <Column editable="false" title="EE" type="java.lang.String"/>
                 <Column editable="false" title="Actividad" type="java.lang.String"/>
                 <Column editable="false" title="Fecha" type="java.lang.String"/>
-                <Column editable="false" title="Hora" type="java.lang.String"/>
+                <Column editable="false" title="Inicio" type="java.lang.String"/>
+                <Column editable="false" title="Fin" type="java.lang.String"/>
                 <Column editable="false" title="Aula" type="java.lang.String"/>
                 <Column editable="false" title="Profesor" type="java.lang.String"/>
               </Table>
@@ -175,11 +176,12 @@
         <Component class="javax.swing.JTable" name="tablaActividadesDisponibles">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="6" rowCount="0">
+              <Table columnCount="7" rowCount="0">
                 <Column editable="false" title="EE" type="java.lang.String"/>
                 <Column editable="false" title="Actividad" type="java.lang.String"/>
                 <Column editable="false" title="Fecha" type="java.lang.String"/>
-                <Column editable="false" title="Hora" type="java.lang.String"/>
+                <Column editable="false" title="Inicio" type="java.lang.String"/>
+                <Column editable="true" title="Fin" type="java.lang.Object"/>
                 <Column editable="false" title="Aula" type="java.lang.String"/>
                 <Column editable="false" title="Profesor" type="java.lang.String"/>
               </Table>

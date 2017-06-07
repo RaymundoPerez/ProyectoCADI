@@ -31,7 +31,7 @@ public class SeccionCursoDAO implements ISeccionCursoDAO {
      * <ExperienciaEducativa>.
      */
     @Override
-    public String[] obtenerTodasLasSeecionesPorEE(String nombreEE) {
+    public String[] obtenerTodasLasSeccionesPorEE(String nombreEE) {
         ArrayList<String> nombreSeccionCurso = new ArrayList<>();
         ConexionSQL conexionBD = new ConexionSQL();
         conexionBD.conectarBaseDatos();

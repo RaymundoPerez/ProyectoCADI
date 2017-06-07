@@ -13,7 +13,6 @@ import java.util.GregorianCalendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.ButtonGroup;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -555,7 +554,7 @@ public class PantallaDarDeAltaInscripcion extends javax.swing.JPanel {
 
     private void comboBoxExperienciaEducativaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxExperienciaEducativaActionPerformed
         SeccionCursoDAO seccionCursoDAO = new SeccionCursoDAO();
-        comboBoxSeccionCurso.setModel(new javax.swing.DefaultComboBoxModel<>(seccionCursoDAO.obtenerTodasLasSeecionesPorEE((String) comboBoxExperienciaEducativa.getSelectedItem())));
+        comboBoxSeccionCurso.setModel(new javax.swing.DefaultComboBoxModel<>(seccionCursoDAO.obtenerTodasLasSeccionesPorEE((String) comboBoxExperienciaEducativa.getSelectedItem())));
         comboBoxSeccionCurso.setSelectedItem(null);
     }//GEN-LAST:event_comboBoxExperienciaEducativaActionPerformed
 

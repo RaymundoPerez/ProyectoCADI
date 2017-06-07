@@ -8,6 +8,7 @@ package GUI.UsuarioAutonomo;
 import Negocio.PublicacionActividad;
 import Negocio.PublicacionActividadDAO;
 import Negocio.UsuarioAutonomo;
+import java.sql.Date;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -34,17 +35,16 @@ public class PantallaPrincipalAdministrarReservaciones extends javax.swing.JPane
 
     public PantallaPrincipalAdministrarReservaciones(UsuarioAutonomo usuarioAutonomo) {
         this.usuarioAutonomo = usuarioAutonomo;
-        filaSeleccionadaActividadesReservadas=-1;
-        filaSeleccionadaActividadesDisponibles=-1;
+        filaSeleccionadaActividadesReservadas = -1;
+        filaSeleccionadaActividadesDisponibles = -1;
         initComponents();
         insertarActividadesDisponibles();
         insertarActividadesReservadas();
     }
-    
+
     /**
      * Permite insertar las activiades dispobibles en la tabla.
      */
-
     public void insertarActividadesDisponibles() {
         PublicacionActividadDAO publicacionActividadDAO = new PublicacionActividadDAO();
         publicacionesActividadesDisponibles = publicacionActividadDAO.obtenerActividadesDisponiblesUsuarioAutonomo(usuarioAutonomo.getMatricula());
@@ -54,11 +54,12 @@ public class PantallaPrincipalAdministrarReservaciones extends javax.swing.JPane
             matrizTablaActividadesDisponibles[i][1] = publicacionesActividadesDisponibles.get(i).getNombreActividad();
             matrizTablaActividadesDisponibles[i][2] = String.valueOf(publicacionesActividadesDisponibles.get(i).getFecha());
             matrizTablaActividadesDisponibles[i][3] = String.valueOf(publicacionesActividadesDisponibles.get(i).getHoraInicio());
-            matrizTablaActividadesDisponibles[i][4] = publicacionesActividadesDisponibles.get(i).getIdAula();
-            matrizTablaActividadesDisponibles[i][5] = publicacionesActividadesDisponibles.get(i).getNombreAsesor();
+            matrizTablaActividadesDisponibles[i][4] = String.valueOf(publicacionesActividadesDisponibles.get(i).getHoraFin());
+            matrizTablaActividadesDisponibles[i][5] = publicacionesActividadesDisponibles.get(i).getIdAula();
+            matrizTablaActividadesDisponibles[i][6] = publicacionesActividadesDisponibles.get(i).getNombreAsesor();
 
         }
-        crearTablaActividades(matrizTablaActividadesDisponibles,tablaActividadesDisponibles);
+        crearTablaActividades(matrizTablaActividadesDisponibles, tablaActividadesDisponibles);
     }
 
     /**
@@ -73,23 +74,24 @@ public class PantallaPrincipalAdministrarReservaciones extends javax.swing.JPane
             matrizTablaActividadesReservadas[i][1] = publicacionesActividadesReservadas.get(i).getNombreActividad();
             matrizTablaActividadesReservadas[i][2] = String.valueOf(publicacionesActividadesReservadas.get(i).getFecha());
             matrizTablaActividadesReservadas[i][3] = String.valueOf(publicacionesActividadesReservadas.get(i).getHoraInicio());
-            matrizTablaActividadesReservadas[i][4] = publicacionesActividadesReservadas.get(i).getIdAula();
-            matrizTablaActividadesReservadas[i][5] = publicacionesActividadesReservadas.get(i).getNombreAsesor();
+            matrizTablaActividadesReservadas[i][4] = String.valueOf(publicacionesActividadesReservadas.get(i).getHoraFin());
+            matrizTablaActividadesReservadas[i][5] = publicacionesActividadesReservadas.get(i).getIdAula();
+            matrizTablaActividadesReservadas[i][6] = publicacionesActividadesReservadas.get(i).getNombreAsesor();
         }
-        crearTablaActividades(matrizTablaActividadesReservadas,tablaActividadesReservadas);
+        crearTablaActividades(matrizTablaActividadesReservadas, tablaActividadesReservadas);
     }
-    
+
     /**
      * Permite crear la tabla dándole su formato.
+     *
      * @param matriz
-     * @param tabla 
+     * @param tabla
      */
-
-    public void crearTablaActividades(String[][] matriz,JTable tabla) {
+    public void crearTablaActividades(String[][] matriz, JTable tabla) {
         tabla.setModel(new DefaultTableModel(
                 matriz,
                 new String[]{
-                    "EE", "Actividad", "Fecha", "Hora", "Aula", "Profesor"
+                    "EE", "Actividad", "Fecha", "Inicio", "Fin", "Aula", "Profesor"
                 }
         ) {
             @Override
@@ -100,7 +102,8 @@ public class PantallaPrincipalAdministrarReservaciones extends javax.swing.JPane
         );
 
         tabla.getColumnModel().getColumn(1).setPreferredWidth(220);
-        tabla.getColumnModel().getColumn(5).setPreferredWidth(210);
+        tabla.getColumnModel().getColumn(2).setPreferredWidth(100);
+        tabla.getColumnModel().getColumn(6).setPreferredWidth(210);
 
         tabla.getColumnModel().getColumn(0).setResizable(false);
         tabla.getColumnModel().getColumn(1).setResizable(false);
@@ -108,6 +111,7 @@ public class PantallaPrincipalAdministrarReservaciones extends javax.swing.JPane
         tabla.getColumnModel().getColumn(3).setResizable(false);
         tabla.getColumnModel().getColumn(4).setResizable(false);
         tabla.getColumnModel().getColumn(5).setResizable(false);
+        System.out.println(tabla.getRowCount());
     }
 
     /**
@@ -136,14 +140,12 @@ public class PantallaPrincipalAdministrarReservaciones extends javax.swing.JPane
 
         jSeparator2.setForeground(new java.awt.Color(51, 51, 255));
 
-        etiquetaActividadesReservadas.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         etiquetaActividadesReservadas.setText("Actividades reservadas");
 
         jSeparator3.setForeground(new java.awt.Color(102, 102, 255));
 
         jSeparator4.setForeground(new java.awt.Color(102, 153, 255));
 
-        etiquetaActividadesDisponibles.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         etiquetaActividadesDisponibles.setText("Actividades disponibles");
 
         tablaActividadesReservadas.setModel(new javax.swing.table.DefaultTableModel(
@@ -151,14 +153,14 @@ public class PantallaPrincipalAdministrarReservaciones extends javax.swing.JPane
 
             },
             new String [] {
-                "EE", "Actividad", "Fecha", "Hora", "Aula", "Profesor"
+                "EE", "Actividad", "Fecha", "Inicio", "Fin", "Aula", "Profesor"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -181,14 +183,14 @@ public class PantallaPrincipalAdministrarReservaciones extends javax.swing.JPane
 
             },
             new String [] {
-                "EE", "Actividad", "Fecha", "Hora", "Aula", "Profesor"
+                "EE", "Actividad", "Fecha", "Inicio", "Fin", "Aula", "Profesor"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, true, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -292,16 +294,25 @@ public class PantallaPrincipalAdministrarReservaciones extends javax.swing.JPane
     }//GEN-LAST:event_tablaActividadesDisponiblesMouseClicked
 
     private void botonReservarActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonReservarActividadActionPerformed
-        if(filaSeleccionadaActividadesDisponibles!=-1){
-        PublicacionActividadDAO publicacionActividadDAO = new PublicacionActividadDAO();
-        publicacionActividadDAO.agregarReservacionPublicacionActividad(
-                publicacionesActividadesDisponibles.get(filaSeleccionadaActividadesDisponibles).getIdPublicacion(),
-                usuarioAutonomo.getMatricula());
-        JOptionPane.showMessageDialog(null, "Se ha agregado la reservación");
-        insertarActividadesDisponibles();
-        insertarActividadesReservadas();
-        filaSeleccionadaActividadesDisponibles=-1;
-        }else{
+        if (filaSeleccionadaActividadesDisponibles != -1) {
+            PublicacionActividadDAO publicacionActividadDAO = new PublicacionActividadDAO();
+            if (tablaActividadesReservadas.getRowCount() == publicacionActividadDAO.validarCruceHorarios(usuarioAutonomo.getMatricula(),
+                    publicacionesActividadesDisponibles.get(filaSeleccionadaActividadesDisponibles).getHoraInicio(),
+                    publicacionesActividadesDisponibles.get(filaSeleccionadaActividadesDisponibles).getHoraFin(),
+                    new Date(publicacionesActividadesDisponibles.get(filaSeleccionadaActividadesDisponibles).getFecha().getTime()))) {
+                
+                publicacionActividadDAO.agregarReservacionPublicacionActividad(
+                        publicacionesActividadesDisponibles.get(filaSeleccionadaActividadesDisponibles).getIdPublicacion(),
+                        usuarioAutonomo.getMatricula());
+                JOptionPane.showMessageDialog(null, "Se ha agregado la reservación");
+                insertarActividadesDisponibles();
+                insertarActividadesReservadas();
+                filaSeleccionadaActividadesDisponibles = -1;
+                filaSeleccionadaActividadesReservadas = -1;
+            }else{
+                JOptionPane.showMessageDialog(null, "La actividad que desea reservar se cruza con una actividad reservada");
+            }
+        } else {
             JOptionPane.showMessageDialog(null, "Por favor seleccione una actividad para reservar");
         }
     }//GEN-LAST:event_botonReservarActividadActionPerformed
@@ -311,16 +322,17 @@ public class PantallaPrincipalAdministrarReservaciones extends javax.swing.JPane
     }//GEN-LAST:event_tablaActividadesReservadasMouseClicked
 
     private void botonEliminarReservacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarReservacionActionPerformed
-        if(filaSeleccionadaActividadesReservadas!=-1){
-        PublicacionActividadDAO publicacionActividadDAO = new PublicacionActividadDAO();
-        publicacionActividadDAO.eliminarReservacionPublicacionActividad(
-                publicacionesActividadesReservadas.get(filaSeleccionadaActividadesReservadas).getIdPublicacion(),
-                usuarioAutonomo.getMatricula());
-        JOptionPane.showMessageDialog(null, "Se ha eliminado la reservación");
-        insertarActividadesReservadas();
-        insertarActividadesDisponibles();
-        filaSeleccionadaActividadesReservadas=-1;
-        }else{
+        if (filaSeleccionadaActividadesReservadas != -1) {
+            PublicacionActividadDAO publicacionActividadDAO = new PublicacionActividadDAO();
+            publicacionActividadDAO.eliminarReservacionPublicacionActividad(
+                    publicacionesActividadesReservadas.get(filaSeleccionadaActividadesReservadas).getIdPublicacion(),
+                    usuarioAutonomo.getMatricula());
+            JOptionPane.showMessageDialog(null, "Se ha eliminado la reservación");
+            insertarActividadesReservadas();
+            insertarActividadesDisponibles();
+            filaSeleccionadaActividadesReservadas = -1;
+             filaSeleccionadaActividadesDisponibles = -1;
+        } else {
             JOptionPane.showMessageDialog(null, "Por favor seleccione una actividad para eliminar");
         }
     }//GEN-LAST:event_botonEliminarReservacionActionPerformed

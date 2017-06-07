@@ -17,5 +17,5 @@ public interface IEmpleadoDAO {
     
     public Empleado obtenerEmpleado(String nombreUsuario);
     public String obtenerNombreEmpleado(String noPersonal);
-    public ArrayList<Empleado> obtenerEmpleadosDisponibles(Time hora, String idIdioma, Date fecha);
+    public ArrayList<Empleado> obtenerEmpleadosDisponibles(Time horaInicio,Time horaFin, String idIdioma, Date fecha);
 }

@@ -16,7 +16,7 @@ public class PublicacionActividad {
     private Date fecha;
     private Time horaFin;
     private Time horaInicio;
-    private String idPublicacion;
+    private int idPublicacion;
     private String nombreAsesor;
     private String nombreExperienciaEducativa;
     private String nombreActividad;
@@ -47,11 +47,11 @@ public class PublicacionActividad {
         this.horaInicio = horaInicio;
     }
 
-    public String getIdPublicacion() {
+    public int getIdPublicacion() {
         return idPublicacion;
     }
 
-    public void setIdPublicacion(String idPublicacion) {
+    public void setIdPublicacion(int idPublicacion) {
         this.idPublicacion = idPublicacion;
     }
 

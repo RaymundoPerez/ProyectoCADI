@@ -30,7 +30,7 @@ public class SeccionCursoDAOIT {
         String nombreEE = "Ingles I";
         SeccionCursoDAO instance = new SeccionCursoDAO();
         String[] expResult = {"CS100"};
-        String[] result = instance.obtenerTodasLasSeecionesPorEE(nombreEE);
+        String[] result = instance.obtenerTodasLasSeccionesPorEE(nombreEE);
         assertArrayEquals(expResult, result);
     }
     

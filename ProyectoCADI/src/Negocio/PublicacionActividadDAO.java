@@ -1,9 +1,11 @@
 package Negocio;
 
 import Datos.ConexionSQL;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.ArrayList;
 
 /**
@@ -52,7 +54,7 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
                 resultadoPublicacionActividad = sentenciaConsultaPublicacionActividad.executeQuery();
                 while (resultadoPublicacionActividad.next()) {
                     PublicacionActividad publicacionActividad = new PublicacionActividad();
-                    publicacionActividad.setIdPublicacion(resultadoPublicacionActividad.getString(1));
+                    publicacionActividad.setIdPublicacion(resultadoPublicacionActividad.getInt(1));
                     publicacionActividad.setFecha(resultadoPublicacionActividad.getDate(2));
                     publicacionActividad.setHoraInicio(resultadoPublicacionActividad.getTime(3));
                     publicacionActividad.setHoraFin(resultadoPublicacionActividad.getTime(4));
@@ -108,7 +110,7 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
                 resultadoPublicacionActividad = sentenciaConsultaPublicacionActividad.executeQuery();
                 while (resultadoPublicacionActividad.next()) {
                     PublicacionActividad publicacionActividad = new PublicacionActividad();
-                    publicacionActividad.setIdPublicacion(resultadoPublicacionActividad.getString(1));
+                    publicacionActividad.setIdPublicacion(resultadoPublicacionActividad.getInt(1));
                     publicacionActividad.setFecha(resultadoPublicacionActividad.getDate(2));
                     publicacionActividad.setHoraInicio(resultadoPublicacionActividad.getTime(3));
                     publicacionActividad.setHoraFin(resultadoPublicacionActividad.getTime(4));
@@ -139,7 +141,7 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
      * @return Un objeto de la clase <InformacionPublicacionActividad>.
      */
     @Override
-    public InformacionPublicacionActividad agregarReservacionPublicacionActividad(String idPublicacionActividad, String matricula) {
+    public InformacionPublicacionActividad agregarReservacionPublicacionActividad(int idPublicacionActividad, String matricula) {
         InformacionPublicacionActividad mensaje = InformacionPublicacionActividad.reservacionNoguardada;
         ConexionSQL conexionBD = new ConexionSQL();
         conexionBD.conectarBaseDatos();
@@ -147,7 +149,7 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
         String consultaSQL = "insert into RESERVACION values(?,?)";
         try {
             sentenciaConsulta = conexionBD.getConexion().prepareStatement(consultaSQL);
-            sentenciaConsulta.setString(1, idPublicacionActividad);
+            sentenciaConsulta.setInt(1, idPublicacionActividad);
             sentenciaConsulta.setString(2, matricula);
             sentenciaConsulta.executeUpdate();
             reducirCupoPublicacionActividad(idPublicacionActividad);
@@ -171,7 +173,7 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
      * @return Un objeto de la clase <InformacionPublicacionActividad>.
      */
     @Override
-    public InformacionPublicacionActividad eliminarReservacionPublicacionActividad(String idPublicacionActividad, String matricula) {
+    public InformacionPublicacionActividad eliminarReservacionPublicacionActividad(int idPublicacionActividad, String matricula) {
         InformacionPublicacionActividad mensaje = InformacionPublicacionActividad.reservacionNoEliminada;
         ConexionSQL conexionBD = new ConexionSQL();
         conexionBD.conectarBaseDatos();
@@ -179,7 +181,7 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
         String consultaSQL = "delete from RESERVACION WHERE idPublicacion=? and matricula=?";
         try {
             sentenciaConsulta = conexionBD.getConexion().prepareStatement(consultaSQL);
-            sentenciaConsulta.setString(1, idPublicacionActividad);
+            sentenciaConsulta.setInt(1, idPublicacionActividad);
             sentenciaConsulta.setString(2, matricula);
             sentenciaConsulta.executeUpdate();
             aumentarCupoPublicacionActividad(idPublicacionActividad);
@@ -207,7 +209,7 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
         ConexionSQL conexionBD = new ConexionSQL();
         conexionBD.conectarBaseDatos();
         PreparedStatement sentenciaConsulta;
-        String consultaSQL = "insert into PUBLICACIONACTIVIDAD values('PA0001',?,?,?,?,?,?,?)";
+        String consultaSQL = "insert into PUBLICACIONACTIVIDAD values(null,?,?,?,?,?,?,?)";
         try {
             sentenciaConsulta = conexionBD.getConexion().prepareStatement(consultaSQL);
             sentenciaConsulta.setDate(1, new java.sql.Date(publicacionActividad.getFecha().getTime()));
@@ -258,7 +260,7 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
             resultadoPublicacionActividad = sentenciaConsultaPublicacionActividad.executeQuery();
             while (resultadoPublicacionActividad.next()) {
                 PublicacionActividad publicacionActividad = new PublicacionActividad();
-                publicacionActividad.setIdPublicacion(resultadoPublicacionActividad.getString(1));
+                publicacionActividad.setIdPublicacion(resultadoPublicacionActividad.getInt(1));
                 publicacionActividad.setFecha(resultadoPublicacionActividad.getDate(2));
                 publicacionActividad.setHoraInicio(resultadoPublicacionActividad.getTime(3));
                 publicacionActividad.setHoraFin(resultadoPublicacionActividad.getTime(4));
@@ -288,7 +290,7 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
      * @return Un objeto de la clase <InformacionPublicacionActividad>.
      */
     @Override
-    public InformacionPublicacionActividad eliminarPublicacionActividad(String idPublicacion) {
+    public InformacionPublicacionActividad eliminarPublicacionActividad(int idPublicacion) {
         InformacionPublicacionActividad mensaje = InformacionPublicacionActividad.publicacionNoEliminada;
         ConexionSQL conexionBD = new ConexionSQL();
         conexionBD.conectarBaseDatos();
@@ -297,7 +299,7 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
         try {
             eliminarTodasLasReservacionesDeUnaPublicacion(idPublicacion);
             sentenciaConsulta = conexionBD.getConexion().prepareStatement(consultaSQL);
-            sentenciaConsulta.setString(1, idPublicacion);
+            sentenciaConsulta.setInt(1, idPublicacion);
             int resultadoConsulta = sentenciaConsulta.executeUpdate();
             if (resultadoConsulta == 1) {
                 mensaje = InformacionPublicacionActividad.publicacionEliminada;
@@ -342,7 +344,7 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
             resultadoPublicacionActividad = sentenciaConsultaPublicacionActividad.executeQuery();
             while (resultadoPublicacionActividad.next()) {
                 PublicacionActividad publicacionActividad = new PublicacionActividad();
-                publicacionActividad.setIdPublicacion(resultadoPublicacionActividad.getString(1));
+                publicacionActividad.setIdPublicacion(resultadoPublicacionActividad.getInt(1));
                 publicacionActividad.setFecha(resultadoPublicacionActividad.getDate(2));
                 publicacionActividad.setHoraInicio(resultadoPublicacionActividad.getTime(3));
                 publicacionActividad.setHoraFin(resultadoPublicacionActividad.getTime(4));
@@ -372,7 +374,7 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
      * @return Un objeto de la clase <InformacionPublicacionActividad>.
      */
     @Override
-    public InformacionPublicacionActividad reducirCupoPublicacionActividad(String idPublicacionActividad) {
+    public InformacionPublicacionActividad reducirCupoPublicacionActividad(int idPublicacionActividad) {
         InformacionPublicacionActividad mensaje = InformacionPublicacionActividad.cupoNoRestado;
         ConexionSQL conexionBD = new ConexionSQL();
         conexionBD.conectarBaseDatos();
@@ -380,7 +382,7 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
         String consultaSQL = "update PUBLICACIONACTIVIDAD set cupo=cupo-1 where PUBLICACIONACTIVIDAD.idPublicacion=?";
         try {
             sentenciaConsulta = conexionBD.getConexion().prepareStatement(consultaSQL);
-            sentenciaConsulta.setString(1, idPublicacionActividad);
+            sentenciaConsulta.setInt(1, idPublicacionActividad);
             sentenciaConsulta.executeUpdate();
             mensaje = InformacionPublicacionActividad.cupoRestado;
         } catch (SQLException exception) {
@@ -402,7 +404,7 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
      * @return Un objeto de la clase <InformacionPublicacionActividad>.
      */
     @Override
-    public InformacionPublicacionActividad aumentarCupoPublicacionActividad(String idPublicacionActividad) {
+    public InformacionPublicacionActividad aumentarCupoPublicacionActividad(int idPublicacionActividad) {
         InformacionPublicacionActividad mensaje = InformacionPublicacionActividad.cupoNoAumentado;
         ConexionSQL conexionBD = new ConexionSQL();
         conexionBD.conectarBaseDatos();
@@ -410,7 +412,7 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
         String consultaSQL = "update PUBLICACIONACTIVIDAD set cupo=cupo+1 where PUBLICACIONACTIVIDAD.idPublicacion=?";
         try {
             sentenciaConsulta = conexionBD.getConexion().prepareStatement(consultaSQL);
-            sentenciaConsulta.setString(1, idPublicacionActividad);
+            sentenciaConsulta.setInt(1, idPublicacionActividad);
             sentenciaConsulta.executeUpdate();
             mensaje = InformacionPublicacionActividad.cupoAumentado;
         } catch (SQLException exception) {
@@ -431,7 +433,7 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
      * @return Un objeto de la clase <InformacionPublicacionActividad>.
      */
     @Override
-    public InformacionPublicacionActividad eliminarTodasLasReservacionesDeUnaPublicacion(String idPublicacionActividad) {
+    public InformacionPublicacionActividad eliminarTodasLasReservacionesDeUnaPublicacion(int idPublicacionActividad) {
         InformacionPublicacionActividad mensaje = InformacionPublicacionActividad.reservacionNoEliminada;
         ConexionSQL conexionBD = new ConexionSQL();
         conexionBD.conectarBaseDatos();
@@ -439,7 +441,7 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
         String consultaSQL = "delete from RESERVACION WHERE idPublicacion=?";
         try {
             sentenciaConsulta = conexionBD.getConexion().prepareStatement(consultaSQL);
-            sentenciaConsulta.setString(1, idPublicacionActividad);
+            sentenciaConsulta.setInt(1, idPublicacionActividad);
             sentenciaConsulta.executeUpdate();
             aumentarCupoPublicacionActividad(idPublicacionActividad);
             mensaje = InformacionPublicacionActividad.reservacionEliminada;
@@ -449,6 +451,54 @@ public class PublicacionActividadDAO implements IPublicacionActividadDAO {
             conexionBD.cerrarConexion();
         }
         return mensaje;
+    }
+
+    @Override
+    public int validarCruceHorarios(String matricula, Time horaInicio, Time horaFin,Date fecha) {
+        int numeroActividadesValidas = 0;
+        ConexionSQL conexionBD = new ConexionSQL();
+        conexionBD.conectarBaseDatos();
+        PreparedStatement sentenciaConsultaPublicacionActividad;
+        String consultaSQLPublicacionActividad;
+        ResultSet resultadoPublicacionActividad;
+        try {
+            ExperienciaEducativaDAO experienciaEducativaDAO = new ExperienciaEducativaDAO();
+            EmpleadoDAO empleadoDAO = new EmpleadoDAO();
+            ArrayList<ExperienciaEducativa> experienciasEducativas = experienciaEducativaDAO.obtenerExperienciasEducativasUsuarioAutonomo(matricula);
+            for (ExperienciaEducativa experienciaEducativa : experienciasEducativas) {
+                consultaSQLPublicacionActividad = "select PUBLICACIONACTIVIDAD.idPublicacion,"
+                        + "PUBLICACIONACTIVIDAD.fecha, PUBLICACIONACTIVIDAD.horainicio, PUBLICACIONACTIVIDAD.horaFin,"
+                        + "PUBLICACIONACTIVIDAD.idAula, ACTIVIDAD.nombreActividad, PUBLICACIONACTIVIDAD.noPersonal "
+                        + "from PUBLICACIONACTIVIDAD,ACTIVIDAD,SECCION,MODULO,EXPERIENCIAEDUCATIVA,RESERVACION "
+                        + "where RESERVACION.matricula=? and RESERVACION.idPublicacion=PUBLICACIONACTIVIDAD.idPublicacion and "
+                        + "PUBLICACIONACTIVIDAD.idActividad=ACTIVIDAD.idActividad and "
+                        + "ACTIVIDAD.idSeccion=SECCION.idSeccion and SECCION.idModulo = MODULO.idModulo and "
+                        + "MODULO.nrc=EXPERIENCIAEDUCATIVA.nrc and EXPERIENCIAEDUCATIVA.nrc=? and publicacionactividad.idPublicacion "
+                        + "not in(select publicacionactividad.idPublicacion from publicacionactividad where (? = horaInicio "
+                        + "or (?>horaInicio and ? < horaFin) or (?<=horafin and ?>horaInicio) "
+                        + "or (?<horaFin and ?>horaFin)) and ? = fecha)";
+                sentenciaConsultaPublicacionActividad = conexionBD.getConexion().prepareStatement(consultaSQLPublicacionActividad);
+                sentenciaConsultaPublicacionActividad.setString(1, matricula);
+                sentenciaConsultaPublicacionActividad.setString(2, experienciaEducativa.getNrc());
+                sentenciaConsultaPublicacionActividad.setTime(3,horaInicio);
+                sentenciaConsultaPublicacionActividad.setTime(4,horaInicio);
+                sentenciaConsultaPublicacionActividad.setTime(5,horaInicio);
+                sentenciaConsultaPublicacionActividad.setTime(6,horaFin);
+                sentenciaConsultaPublicacionActividad.setTime(7,horaFin);
+                sentenciaConsultaPublicacionActividad.setTime(8,horaInicio);
+                sentenciaConsultaPublicacionActividad.setTime(9,horaFin);
+                sentenciaConsultaPublicacionActividad.setDate(10, fecha);
+                resultadoPublicacionActividad = sentenciaConsultaPublicacionActividad.executeQuery();
+                while (resultadoPublicacionActividad.next()) {
+                    numeroActividadesValidas++;
+                }
+            }
+        } catch (SQLException exception) {
+            System.out.println(exception.getMessage());
+        } finally {
+            conexionBD.cerrarConexion();
+        }
+        return numeroActividadesValidas;
     }
 
 }

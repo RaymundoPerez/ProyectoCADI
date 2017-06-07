@@ -88,9 +88,10 @@ public class InscripcionDAOIT {
     public void testBuscarInscripcion() {
         System.out.println("buscarInscripcion");
         String nrc = "39870";
+        String matricula = "S15011613";
         InscripcionDAO instance = new InscripcionDAO();
         String expResult = "CS100";
-        String result = instance.buscarInscripcion(nrc);
+        String result = instance.buscarSeccionPorInscripcion(matricula,nrc);
         assertEquals(expResult, result);
         
     }

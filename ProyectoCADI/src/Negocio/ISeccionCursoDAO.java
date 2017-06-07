@@ -11,6 +11,6 @@ package Negocio;
  */
 public interface ISeccionCursoDAO {
     
-    public String[] obtenerTodasLasSeecionesPorEE(String nombreEE);
+    public String[] obtenerTodasLasSeccionesPorEE(String nombreEE);
     
 }

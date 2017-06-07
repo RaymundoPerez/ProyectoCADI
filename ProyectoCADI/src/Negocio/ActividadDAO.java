@@ -28,7 +28,7 @@ public class ActividadDAO implements IActividadDAO {
      * @return Una lista de objetos de la clase <Actividad>
      */
     @Override
-    public ArrayList<Actividad> seleccionarActividadPorSeccion(String idSeccion) {
+    public ArrayList<Actividad> obtenerActividadPorSeccion(String idSeccion) {
         ArrayList<Actividad> actividades = new ArrayList();
         ConexionSQL conexionBD = new ConexionSQL();
         conexionBD.conectarBaseDatos();

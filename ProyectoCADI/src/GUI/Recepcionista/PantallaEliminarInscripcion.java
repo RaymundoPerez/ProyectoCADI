@@ -239,7 +239,8 @@ public class PantallaEliminarInscripcion extends javax.swing.JPanel {
         } else {
             InscripcionDAO inscripcionDAO = new InscripcionDAO();
             switch (inscripcionDAO.eliminarInscripcion(usuarioAutonomo.getMatricula(),
-                    inscripcionDAO.buscarInscripcion(experienciasEducativas.get(comboBoxExperienciaEducativa.getSelectedIndex()).getNrc()))) {
+                    inscripcionDAO.buscarSeccionPorInscripcion(experienciasEducativas.get(comboBoxExperienciaEducativa.getSelectedIndex()).getNrc(),
+                            usuarioAutonomo.getMatricula()))) {
                 case inscripcionEliminadaCorrectamente:
                     JOptionPane.showMessageDialog(null, "Inscripcion eliminada");
 

@@ -55,12 +55,13 @@ public class EmpleadoDAOIT {
     @Test //APROBADO 
     public void testObtenerEmpleadosDisponibles() {
         System.out.println("obtenerEmpleadosDisponibles");
-        Time hora = new Time(2,0,0);
+        Time horaInicio = new Time(2,0,0);
+        Time horaFin = new Time(3,0,0);
         String idIdioma = "Ing01";
         Date fecha = new Date(2017,6,8);
         EmpleadoDAO instance = new EmpleadoDAO();
         String resultadoEsperado = "83500";
-        ArrayList<Empleado> result = instance.obtenerEmpleadosDisponibles(hora, idIdioma, fecha);
+        ArrayList<Empleado> result = instance.obtenerEmpleadosDisponibles(horaInicio,horaFin, idIdioma, fecha);
         String resultado = result.get(0).getNoPersonal();
         assertEquals(resultadoEsperado, resultado);
         

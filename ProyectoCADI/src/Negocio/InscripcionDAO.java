@@ -79,20 +79,22 @@ public class InscripcionDAO implements IInscripcionDAO {
     }
 
     @Override
-    public String buscarInscripcion(String nrc) {
+    public String buscarSeccionPorInscripcion(String nrc,String matricula) {
         String claveSeccion = null;
         ConexionSQL conexionBD = new ConexionSQL();
         conexionBD.conectarBaseDatos();
         PreparedStatement sentenciaConsulta;
-        String consultaSQL = "Select claveSeccion from SECCIONCURSO,CURSO where ? = CURSO.nrc and CURSO.idCurso = SECCIONCURSO.idCurso";
+        String consultaSQL = "select SECCIONCURSO.claveSeccion from SECCIONCURSO,CURSO,INSCRIPCION where ? = CURSO.nrc and CURSO.idCurso = SECCIONCURSO.idCurso "
+                + "and ? = inscripcion.matricula and inscripcion.claveSeccion = seccioncurso.claveSeccion";
         try {
             sentenciaConsulta = conexionBD.getConexion().prepareStatement(consultaSQL);
             sentenciaConsulta.setString(1, nrc);
+            sentenciaConsulta.setString(2, matricula);
             ResultSet resultadoConsulta = sentenciaConsulta.executeQuery();
             resultadoConsulta.next();
             claveSeccion = resultadoConsulta.getString(1);
         } catch (SQLException exception) {
-
+            System.out.println(exception);
         } finally {
             conexionBD.cerrarConexion();
         }

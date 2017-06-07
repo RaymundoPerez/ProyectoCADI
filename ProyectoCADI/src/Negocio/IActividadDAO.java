@@ -8,5 +8,5 @@ import java.util.ArrayList;
  * @author alonso
  */
 public interface IActividadDAO {
-    public ArrayList<Actividad> seleccionarActividadPorSeccion(String idSeccion);
+    public ArrayList<Actividad> obtenerActividadPorSeccion(String idSeccion);
 }

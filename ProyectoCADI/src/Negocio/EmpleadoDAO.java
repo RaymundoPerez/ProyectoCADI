@@ -95,20 +95,27 @@ public class EmpleadoDAO implements IEmpleadoDAO {
      * @return Una lista con objetos de la clase <Empleado>.
      */
     @Override
-    public ArrayList<Empleado> obtenerEmpleadosDisponibles(Time hora, String idIdioma, Date fecha) {
+    public ArrayList<Empleado> obtenerEmpleadosDisponibles(Time horaInicio, Time horaFin, String idIdioma, Date fecha) {
         ArrayList<Empleado> asesoresDisponibles = new ArrayList();
         ConexionSQL conexionBD = new ConexionSQL();
         conexionBD.conectarBaseDatos();
         PreparedStatement sentenciaConsulta;
         String consultaSQL = "select empleado.noPersonal, empleado.nombres, empleado.apellidos "
                 + "from empleado where empleado.noPersonal not in(select publicacionactividad.noPersonal "
-                + "from publicacionactividad, empleado where empleado.noPersonal = publicacionactividad.noPersonal"
-                + " and ? = publicacionactividad.horaInicio and fecha = ?) and idIdioma = ?";
+                + "from publicacionactividad where (? = horaInicio "
+                        + "or (?>horaInicio and ? < horaFin) or (?<=horafin and ?>horaInicio) "
+                        + "or (?<horaFin and ?>horaFin)) and ? = fecha) and idIdioma = ?";
         try {
             sentenciaConsulta = conexionBD.getConexion().prepareStatement(consultaSQL);
-            sentenciaConsulta.setTime(1, hora);
-            sentenciaConsulta.setDate(2, fecha);
-            sentenciaConsulta.setString(3, idIdioma);
+            sentenciaConsulta.setTime(1,horaInicio);
+                sentenciaConsulta.setTime(2,horaInicio);
+                sentenciaConsulta.setTime(3,horaInicio);
+                sentenciaConsulta.setTime(4,horaFin);
+                sentenciaConsulta.setTime(5,horaFin);
+                sentenciaConsulta.setTime(6,horaInicio);
+                sentenciaConsulta.setTime(7,horaFin);
+                sentenciaConsulta.setDate(8, fecha);
+            sentenciaConsulta.setString(9, idIdioma);
             ResultSet resultadoConsulta = sentenciaConsulta.executeQuery();
             while (resultadoConsulta.next()) {
                 Empleado empleado = new Empleado();

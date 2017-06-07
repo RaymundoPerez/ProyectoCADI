@@ -251,7 +251,7 @@ public class PantallaPrincipalCalendarioActividades extends javax.swing.JPanel {
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
         if (filaSeleccionada != -1) {
-            PublicacionActividadDAO publicacionActividadDAO = new PublicacionActividadDAO();
+            PublicacionActividadDAO publicacionActividadDAO = new PublicacionActividadDAO();          
             switch(publicacionActividadDAO.eliminarPublicacionActividad(actividadesDisponibles.get(filaSeleccionada).getIdPublicacion())){
                 case publicacionEliminada:
                     JOptionPane.showMessageDialog(null, "Se ha eliminado la publicación");

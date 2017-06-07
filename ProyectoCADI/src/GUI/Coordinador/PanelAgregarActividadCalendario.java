@@ -32,6 +32,7 @@ import javax.swing.JOptionPane;
  * @author alonso
  */
 public class PanelAgregarActividadCalendario extends javax.swing.JPanel {
+
     private ArrayList<Idioma> idiomas;
     private ArrayList<ExperienciaEducativa> experienciasEducativas;
     private ArrayList<Modulo> modulos;
@@ -40,6 +41,7 @@ public class PanelAgregarActividadCalendario extends javax.swing.JPanel {
     Date fecha = new Date();
     private ArrayList<Empleado> asesoresDisponibles;
     private ArrayList<Aula> aulasDisponibles;
+
     /**
      * Creates new form PanelAgregarActividadCalendario
      */
@@ -47,8 +49,7 @@ public class PanelAgregarActividadCalendario extends javax.swing.JPanel {
         IdiomaDAO idiomaDAO = new IdiomaDAO();
         idiomas = idiomaDAO.obtenerTodosLosIdiomas();
         initComponents();
-        
-        
+
     }
 
     /**
@@ -329,29 +330,29 @@ public class PanelAgregarActividadCalendario extends javax.swing.JPanel {
         ExperienciaEducativaDAO experienciaEducativaDAO = new ExperienciaEducativaDAO();
         experienciasEducativas = experienciaEducativaDAO.obtenerExperienciaEducativaPorIdioma(idiomas.get(comboBoxIdioma.getSelectedIndex()).getIdIdioma());
         comboBoxExperienciaEducativa.setModel(new javax.swing.DefaultComboBoxModel<>(insertarExperienciasEducativas()));
-        comboBoxModulo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { }));
-        comboBoxSeccion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { }));
-        comboBoxActividad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { }));
+        comboBoxModulo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{}));
+        comboBoxSeccion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{}));
+        comboBoxActividad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{}));
     }//GEN-LAST:event_comboBoxIdiomaActionPerformed
 
     private void comboBoxExperienciaEducativaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxExperienciaEducativaActionPerformed
         ModuloDAO moduloDAO = new ModuloDAO();
         modulos = moduloDAO.obtenerModulosPorEE(experienciasEducativas.get(comboBoxExperienciaEducativa.getSelectedIndex()).getNrc());
         comboBoxModulo.setModel(new javax.swing.DefaultComboBoxModel<>(insertarModulos()));
-        comboBoxSeccion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { }));
-        comboBoxActividad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { }));
+        comboBoxSeccion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{}));
+        comboBoxActividad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{}));
     }//GEN-LAST:event_comboBoxExperienciaEducativaActionPerformed
 
     private void comboBoxModuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxModuloActionPerformed
         SeccionDAO seccionDAO = new SeccionDAO();
         secciones = seccionDAO.obtenerSeccionPorModulo(modulos.get(comboBoxModulo.getSelectedIndex()).getIdModulo());
         comboBoxSeccion.setModel(new javax.swing.DefaultComboBoxModel<>(insertarSecciones()));
-        comboBoxActividad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { }));
+        comboBoxActividad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{}));
     }//GEN-LAST:event_comboBoxModuloActionPerformed
 
     private void comboBoxSeccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxSeccionActionPerformed
         ActividadDAO actividadDAO = new ActividadDAO();
-        actividades = actividadDAO.seleccionarActividadPorSeccion(secciones.get(comboBoxSeccion.getSelectedIndex()).getIdSeccion());
+        actividades = actividadDAO.obtenerActividadPorSeccion(secciones.get(comboBoxSeccion.getSelectedIndex()).getIdSeccion());
         comboBoxActividad.setModel(new javax.swing.DefaultComboBoxModel<>(insertarActividades()));
     }//GEN-LAST:event_comboBoxSeccionActionPerformed
 
@@ -361,28 +362,33 @@ public class PanelAgregarActividadCalendario extends javax.swing.JPanel {
 
     private void botonAgregarActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActividadActionPerformed
         PublicacionActividad publicacionActividad = new PublicacionActividad();
-        publicacionActividad.setFecha(calendario.getDate());
-        publicacionActividad.setHoraInicio(new Time(comboBoxHoraInicio.getSelectedIndex()+8,00,00));
-        publicacionActividad.setHoraFin(new Time(comboBoxHoraInicio.getSelectedIndex()+9 +comboBoxHoraFin.getSelectedIndex(),00,00));
-        publicacionActividad.setIdAula(aulasDisponibles.get(comboBoxAula.getSelectedIndex()).getIdAula());
-        publicacionActividad.setNombreActividad(actividades.get(comboBoxActividad.getSelectedIndex()).getIdActividad());
-        publicacionActividad.setNombreAsesor(asesoresDisponibles.get(comboBoxAsesor.getSelectedIndex()).getNoPersonal());
-        publicacionActividad.setCupo(aulasDisponibles.get(comboBoxAula.getSelectedIndex()).getCupo());
-        PublicacionActividadDAO publicacionDAO = new PublicacionActividadDAO();
-        switch(publicacionDAO.publicarActividad(publicacionActividad)){
-            case actividadPublicada:
-                JOptionPane.showMessageDialog(null, "Publicación guardada");
-                break;
-            
-            case actividadNoPublicada:
-                JOptionPane.showMessageDialog(null, "Publicacion no guardada");
-                break;
+        if (!validarCamposVacios()) {
+            publicacionActividad.setFecha(calendario.getDate());
+            publicacionActividad.setHoraInicio(new Time(comboBoxHoraInicio.getSelectedIndex() + 8, 00, 00));
+            publicacionActividad.setHoraFin(new Time(comboBoxHoraInicio.getSelectedIndex() + 9 + comboBoxHoraFin.getSelectedIndex(), 00, 00));
+            publicacionActividad.setIdAula(aulasDisponibles.get(comboBoxAula.getSelectedIndex()).getIdAula());
+            publicacionActividad.setNombreActividad(actividades.get(comboBoxActividad.getSelectedIndex()).getIdActividad());
+            publicacionActividad.setNombreAsesor(asesoresDisponibles.get(comboBoxAsesor.getSelectedIndex()).getNoPersonal());
+            publicacionActividad.setCupo(aulasDisponibles.get(comboBoxAula.getSelectedIndex()).getCupo());
+            PublicacionActividadDAO publicacionDAO = new PublicacionActividadDAO();
+            switch (publicacionDAO.publicarActividad(publicacionActividad)) {
+                case actividadPublicada:
+                    JOptionPane.showMessageDialog(null, "Publicación guardada");
+                    comboBoxAsesor.setModel(new javax.swing.DefaultComboBoxModel<>());
+                    comboBoxAula.setModel(new javax.swing.DefaultComboBoxModel<>());
+                    break;
+
+                case actividadNoPublicada:
+                    JOptionPane.showMessageDialog(null, "Publicacion no guardada");
+                    break;
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Existen campos vacios");
         }
-        
     }//GEN-LAST:event_botonAgregarActividadActionPerformed
 
     private void calendarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calendarioMouseClicked
-       
+
     }//GEN-LAST:event_calendarioMouseClicked
 
     private void calendarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calendarioMousePressed
@@ -390,91 +396,99 @@ public class PanelAgregarActividadCalendario extends javax.swing.JPanel {
     }//GEN-LAST:event_calendarioMousePressed
 
     private void botonBuscarAsesorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarAsesorActionPerformed
-        Time horaInicio = new Time(comboBoxHoraInicio.getSelectedIndex()+8,00,00);
-        Date fecha = calendario.getDate();
-        
-        EmpleadoDAO empleadoDAO = new EmpleadoDAO();
-        asesoresDisponibles = empleadoDAO.obtenerEmpleadosDisponibles(horaInicio, idiomas.get(comboBoxIdioma.getSelectedIndex()).getIdIdioma(), new java.sql.Date(fecha.getTime()));
-        AulaDAO aulaDAO = new AulaDAO();
-        aulasDisponibles = aulaDAO.obtenerAulasDisponibles(horaInicio, new java.sql.Date(fecha.getTime()));
-        comboBoxAsesor.setModel(new javax.swing.DefaultComboBoxModel<>(generarAsoresDisponibles()));
-        comboBoxAula.setModel(new javax.swing.DefaultComboBoxModel<>(insertarAulas()));
-        
+        if (calendario.getDate() != null) {
+            Time horaInicio = new Time(comboBoxHoraInicio.getSelectedIndex() + 8, 00, 00);
+            Date fecha = calendario.getDate();
+            Time horaFin = new Time((comboBoxHoraInicio.getSelectedIndex() + 8) + (comboBoxHoraFin.getSelectedIndex()+1),0,0);
+            EmpleadoDAO empleadoDAO = new EmpleadoDAO();
+            asesoresDisponibles = empleadoDAO.obtenerEmpleadosDisponibles(horaInicio,horaFin, idiomas.get(comboBoxIdioma.getSelectedIndex()).getIdIdioma(), new java.sql.Date(fecha.getTime()));
+            AulaDAO aulaDAO = new AulaDAO();
+            aulasDisponibles = aulaDAO.obtenerAulasDisponibles(horaInicio, new java.sql.Date(fecha.getTime()));
+            comboBoxAsesor.setModel(new javax.swing.DefaultComboBoxModel<>(generarAsoresDisponibles()));
+            comboBoxAula.setModel(new javax.swing.DefaultComboBoxModel<>(insertarAulas()));
+        }else{
+            JOptionPane.showMessageDialog(null, "Existen campos vacios");
+        }
     }//GEN-LAST:event_botonBuscarAsesorActionPerformed
-    
-    public String[] insertarIdiomas(ArrayList<Idioma> idiomas){
+
+    public String[] insertarIdiomas(ArrayList<Idioma> idiomas) {
         String[] arregloIdiomas = new String[idiomas.size()];
-        for(int i=0; i<idiomas.size();i++){
+        for (int i = 0; i < idiomas.size(); i++) {
             arregloIdiomas[i] = idiomas.get(i).getNombreIdioma();
         }
         return arregloIdiomas;
     }
-    
-    public String[] insertarExperienciasEducativas(){
+
+    public String[] insertarExperienciasEducativas() {
         String[] arregloExperienciasEducativas = new String[experienciasEducativas.size()];
-        for(int i=0; i<experienciasEducativas.size();i++){
+        for (int i = 0; i < experienciasEducativas.size(); i++) {
             arregloExperienciasEducativas[i] = experienciasEducativas.get(i).getNombreExperienciaEducativa();
         }
         return arregloExperienciasEducativas;
     }
-    
-    public String[] insertarModulos(){
+
+    public String[] insertarModulos() {
         String[] arregloModulos = new String[modulos.size()];
-        for(int i=0; i<modulos.size();i++){
+        for (int i = 0; i < modulos.size(); i++) {
             arregloModulos[i] = modulos.get(i).getNombreModulo();
         }
         return arregloModulos;
     }
-    
-    public String[] insertarSecciones(){
+
+    public String[] insertarSecciones() {
         String[] arregloSecciones = new String[secciones.size()];
-        for(int i=0; i<secciones.size();i++){
+        for (int i = 0; i < secciones.size(); i++) {
             arregloSecciones[i] = secciones.get(i).getNombreSeccion();
         }
         return arregloSecciones;
     }
-    
-    public String[] insertarActividades(){
+
+    public String[] insertarActividades() {
         String[] arregloactividades = new String[actividades.size()];
-        for(int i=0; i<actividades.size();i++){
+        for (int i = 0; i < actividades.size(); i++) {
             arregloactividades[i] = actividades.get(i).getNombreActividad();
         }
         return arregloactividades;
     }
-    
-    public String[] generarHora(){
+
+    public String[] generarHora() {
         String[] horas = new String[14];
-        for(int i= 0; i < 14; i++){
-            horas[i] = String.valueOf(i+8) + ":00:00";
+        for (int i = 0; i < 14; i++) {
+            horas[i] = String.valueOf(i + 8) + ":00:00";
         }
         return horas;
     }
-    
-    public String[] generarHoraFin(int horaInicio){
+
+    public String[] generarHoraFin(int horaInicio) {
         String[] horas = new String[2];
         horaInicio += 8;
-        horas[0] = String.valueOf(horaInicio+1) + ":00:00";
-        horas[1] = String.valueOf(horaInicio+2) + ":00:00";
+        horas[0] = String.valueOf(horaInicio + 1) + ":00:00";
+        horas[1] = String.valueOf(horaInicio + 2) + ":00:00";
         return horas;
     }
-    
-    public String[] generarAsoresDisponibles(){
+
+    public String[] generarAsoresDisponibles() {
         String[] arregloAsesores = new String[asesoresDisponibles.size()];
-        for(int i=0; i<asesoresDisponibles.size();i++){
+        for (int i = 0; i < asesoresDisponibles.size(); i++) {
             arregloAsesores[i] = asesoresDisponibles.get(i).getNombres() + " " + asesoresDisponibles.get(i).getApellidos();
         }
         return arregloAsesores;
     }
-    
-    public String[] insertarAulas(){
+
+    public String[] insertarAulas() {
         String[] arregloAulasDisponibles = new String[aulasDisponibles.size()];
-        for(int i=0; i<aulasDisponibles.size();i++){
+        for (int i = 0; i < aulasDisponibles.size(); i++) {
             arregloAulasDisponibles[i] = aulasDisponibles.get(i).getIdAula();
         }
         return arregloAulasDisponibles;
     }
-    
-    
+
+    public boolean validarCamposVacios() {
+        return (comboBoxExperienciaEducativa.getSelectedItem() == null | comboBoxModulo.getSelectedItem() == null | comboBoxSeccion.getSelectedItem() == null
+                | comboBoxActividad.getSelectedItem() == null | comboBoxHoraInicio.getSelectedItem() == null | comboBoxHoraFin.getSelectedItem() == null
+                | calendario.getDate() == null | comboBoxAsesor.getSelectedItem() == null | comboBoxAula.getSelectedItem() == null);
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAgregarActividad;

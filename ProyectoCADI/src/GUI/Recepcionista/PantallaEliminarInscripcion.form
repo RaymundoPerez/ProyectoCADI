@@ -112,9 +112,6 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="etiquetaDatosPersonales">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="12" style="1"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Datos personales"/>
       </Properties>
     </Component>
@@ -127,49 +124,31 @@
     </Component>
     <Component class="javax.swing.JLabel" name="etiquetaNombres">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="12" style="1"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Nombres:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="etiquetaApellidos">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="12" style="1"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Apellidos:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="etiquetaFechaDeNacimiento">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="12" style="1"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Fecha de Nacimiento:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="etiquetaMatricula">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="12" style="1"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Matr&#xed;cula:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="etiquetaCorreoElectronico">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="12" style="1"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Correo electr&#xf3;nico:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="etiquetaProgramaEducativo">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="12" style="1"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Programa educativo:"/>
       </Properties>
     </Component>
@@ -182,9 +161,6 @@
     </Component>
     <Component class="javax.swing.JLabel" name="etiquetaExperienciaEducativa">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="12" style="1"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Experiencia educativa:"/>
       </Properties>
     </Component>

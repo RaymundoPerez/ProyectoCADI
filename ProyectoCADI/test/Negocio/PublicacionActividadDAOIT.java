@@ -28,9 +28,9 @@ public class PublicacionActividadDAOIT {
         System.out.println("obtenerActividadesDisponiblesUsuarioAutonomo");
         String matricula = "S15011613";
         PublicacionActividadDAO instance = new PublicacionActividadDAO();
-        String resultadoEsperado = "PA0001";
+        int resultadoEsperado = 6;
         ArrayList<PublicacionActividad> result = instance.obtenerActividadesDisponiblesUsuarioAutonomo(matricula);
-        String resultado = result.get(0).getIdPublicacion();
+        int resultado = result.get(0).getIdPublicacion();
         assertEquals(resultadoEsperado, resultado);
         
     }
@@ -45,7 +45,7 @@ public class PublicacionActividadDAOIT {
         PublicacionActividadDAO instance = new PublicacionActividadDAO();
         String resultadoEsperado = "PA0008";
         ArrayList<PublicacionActividad> result = instance.obtenerActividadesReservadasUsuarioAutonomo(matricula);
-        String resultado = result.get(0).getIdPublicacion();
+        int resultado = result.get(0).getIdPublicacion();
         assertEquals(resultadoEsperado, resultado);
        
     }
@@ -56,7 +56,7 @@ public class PublicacionActividadDAOIT {
     @Test //APROBADO 
     public void testAgregarReservacionPublicacionActividad() {
         System.out.println("agregarReservacionPublicacionActividad");
-        String idPublicacionActividad = "PA0010";
+        int idPublicacionActividad = 5;
         String matricula = "S15011613";
         PublicacionActividadDAO instance = new PublicacionActividadDAO();
         InformacionPublicacionActividad expResult = InformacionPublicacionActividad.reservacionGuardada;
@@ -70,7 +70,7 @@ public class PublicacionActividadDAOIT {
     @Test //APROBADO 
     public void testEliminarReservacionPublicacionActividad() {
         System.out.println("eliminarReservacionPublicacionActividad");
-        String idPublicacionActividad = "PA0010";
+        int idPublicacionActividad = 12;
         String matricula = "S15011613";
         PublicacionActividadDAO instance = new PublicacionActividadDAO();
         InformacionPublicacionActividad expResult = InformacionPublicacionActividad.reservacionEliminada;
@@ -108,7 +108,7 @@ public class PublicacionActividadDAOIT {
         ArrayList<PublicacionActividad> expResult = null;
         String resultadoEsperado = "PA0002";
         ArrayList<PublicacionActividad> result = instance.obtenerActividadesDisponibles();
-        String resultado = result.get(0).getIdPublicacion();
+        int resultado = result.get(0).getIdPublicacion();
         assertEquals(resultadoEsperado, resultado);
     }
 
@@ -118,7 +118,7 @@ public class PublicacionActividadDAOIT {
     @Test //APROBADO 
     public void testEliminarPublicacionActividad() {
         System.out.println("eliminarPublicacionActividad");
-        String idPublicacion = "PA0003";
+        int idPublicacion = 4;
         PublicacionActividadDAO instance = new PublicacionActividadDAO();
         InformacionPublicacionActividad expResult = InformacionPublicacionActividad.publicacionEliminada;
         InformacionPublicacionActividad result = instance.eliminarPublicacionActividad(idPublicacion);
@@ -135,7 +135,7 @@ public class PublicacionActividadDAOIT {
         PublicacionActividadDAO instance = new PublicacionActividadDAO();
         String resultadoEsperado = "PA0003";
         ArrayList<PublicacionActividad> result = instance.obtenerActividadesDisponiblesPorEE(nrc);
-        String resultado = result.get(0).getIdPublicacion();
+        int resultado = result.get(0).getIdPublicacion();
         assertEquals(resultadoEsperado, resultado);
     }
 
@@ -145,7 +145,7 @@ public class PublicacionActividadDAOIT {
    @Test //APROBADO 
     public void testReducirCupoPublicacionActividad() {
         System.out.println("reducirCupoPublicacionActividad");
-        String idPublicacionActividad = "PA0003";
+        int idPublicacionActividad = 9;
         PublicacionActividadDAO instance = new PublicacionActividadDAO();
         InformacionPublicacionActividad expResult = InformacionPublicacionActividad.cupoRestado;
         InformacionPublicacionActividad result = instance.reducirCupoPublicacionActividad(idPublicacionActividad);
@@ -158,7 +158,7 @@ public class PublicacionActividadDAOIT {
     @Test //APROBADO 
     public void testAumentarCupoPublicacionActividad() {
         System.out.println("aumentarCupoPublicacionActividad");
-        String idPublicacionActividad = "PA0001";
+        int idPublicacionActividad = 4;
         PublicacionActividadDAO instance = new PublicacionActividadDAO();
         InformacionPublicacionActividad expResult = InformacionPublicacionActividad.cupoAumentado;
         InformacionPublicacionActividad result = instance.aumentarCupoPublicacionActividad(idPublicacionActividad);

@@ -138,9 +138,6 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="etiquetaInscripcion">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="12" style="1"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Inscripci&#xf3;n"/>
       </Properties>
     </Component>
@@ -153,18 +150,10 @@
     </Component>
     <Component class="javax.swing.JLabel" name="etiquetaNombres">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="12" style="1"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Nombres:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="campoTextoNombres">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="12" style="0"/>
-        </Property>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoTextoNombresActionPerformed"/>
         <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="campoTextoNombresKeyTyped"/>
@@ -172,27 +161,16 @@
     </Component>
     <Component class="javax.swing.JLabel" name="etiquetaApellidos">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="12" style="1"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Apellidos:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="campoTextoApellidos">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="12" style="0"/>
-        </Property>
-      </Properties>
       <Events>
         <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="campoTextoApellidosKeyTyped"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="etiquetaFechaDeNacimiento">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="12" style="1"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Fecha de Nacimiento:"/>
       </Properties>
     </Component>
@@ -249,18 +227,10 @@
     </Component>
     <Component class="javax.swing.JLabel" name="etiquetaMatricula">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="12" style="1"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Matr&#xed;cula:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="campoTextoMatricula">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="12" style="0"/>
-        </Property>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoTextoMatriculaActionPerformed"/>
         <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="campoTextoMatriculaKeyTyped"/>
@@ -268,18 +238,10 @@
     </Component>
     <Component class="javax.swing.JLabel" name="etiquetaCorreoElectronico">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="12" style="1"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Correo electr&#xf3;nico:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="campoTextoCorreoElectronico">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="12" style="0"/>
-        </Property>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoTextoCorreoElectronicoActionPerformed"/>
         <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="campoTextoCorreoElectronicoKeyTyped"/>
@@ -287,9 +249,6 @@
     </Component>
     <Component class="javax.swing.JLabel" name="etiquetaProgramaEducativo">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="12" style="1"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Programa educativo:"/>
       </Properties>
     </Component>
@@ -311,9 +270,6 @@
     </Component>
     <Component class="javax.swing.JLabel" name="etiquetaExperienciaEducativa">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="12" style="1"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Experiencia educativa:"/>
       </Properties>
     </Component>
@@ -351,9 +307,6 @@
     </Component>
     <Component class="javax.swing.JLabel" name="etiquetaSeccionCurso">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="12" style="1"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Secci&#xf3;n curso:"/>
       </Properties>
     </Component>
