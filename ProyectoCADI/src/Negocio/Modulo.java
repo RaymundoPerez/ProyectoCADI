@@ -1,15 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Negocio;
 
 /**
+ * Plantilla con la información del Módulo.
  *
- * @author alonso
+ * @author Irvin Vera
+ * @author Alonso Lora
+ * @author Raymundo Pérez
  */
 public class Modulo {
+
     private String nombreModulo;
     private String idModulo;
 
@@ -28,6 +27,5 @@ public class Modulo {
     public void setIdModulo(String idModulo) {
         this.idModulo = idModulo;
     }
-    
-    
+
 }

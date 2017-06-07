@@ -1,16 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Negocio;
 
 /**
+ * Plantilla con la información de la Sección del curso.
  *
- * @author Irdevelo
+ * @author Irvin Vera
+ * @author Alonso Lora
+ * @author Raymundo Pérez
  */
 public class SeccionCurso {
-    
+
     private String claveSeccion;
     private int numeroIntegrantes;
     private String nombreAsesor;
@@ -38,8 +36,5 @@ public class SeccionCurso {
     public void setNombreAsesor(String nombreAsesor) {
         this.nombreAsesor = nombreAsesor;
     }
-    
-    
-    
-    
+
 }

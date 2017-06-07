@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GUI.Recepcionista;
 
 import static GUI.Recepcionista.PantallaDarDeAltaInscripcion.limitarCaracteres;
@@ -10,11 +5,15 @@ import Negocio.UsuarioAutonomo;
 import Negocio.UsuarioAutonomoDAO;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 /**
+ * Permite la visualización del panel con el contenido para administrar la
+ * inscripción de un
+ * <UsuarioAutonomo>.
  *
- * @author Irdevelo
+ * @author Irvin Vera.
+ * @author Alonso Lora.
+ * @author Raymundo Pérez.
  */
 public class PantallaPrincipalAdministrarInscripcion extends javax.swing.JPanel {
 
@@ -154,32 +153,34 @@ public class PantallaPrincipalAdministrarInscripcion extends javax.swing.JPanel 
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
         if (campoTextoMatricula.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Introduzca una matrícula");
+        } else if (!validarMatriculaIngresada(campoTextoMatricula.getText())) {
+            JOptionPane.showMessageDialog(null, "Introduzca una matrícula correcta");
         } else {
-            if(!validarMatriculaIngresada(campoTextoMatricula.getText())){
-                JOptionPane.showMessageDialog(null, "Introduzca una matrícula correcta");
-            }else{
             UsuarioAutonomoDAO usuarioAutonomoDAO = new UsuarioAutonomoDAO();
-            if (usuarioAutonomoDAO.validarExistenciaUsuarioAutonomoConInscripcion(campoTextoMatricula.getText())){
-            UsuarioAutonomoDAO usuarioAutonomo = new UsuarioAutonomoDAO();
-            PantallaEliminarInscripcion pantallaEliminar = new PantallaEliminarInscripcion(usuarioAutonomo.obtenerUsuarioAutonomoPorMatricula(campoTextoMatricula.getText()));
-            MenuRecepcionista.añadirPanelPrincipal(pantallaEliminar);
-        
-            }else{
-            JOptionPane.showMessageDialog(null, "El usuario ingresado no tiene ninguna inscripción");
-            }
+            if (usuarioAutonomoDAO.validarExistenciaUsuarioAutonomoConInscripcion(campoTextoMatricula.getText())) {
+                UsuarioAutonomoDAO usuarioAutonomo = new UsuarioAutonomoDAO();
+                PantallaEliminarInscripcion pantallaEliminar = new PantallaEliminarInscripcion(usuarioAutonomo.obtenerUsuarioAutonomoPorMatricula(campoTextoMatricula.getText()));
+                MenuRecepcionista.añadirPanelPrincipal(pantallaEliminar);
+
+            } else {
+                JOptionPane.showMessageDialog(null, "El usuario ingresado no tiene ninguna inscripción");
             }
         }
 
     }//GEN-LAST:event_botonBuscarActionPerformed
 
     private void campoTextoMatriculaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoTextoMatriculaKeyTyped
-       limitarCaracteres(evt, campoTextoMatricula, 9);
+        limitarCaracteres(evt, campoTextoMatricula, 9);
     }//GEN-LAST:event_campoTextoMatriculaKeyTyped
 
     private void campoTextoMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoMatriculaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoTextoMatriculaActionPerformed
 
+    /**
+     * Permite llenar la tabla que se visualiza en la GUI con los datos
+     * correspondientes.
+     */
     public void llenarTablaDeUsuariosInscritos() {
         UsuarioAutonomoDAO usuarioAutonomoDAO = new UsuarioAutonomoDAO();
         ArrayList<UsuarioAutonomo> usuariosAutonomos = usuarioAutonomoDAO.obtenerTodosLosAlumnosInscritos();
@@ -200,14 +201,21 @@ public class PantallaPrincipalAdministrarInscripcion extends javax.swing.JPanel 
 
     }
 
-    public boolean validarMatriculaIngresada(String matricula){
+    /**
+     * Permite validar que el formato de la matricula ingresada sea el correcto.
+     *
+     * @param matricula
+     * @return Un valor verdadero si es el forato es el correto, sino regresa lo
+     * contrario.
+     */
+    public boolean validarMatriculaIngresada(String matricula) {
         boolean formatoMatriculaCorrecto = false;
-        if(matricula.charAt(0)=='S'&& matricula.length()==9){
+        if (matricula.charAt(0) == 'S' && matricula.length() == 9) {
             formatoMatriculaCorrecto = true;
         }
-            return formatoMatriculaCorrecto;
+        return formatoMatriculaCorrecto;
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonBuscar;
     private javax.swing.JButton botonNuevaInscripcion;

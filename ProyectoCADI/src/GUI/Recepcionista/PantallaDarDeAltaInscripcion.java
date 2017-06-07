@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GUI.Recepcionista;
 
 import Negocio.Cuenta;
@@ -23,8 +18,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
+ * Permite la visualización del panel con el contenido para dar del alta la inscripción un
+ * <UsuarioAutonomo>.
  *
- * @author Irdevelo
+ * @author Irvin Vera.
+ * @author Alonso Lora.
+ * @author Raymundo Pérez.
  */
 public class PantallaDarDeAltaInscripcion extends javax.swing.JPanel {
 
@@ -327,13 +326,26 @@ public class PantallaDarDeAltaInscripcion extends javax.swing.JPanel {
         comboBoxMes.setSelectedItem(null);
         comboBoxAño.setSelectedItem(null);
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+     * Permite limitar el numero de valores ingreados al campo dependiendo el
+     * dato que se desea ingresar.
+     *
+     * @param evt
+     * @param campo
+     * @param caracteresMaximos
+     */
     public static void limitarCaracteres(java.awt.event.KeyEvent evt, JTextField campo, int caracteresMaximos) {
         if (campo.getText().length() >= caracteresMaximos) {
             evt.consume();
         }
     }
 
+    /**
+     * Verifica que los campos de texto no estén vacios.
+     *
+     * @return Un valor verdadero si estan vacios o un valor falso si es lo
+     * contrario.
+     */
     public boolean verificarCamposVacios() {
         boolean camposVacios;
         camposVacios = campoTextoApellidos.getText().isEmpty() || campoTextoApellidos.getText().isEmpty()
@@ -341,6 +353,12 @@ public class PantallaDarDeAltaInscripcion extends javax.swing.JPanel {
         return camposVacios;
     }
 
+    /**
+     * Permite verificar si los ComboBox están vacíos.
+     *
+     * @return Un valor verdadero si estan vacios o un valor falso si es lo
+     * contrario.
+     */
     public boolean estanVaciosComboBox() {
         boolean comboBoxNoSeleccinonados;
         comboBoxNoSeleccinonados = comboBoxDia.getSelectedItem() == null | comboBoxMes.getSelectedItem() == null
@@ -350,6 +368,12 @@ public class PantallaDarDeAltaInscripcion extends javax.swing.JPanel {
         return comboBoxNoSeleccinonados;
     }
 
+    /**
+     * Permite calcular un rango de años que es usado en el comboBox para
+     * selccionar el año de nacimiento de un <UsuarioAtonomo>.
+     *
+     * @return Un arreglo con un rango de años.
+     */
     public String[] calcularRangoAños() {
         ArrayList<Integer> años = new ArrayList();
         Calendar fecha = new GregorianCalendar();
@@ -363,12 +387,23 @@ public class PantallaDarDeAltaInscripcion extends javax.swing.JPanel {
         return rangoDeAños;
     }
 
+    /**
+     * Permite validar que el correo electrónico ingresado tiene el formato
+     * correcto.
+     *
+     * @param correo
+     * @return Un valor verdadero el formato es correcto oo un valor falso si es
+     * lo contrario.
+     */
     public static boolean validarCorreo(String correo) {
         Pattern patron = Pattern.compile(PATTERN_EMAIL);
         Matcher matcher = patron.matcher(correo);
         return matcher.matches();
     }
 
+    /**
+     * Permite verificar un <UsuarioAutonomo> antes de mandarlo a inscribir.
+     */
     public void inscribirNuevoUsuario() {
         if (verificarCamposVacios() || estanVaciosComboBox()) {
             JOptionPane.showMessageDialog(null, "Algunos campos estan vacios");
@@ -382,6 +417,10 @@ public class PantallaDarDeAltaInscripcion extends javax.swing.JPanel {
         }
     }
 
+    /**
+     * Permite validar que un <UsuarioAutonomo> no existe en el sistema antes de
+     * inscribirlo.
+     */
     public void validarNuevoUsuario() {
         UsuarioAutonomoDAO usuarioAutonomoDAO = new UsuarioAutonomoDAO();
         if (!usuarioAutonomoDAO.validarExistenciaUsuarioAutonomo(campoTextoMatricula.getText())) {
@@ -391,6 +430,9 @@ public class PantallaDarDeAltaInscripcion extends javax.swing.JPanel {
         }
     }
 
+    /**
+     * Permite inscribir a un <UsuarioAutonomo> a una <ExperienciaEEducativa>.
+     */
     public void agregarInscripcionNuevoUsuario() {
         CuentaDAO cuentaDAO = new CuentaDAO();
         UsuarioAutonomoDAO usuarioAutonomoDAO = new UsuarioAutonomoDAO();
@@ -413,6 +455,10 @@ public class PantallaDarDeAltaInscripcion extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(null, "El alumno se ha inscrito correctamente");
     }
 
+    /**
+     * Permite inscribir a <UsuarioAutonomo> que anteriormente ya estaba
+     * inscrito en el sistema.
+     */
     public void inscribirUsuarioExistente() {
         if (campoTextoMatricula.getText().isEmpty() || comboBoxExperienciaEducativa.getSelectedItem() == null
                 | comboBoxSeccionCurso.getSelectedItem() == null) {
@@ -422,6 +468,10 @@ public class PantallaDarDeAltaInscripcion extends javax.swing.JPanel {
         }
     }
 
+    /**
+     * Permite verificar a un a <UsuarioAutonomo> que anteriormente ya estaba
+     * inscrito en el sistema.
+     */
     public void validarUsuarioExistente() {
         UsuarioAutonomoDAO usuarioAutonomoDAO = new UsuarioAutonomoDAO();
         if (usuarioAutonomoDAO.validarExistenciaUsuarioAutonomo(campoTextoMatricula.getText())) {
@@ -431,6 +481,10 @@ public class PantallaDarDeAltaInscripcion extends javax.swing.JPanel {
         }
     }
 
+    /**
+     * Permite validar que un <UsuarioAutonomo> no pueda inscribir una
+     * <ExperienciaEducativa> que ya tiene inscrita.
+     */
     public void validarInscripcionRepetida() {
         InscripcionDAO inscripcionDAO = new InscripcionDAO();
         if (!inscripcionDAO.validarExistenciaInscripcion(campoTextoMatricula.getText(), (String) comboBoxSeccionCurso.getSelectedItem())) {
@@ -440,6 +494,10 @@ public class PantallaDarDeAltaInscripcion extends javax.swing.JPanel {
         }
     }
 
+    /**
+     * Permite inscribir a un <UsuarioAutonomo> ya existente a una
+     * <ExperienciaEducativa>.
+     */
     public void agregarInscripcionUsuarioExistente() {
         InscripcionDAO inscripcionDAO = new InscripcionDAO();
         inscripcionDAO.crearInscripcion(campoTextoMatricula.getText(), (String) comboBoxSeccionCurso.getSelectedItem());

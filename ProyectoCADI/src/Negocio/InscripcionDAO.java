@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Negocio;
 
 import Datos.ConexionSQL;
@@ -11,11 +6,24 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
+ * Permite realizar todas las acciones vinculadas con <Inscripción>.
  *
- * @author Irdevelo
+ * @author Irvin Vera.
+ * @author Alonso Lora.
+ * @author Raymundo Pérez.
  */
 public class InscripcionDAO implements IInscripcionDAO {
 
+    /**
+     * Permite inscribir a un UsuarioAutonomo en algun curso.
+     *
+     * @param matricula
+     * @param claveSeccionCurso
+     * @exception SQLException. La excepción se puede mandar cuando no se
+     * obtiene el resultado esperado por un error en la consulta a la base de
+     * datos.
+     * @return Un objeto de la clase <InformacionInscripcion>
+     */
     @Override
     public InformacionInscripcion crearInscripcion(String matricula, String claveSeccionCurso) {
         InformacionInscripcion mensaje = InformacionInscripcion.inscripcionNoCreada;
@@ -37,6 +45,18 @@ public class InscripcionDAO implements IInscripcionDAO {
         return mensaje;
     }
 
+    /**
+     * Permite validar si un UsuarioAutonomo está inscrito en una Experiencia
+     * Educativa.
+     *
+     * @param matricula
+     * @param claveSeccionCurso
+     * @exception SQLException. La excepción se puede mandar cuando no se
+     * obtiene el resultado esperado por un error en la consulta a la base de
+     * datos.
+     * @return Un valor verdadero si existe la inscripción o un valor falso si
+     * no existe la inscripción.
+     */
     @Override
     public boolean validarExistenciaInscripcion(String matricula, String claveSeccionCurso) {
         boolean existeInscripcion = false;
@@ -60,9 +80,9 @@ public class InscripcionDAO implements IInscripcionDAO {
 
     @Override
     public String buscarInscripcion(String nrc) {
-        String claveSeccion=null;
+        String claveSeccion = null;
         ConexionSQL conexionBD = new ConexionSQL();
-        conexionBD.conectarBaseDatos(); 
+        conexionBD.conectarBaseDatos();
         PreparedStatement sentenciaConsulta;
         String consultaSQL = "Select claveSeccion from SECCIONCURSO,CURSO where ? = CURSO.nrc and CURSO.idCurso = SECCIONCURSO.idCurso";
         try {
@@ -79,11 +99,21 @@ public class InscripcionDAO implements IInscripcionDAO {
         return claveSeccion;
     }
 
+    /**
+     * Permite eliminar una Inscripción.
+     *
+     * @param matricula.
+     * @param claveSeccion.
+     * @exception SQLException. La excepción se puede mandar cuando no se
+     * obtiene el resultado esperado por un error en la consulta a la base de
+     * datos.
+     * @return Un objeto de tipo <InformacionInscripcion>.
+     */
     @Override
     public InformacionInscripcion eliminarInscripcion(String matricula, String claveSeccion) {
         InformacionInscripcion mensaje = InformacionInscripcion.inscripcionNoEliminada;
-       int resultadoConsulta;
-       ConexionSQL conexionBD = new ConexionSQL();
+        int resultadoConsulta;
+        ConexionSQL conexionBD = new ConexionSQL();
         conexionBD.conectarBaseDatos();
         PreparedStatement sentenciaConsulta;
         String consultaSQL = "DELETE from INSCRIPCION where matricula=? and claveSeccion=?";
@@ -92,16 +122,17 @@ public class InscripcionDAO implements IInscripcionDAO {
             sentenciaConsulta.setString(1, matricula);
             sentenciaConsulta.setString(2, claveSeccion);
             resultadoConsulta = sentenciaConsulta.executeUpdate();
-            
-            if (resultadoConsulta == 1)
+
+            if (resultadoConsulta == 1) {
                 mensaje = InformacionInscripcion.inscripcionEliminadaCorrectamente;
-            
+            }
+
         } catch (SQLException exception) {
 
         } finally {
             conexionBD.cerrarConexion();
         }
-            return mensaje;
+        return mensaje;
     }
-        
+
 }

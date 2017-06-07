@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GUI.Recepcionista;
 
 import Negocio.ExperienciaEducativa;
@@ -12,7 +7,16 @@ import Negocio.UsuarioAutonomo;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
+/**
+ * Permite la visualización del panel con el contenido para eliminar la inscripción de un
+ * <UsuarioAutonomo>.
+ * 
+ * @author Irvin Vera.
+ * @author Alonso Lora.
+ * @author Raymundo Pérez.
+ */
 public class PantallaEliminarInscripcion extends javax.swing.JPanel {
+    
 
     private UsuarioAutonomo usuarioAutonomo;
     private ArrayList<ExperienciaEducativa> experienciasEducativas;
@@ -21,6 +25,12 @@ public class PantallaEliminarInscripcion extends javax.swing.JPanel {
         initComponents();
     }
 
+    /**
+     * Permite mandar a llamar al método de <ExperienciaEducativaDAO>
+     * obtenerExperienciasEducativasUsuarioAutonomo.
+     *
+     * @param usuarioAutonomo
+     */
     public PantallaEliminarInscripcion(UsuarioAutonomo usuarioAutonomo) {
         this.usuarioAutonomo = usuarioAutonomo;
         ExperienciaEducativaDAO experienciaEducativaDAO = new ExperienciaEducativaDAO();
@@ -232,7 +242,7 @@ public class PantallaEliminarInscripcion extends javax.swing.JPanel {
                     inscripcionDAO.buscarInscripcion(experienciasEducativas.get(comboBoxExperienciaEducativa.getSelectedIndex()).getNrc()))) {
                 case inscripcionEliminadaCorrectamente:
                     JOptionPane.showMessageDialog(null, "Inscripcion eliminada");
-                    
+
                     break;
 
                 case inscripcionNoEliminada:
@@ -244,6 +254,15 @@ public class PantallaEliminarInscripcion extends javax.swing.JPanel {
         MenuRecepcionista.añadirPanelPrincipal(pantalla);
     }//GEN-LAST:event_botonEliminarInscrpcionActionPerformed
 
+ /**
+     * Permite obtener los nombres de las Experiencias Educativas.
+     *
+     * @param experienciasEducativas
+     * @exception SQLException. La excepción se puede mandar cuando no se
+     * obtiene el resultado esperado por un error en la consulta a la base de
+     * datos.
+     * @return Un arreglo de nombres de Experiencias Educativas.
+     */
     public String[] generarListaDeExperienciasEducativas(ArrayList<ExperienciaEducativa> experienciasEducativas) {
         String[] nombresExperienciaEducativa = new String[experienciasEducativas.size()];
         for (int i = 0; i < experienciasEducativas.size(); i++) {

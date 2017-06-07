@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GUI.Recepcionista;
 
 import Negocio.Empleado;
@@ -10,21 +5,23 @@ import java.awt.Dimension;
 import javax.swing.JPanel;
 
 /**
+ * Permite la visualización de la GUI <MenuPrincipal>.
  *
- * @author Irdevelo
+ * @author Irvin Vera.
+ * @author Alonso Lora.
+ * @author Raymundo Pérez.
  */
 public class MenuRecepcionista extends javax.swing.JFrame {
+
     private Empleado recepcionista;
-   
-    
+
     public MenuRecepcionista() {
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
     }
 
-    
-      public MenuRecepcionista(Empleado recepcionista) {
+    public MenuRecepcionista(Empleado recepcionista) {
         this.recepcionista = recepcionista;
         initComponents();
         PantallaPrincipalAdministrarInscripcion pantalla = new PantallaPrincipalAdministrarInscripcion();
@@ -32,16 +29,21 @@ public class MenuRecepcionista extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
     }
-    
-      public static void añadirPanelPrincipal(JPanel pantalla){
+
+    /**
+     * Permite el añadir un panel al <MenuRecepcionista>.
+     *
+     * @param pantalla
+     */
+    public static void añadirPanelPrincipal(JPanel pantalla) {
         panelPrincipalMenuRecepcionista.removeAll();
         Dimension dimensiones = pantalla.getPreferredSize();
-        pantalla.setBounds(0,0,dimensiones.width, dimensiones.height);
+        pantalla.setBounds(0, 0, dimensiones.width, dimensiones.height);
         panelPrincipalMenuRecepcionista.add(pantalla);
         panelPrincipalMenuRecepcionista.repaint();
         panelPrincipalMenuRecepcionista.revalidate();
-      }
-    
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -1,11 +1,15 @@
-
 package Negocio;
 
 /**
+ * Plantilla con la información de la Actividad que es la que reserva el
+ * Usuario Autónomo.
  *
- * @author alonso
+ * @author Irvin Vera
+ * @author Alonso Lora
+ * @author Raymundo Pérez
  */
 public class Actividad {
+
     private String idActividad;
     private String nombreActividad;
 
@@ -25,7 +29,4 @@ public class Actividad {
         this.nombreActividad = nombreActividad;
     }
 
-    
-    
-    
 }

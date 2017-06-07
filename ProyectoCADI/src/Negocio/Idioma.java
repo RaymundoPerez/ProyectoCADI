@@ -1,15 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Negocio;
 
 /**
+ * Plantilla con la información de los idiomas existentes en el Centro de
+ * AutoAcceso.
  *
- * @author alonso
+ * @author Irvin Vera
+ * @author Alonso Lora
+ * @author Raymundo Pérez
  */
 public class Idioma {
+
     private String nombreIdioma;
     private String idIdioma;
 
@@ -28,7 +28,5 @@ public class Idioma {
     public void setIdIdioma(String idIdioma) {
         this.idIdioma = idIdioma;
     }
-    
-    
-    
+
 }

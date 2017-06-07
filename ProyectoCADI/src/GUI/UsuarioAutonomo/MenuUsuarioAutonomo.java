@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GUI.UsuarioAutonomo;
 
 import Negocio.UsuarioAutonomo;
@@ -10,39 +5,44 @@ import java.awt.Dimension;
 import javax.swing.JPanel;
 
 /**
+ * Permite la visualización de la GUI del <MenuUsuarioAutonomo>.
  *
- * @author Irdevelo
+ * @author Irvin Vera.
+ * @author Alonso Lora.
+ * @author Raymundo Pérez.
  */
 public class MenuUsuarioAutonomo extends javax.swing.JFrame {
+
     private UsuarioAutonomo usuarioAutonomo;
-    
-    
-    
-    
-    public MenuUsuarioAutonomo(){
+
+    public MenuUsuarioAutonomo() {
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
     }
 
-     public MenuUsuarioAutonomo(UsuarioAutonomo usuarioAutonomo){
-         this.usuarioAutonomo = usuarioAutonomo;
+    public MenuUsuarioAutonomo(UsuarioAutonomo usuarioAutonomo) {
+        this.usuarioAutonomo = usuarioAutonomo;
         initComponents();
         PantallaPrincipalAdministrarReservaciones pantalla = new PantallaPrincipalAdministrarReservaciones(usuarioAutonomo);
         añadirPanelPrincipal(pantalla);
         setLocationRelativeTo(null);
         setVisible(true);
     }
-     
-    public void añadirPanelPrincipal(JPanel pantalla){
+
+    /**
+     * Permite agregar un panel definiendo sus medidas.
+     *
+     * @param pantalla
+     */
+    public void añadirPanelPrincipal(JPanel pantalla) {
         Dimension dimensiones = pantalla.getPreferredSize();
-        pantalla.setBounds(0,0,dimensiones.width, dimensiones.height);
+        pantalla.setBounds(0, 0, dimensiones.width, dimensiones.height);
         panelPrincipalMenuUsuarioAutonomo.add(pantalla);
         panelPrincipalMenuUsuarioAutonomo.repaint();
         panelPrincipalMenuUsuarioAutonomo.revalidate();
     }
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

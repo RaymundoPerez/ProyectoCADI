@@ -1,15 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Negocio;
 
 /**
+ * Plantilla con la información de las experiencias educaticas existentes en el
+ * Centro de AutoAcceso.
  *
- * @author raymu
+ * @author Irvin Vera
+ * @author Alonso Lora
+ * @author Raymundo Pérez
  */
 public class ExperienciaEducativa {
+
     private String nrc;
     private String nombreExperienciaEducativa;
     private String horasPorCubrir;
@@ -46,7 +46,5 @@ public class ExperienciaEducativa {
     public void setCreditos(String creditos) {
         this.creditos = creditos;
     }
-    
-    
-    
+
 }

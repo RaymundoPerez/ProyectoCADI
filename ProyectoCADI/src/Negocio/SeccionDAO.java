@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Negocio;
 
 import Datos.ConexionSQL;
@@ -12,10 +7,23 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
+ * Permite realizar las acciones vinculadas con la clase <Seccion>.
  *
- * @author alonso
+ * @author Irvin Vera.
+ * @author Alonso Lora.
+ * @author Raymundo Pérez.
  */
-public class SeccionDAO implements ISeccionDAO{
+public class SeccionDAO implements ISeccionDAO {
+
+    /**
+     * Permite obtener secciones dado un idModulo
+     *
+     * @param idModulo
+     * @exception SQLException. La excepción se puede mandar cuando no se
+     * obtiene el resultado esperado por un error en la consulta a la base de
+     * datos
+     * @return Una lista de objetos de la clase <Seccion>.
+     */
 
     @Override
     public ArrayList<Seccion> obtenerSeccionPorModulo(String idModulo) {
@@ -28,20 +36,20 @@ public class SeccionDAO implements ISeccionDAO{
             sentenciaConsulta = conexionBD.getConexion().prepareStatement(consultaSQL);
             sentenciaConsulta.setString(1, idModulo);
             ResultSet resultadoConsulta = sentenciaConsulta.executeQuery();
-            while(resultadoConsulta.next()){
+            while (resultadoConsulta.next()) {
                 Seccion seccion = new Seccion();
                 seccion.setIdSeccion(resultadoConsulta.getString(1));
                 seccion.setNombreSeccion(resultadoConsulta.getString(2));
                 secciones.add(seccion);
             }
-           
+
         } catch (SQLException exception) {
-            
+
         } finally {
             conexionBD.cerrarConexion();
         }
-        
+
         return secciones;
     }
-    
+
 }

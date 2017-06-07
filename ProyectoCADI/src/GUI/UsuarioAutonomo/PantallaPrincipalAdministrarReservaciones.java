@@ -40,6 +40,10 @@ public class PantallaPrincipalAdministrarReservaciones extends javax.swing.JPane
         insertarActividadesDisponibles();
         insertarActividadesReservadas();
     }
+    
+    /**
+     * Permite insertar las activiades dispobibles en la tabla.
+     */
 
     public void insertarActividadesDisponibles() {
         PublicacionActividadDAO publicacionActividadDAO = new PublicacionActividadDAO();
@@ -57,6 +61,9 @@ public class PantallaPrincipalAdministrarReservaciones extends javax.swing.JPane
         crearTablaActividades(matrizTablaActividadesDisponibles,tablaActividadesDisponibles);
     }
 
+    /**
+     * Permite insertar todas las actividades reservadas en la tabla.
+     */
     public void insertarActividadesReservadas() {
         PublicacionActividadDAO publicacionActividadDAO = new PublicacionActividadDAO();
         publicacionesActividadesReservadas = publicacionActividadDAO.obtenerActividadesReservadasUsuarioAutonomo(usuarioAutonomo.getMatricula());
@@ -71,6 +78,12 @@ public class PantallaPrincipalAdministrarReservaciones extends javax.swing.JPane
         }
         crearTablaActividades(matrizTablaActividadesReservadas,tablaActividadesReservadas);
     }
+    
+    /**
+     * Permite crear la tabla dándole su formato.
+     * @param matriz
+     * @param tabla 
+     */
 
     public void crearTablaActividades(String[][] matriz,JTable tabla) {
         tabla.setModel(new DefaultTableModel(

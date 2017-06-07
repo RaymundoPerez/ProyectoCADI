@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Datos;
 
 import Negocio.InformacionConexion;
@@ -13,8 +8,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author Irdevelo
+ * Establece la conexión del sistema CADI con la base de datos en MYSQL.
+ * @author Irvin Vera
+ * @author Alonso Lora
+ * @author Raymundo Pérez
  */
 public class ConexionSQL {
     

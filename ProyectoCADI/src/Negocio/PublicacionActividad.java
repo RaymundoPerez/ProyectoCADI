@@ -1,14 +1,18 @@
-
 package Negocio;
 
 import java.sql.Time;
 import java.util.Date;
 
 /**
+ * Plantilla con la información la publicación de la actividad que el alumno
+ * puede reservar.
  *
- * @author alonso
+ * @author Irvin Vera
+ * @author Alonso Lora
+ * @author Raymundo Pérez
  */
 public class PublicacionActividad {
+
     private Date fecha;
     private Time horaFin;
     private Time horaInicio;
@@ -18,8 +22,6 @@ public class PublicacionActividad {
     private String nombreActividad;
     private String idAula;
     private int cupo;
-    
-    
 
     public Date getFecha() {
         return fecha;
@@ -92,10 +94,5 @@ public class PublicacionActividad {
     public void setCupo(int cupo) {
         this.cupo = cupo;
     }
-    
-    
-    
-    
-    
-    
+
 }

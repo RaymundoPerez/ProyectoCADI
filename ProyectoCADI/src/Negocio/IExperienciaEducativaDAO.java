@@ -16,6 +16,5 @@ public interface IExperienciaEducativaDAO {
     
     public String[] obtenerTodasLasExperienciasEducativas();
     public ArrayList<ExperienciaEducativa> obtenerExperienciasEducativasUsuarioAutonomo(String matricula);
-    public String[] generarListaDeExperienciasEducativas(ArrayList<ExperienciaEducativa> experienciasEducativas);
-    public ArrayList<ExperienciaEducativa> obtenerExperienciaEducativaPorIdioma(String idIdioma);
+       public ArrayList<ExperienciaEducativa> obtenerExperienciaEducativaPorIdioma(String idIdioma);
 }

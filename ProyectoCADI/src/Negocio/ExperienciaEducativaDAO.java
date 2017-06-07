@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Negocio;
 
 import Datos.ConexionSQL;
@@ -12,11 +7,24 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
+ * Permite realizar todas las acciones que están vinculadas con las <Experiencia
+ * Educativa>.
  *
- * @author Irdevelo
+ * @author Irvin Vera.
+ * @author Alonso Lora.
+ * @author Raymundo Pérez.
  */
 public class ExperienciaEducativaDAO implements IExperienciaEducativaDAO {
 
+    /**
+     * Permite obtener todas las experiencias educativas que se se encuentran
+     * registradas en el sistema
+     *
+     * @exception SQLException. La excepción se puede mandar cuando no se
+     * obtiene el resultado esperado por un error en la consulta a la base de
+     * datos.
+     * @return Una lista de Experiencias Educativas.
+     */
     @Override
     public String[] obtenerTodasLasExperienciasEducativas() {
 
@@ -44,6 +52,16 @@ public class ExperienciaEducativaDAO implements IExperienciaEducativaDAO {
         return arregloExperienciasEducativas;
     }
 
+    /**
+     * Permite obtener las experiencias eduativas en las que está inscrito un
+     * Usuario Autónomo dada su matrícula.
+     *
+     * @exception SQLException. La excepción se puede mandar cuando no se
+     * obtiene el resultado esperado por un error en la consulta a la base de
+     * datos.
+     * @param matricula
+     * @return Una lista de objetos de la clase <ExperienciaEducativa>.
+     */
     @Override
     public ArrayList<ExperienciaEducativa> obtenerExperienciasEducativasUsuarioAutonomo(String matricula) {
         ArrayList<ExperienciaEducativa> experienciasEducativas = new ArrayList<>();
@@ -74,15 +92,15 @@ public class ExperienciaEducativaDAO implements IExperienciaEducativaDAO {
         return experienciasEducativas;
     }
 
-    @Override
-    public String[] generarListaDeExperienciasEducativas(ArrayList<ExperienciaEducativa> experienciasEducativas) {
-        String[] nombresExperienciaEducativa = new String[experienciasEducativas.size()];
-        for (int i = 0; i < experienciasEducativas.size(); i++) {
-            nombresExperienciaEducativa[i] = experienciasEducativas.get(i).getNombreExperienciaEducativa();
-        }
-        return nombresExperienciaEducativa;
-    }
-
+    /**
+     * Permite obtener las experiencias educativas que tiene creadas un idioma.
+     *
+     * @param idIdioma
+     * @exception SQLException. La excepción se puede mandar cuando no se
+     * obtiene el resultado esperado por un error en la consulta a la base de
+     * datos.
+     * @return Una lista de objetos de la clase <ExperienciaEducativa>.
+     */
     @Override
     public ArrayList<ExperienciaEducativa> obtenerExperienciaEducativaPorIdioma(String idIdioma) {
         ArrayList<ExperienciaEducativa> experienciasEducativas = new ArrayList();
@@ -94,15 +112,15 @@ public class ExperienciaEducativaDAO implements IExperienciaEducativaDAO {
             sentenciaConsulta = conexionBD.getConexion().prepareStatement(consultaSQL);
             sentenciaConsulta.setString(1, idIdioma);
             ResultSet resultadoConsulta = sentenciaConsulta.executeQuery();
-            while(resultadoConsulta.next()){
+            while (resultadoConsulta.next()) {
                 ExperienciaEducativa experienciaEducativa = new ExperienciaEducativa();
                 experienciaEducativa.setNrc(resultadoConsulta.getString(1));
                 experienciaEducativa.setNombreExperienciaEducativa(resultadoConsulta.getString(2));
                 experienciasEducativas.add(experienciaEducativa);
             }
-           
+
         } catch (SQLException exception) {
-            
+
         } finally {
             conexionBD.cerrarConexion();
         }

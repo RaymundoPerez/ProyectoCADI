@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Negocio;
 
 import Datos.ConexionSQL;
@@ -12,11 +7,20 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
+ * Permite realizar todas las acciones vinculadas con <Idioma>.
  *
- * @author alonso
+ * @author Irvin Vera.
+ * @author Alonso Lora.
+ * @author Raymundo Pérez.
  */
-public class IdiomaDAO implements IIdiomaDAO{
+public class IdiomaDAO implements IIdiomaDAO {
 
+    /**
+     * Permite obtener todos los idiomas que se imparten en el Centro de
+     * idiomas.
+     *
+     * @return Una lista con Objetos de la clase <Idioma>
+     */
     @Override
     public ArrayList<Idioma> obtenerTodosLosIdiomas() {
         ArrayList<Idioma> idiomas = new ArrayList();
@@ -27,20 +31,20 @@ public class IdiomaDAO implements IIdiomaDAO{
         try {
             sentenciaConsulta = conexionBD.getConexion().prepareStatement(consultaSQL);
             ResultSet resultadoConsulta = sentenciaConsulta.executeQuery();
-            while(resultadoConsulta.next()){
+            while (resultadoConsulta.next()) {
                 Idioma idioma = new Idioma();
                 idioma.setIdIdioma(resultadoConsulta.getString(1));
                 idioma.setNombreIdioma(resultadoConsulta.getString(2));
                 idiomas.add(idioma);
             }
-           
+
         } catch (SQLException exception) {
-            
+
         } finally {
             conexionBD.cerrarConexion();
         }
-        
+
         return idiomas;
     }
-    
+
 }

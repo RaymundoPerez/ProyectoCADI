@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Negocio;
 
 import Datos.ConexionSQL;
@@ -14,11 +9,23 @@ import java.sql.Time;
 import java.util.ArrayList;
 
 /**
+ * Permite realizar todas las acciones vinculadas con <Empleado>.
  *
- * @author raymu
+ * @author Irvin Vera.
+ * @author Alonso Lora.
+ * @author Raymundo Pérez.
  */
 public class EmpleadoDAO implements IEmpleadoDAO {
 
+    /**
+     * Permite obtener la informacion de un empleado.
+     *
+     * @param nombreUsuario
+     * @exception SQLException. La excepción se puede mandar cuando no se
+     * obtiene el resultado esperado por un error en la consulta a la base de
+     * datos.
+     * @return Un Objeto de la clase <Empleado>.
+     */
     @Override
     public Empleado obtenerEmpleado(String nombreUsuario) {
         Empleado empleado = new Empleado();
@@ -44,6 +51,15 @@ public class EmpleadoDAO implements IEmpleadoDAO {
         return empleado;
     }
 
+    /**
+     * Permite obtener el nombre de un empleado.
+     *
+     * @param noPersonal
+     * @exception SQLException. La excepción se puede mandar cuando no se
+     * obtiene el resultado esperado por un error en la consulta a la base de
+     * datos.
+     * @return El nombre del empleado.
+     */
     @Override
     public String obtenerNombreEmpleado(String noPersonal) {
         String nombreEmpleado = "";
@@ -66,8 +82,20 @@ public class EmpleadoDAO implements IEmpleadoDAO {
         return nombreEmpleado;
     }
 
+    /**
+     * Permite obtener a partir de una hora, un idioma y una fecha los asesores
+     * dsponibles.
+     *
+     * @param hora
+     * @param idIdioma
+     * @param fecha
+     * @exception SQLException. La excepción se puede mandar cuando no se
+     * obtiene el resultado esperado por un error en la consulta a la base de
+     * datos.
+     * @return Una lista con objetos de la clase <Empleado>.
+     */
     @Override
-    public ArrayList<Empleado> obtenerEmpleadosDisponibles(Time hora, String idIdioma,Date fecha) {
+    public ArrayList<Empleado> obtenerEmpleadosDisponibles(Time hora, String idIdioma, Date fecha) {
         ArrayList<Empleado> asesoresDisponibles = new ArrayList();
         ConexionSQL conexionBD = new ConexionSQL();
         conexionBD.conectarBaseDatos();
@@ -90,7 +118,7 @@ public class EmpleadoDAO implements IEmpleadoDAO {
                 asesoresDisponibles.add(empleado);
             }
         } catch (SQLException exception) {
-            
+
         } finally {
             conexionBD.cerrarConexion();
         }

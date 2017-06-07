@@ -1,23 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Negocio;
 
 import Datos.ConexionSQL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
+ * Permite realizar todas las acciones vinculadas con la clase
+ * <UsuarioAutonomo>.
  *
- * @author raymu
+ * @author Irvin Vera.
+ * @author Alonso Lora.
+ * @author Raymundo Pérez.
  */
 public class UsuarioAutonomoDAO implements IUsuarioAutonomoDAO {
 
+    /**
+     * Permite crear un nuevo <UsuarioAutonomo>.
+     *
+     * @param usuarioAutonomo
+     * @exception SQLException. La excepción se puede mandar cuando no se
+     * obtiene el resultado esperado por un error en la consulta a la base de
+     * datos
+     * @return Un objeto de la clase <InformacionUsuarioAutonomo>.
+     */
     @Override
     public InformacionUsuarioAutonomo crearUsuarioAutonomo(UsuarioAutonomo usuarioAutonomo) {
         InformacionUsuarioAutonomo mensaje = InformacionUsuarioAutonomo.usuarioAutonomoNoCreado;
@@ -44,6 +51,15 @@ public class UsuarioAutonomoDAO implements IUsuarioAutonomoDAO {
         return mensaje;
     }
 
+    /**
+     * Permite obtener la inforamción de un <UsuarioAutonomo>.
+     *
+     * @param nombreUsuario
+     * @exception SQLException. La excepción se puede mandar cuando no se
+     * obtiene el resultado esperado por un error en la consulta a la base de
+     * datos
+     * @return Un objeto de la clase <UsuarioAutonomo>.
+     */
     @Override
     public UsuarioAutonomo obtenerUsuarioAutonomo(String nombreUsuario) {
         UsuarioAutonomo usuarioAutonomo = new UsuarioAutonomo();
@@ -70,6 +86,16 @@ public class UsuarioAutonomoDAO implements IUsuarioAutonomoDAO {
         return usuarioAutonomo;
     }
 
+    /**
+     * Permite validar la existencia de un <UsuarioAutonomo>.
+     *
+     * @param matricula
+     * @exception SQLException. La excepción se puede mandar cuando no se
+     * obtiene el resultado esperado por un error en la consulta a la base de
+     * datos
+     * @return Un valor verdadero si el usuario existe o un valor falso si es lo
+     * contrario.
+     */
     @Override
     public boolean validarExistenciaUsuarioAutonomo(String matricula) {
         boolean existeUsuarioAutonomo = false;
@@ -90,6 +116,15 @@ public class UsuarioAutonomoDAO implements IUsuarioAutonomoDAO {
         return existeUsuarioAutonomo;
     }
 
+    /**
+     * Permite obtener todos los <UsuariosAutonomos> inscritos en alguna
+     * <ExperienciaEducativa>.
+     *
+     * @exception SQLException. La excepción se puede mandar cuando no se
+     * obtiene el resultado esperado por un error en la consulta a la base de
+     * datos
+     * @return Una lista de objetos de la clase <UsuarioAutonomo>.
+     */
     @Override
     public ArrayList<UsuarioAutonomo> obtenerTodosLosAlumnosInscritos() {
         ArrayList<UsuarioAutonomo> usuariosAutonomos = new ArrayList<>();
@@ -119,7 +154,16 @@ public class UsuarioAutonomoDAO implements IUsuarioAutonomoDAO {
         return usuariosAutonomos;
     }
 
-    
+    /**
+     * Permite validar la existencia de un <UsuarioAutonomo>
+     *
+     * @param matricula
+     * @exception SQLException. La excepción se puede mandar cuando no se
+     * obtiene el resultado esperado por un error en la consulta a la base de
+     * datos
+     * @return Un valor verdadero si el <UsuarioAutonomo> ya está insrito o un
+     * valor falso de lo contrario.
+     */
     @Override
     public boolean validarExistenciaUsuarioAutonomoConInscripcion(String matricula) {
         boolean usuarioExistente = false;
@@ -141,9 +185,18 @@ public class UsuarioAutonomoDAO implements IUsuarioAutonomoDAO {
 
     }
 
+    /**
+     * Permite obtener la información de un <UsuarioAutonomo> dada su matrícula.
+     *
+     * @param matricula
+     * @exception SQLException. La excepción se puede mandar cuando no se
+     * obtiene el resultado esperado por un error en la consulta a la base de
+     * datos
+     * @return Un objeto de la clase<UsuarioAutonomo>.
+     */
     @Override
     public UsuarioAutonomo obtenerUsuarioAutonomoPorMatricula(String matricula) {
-         UsuarioAutonomo usuarioAutonomo = new UsuarioAutonomo();
+        UsuarioAutonomo usuarioAutonomo = new UsuarioAutonomo();
         ConexionSQL conexionBD = new ConexionSQL();
         conexionBD.conectarBaseDatos();
         PreparedStatement sentenciaConsulta;

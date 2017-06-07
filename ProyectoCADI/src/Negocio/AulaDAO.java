@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Negocio;
 
 import Datos.ConexionSQL;
@@ -14,11 +9,24 @@ import java.sql.Time;
 import java.util.ArrayList;
 
 /**
+ * Permite realizar todas las acciones vinculadas con  <Aula>.
  *
- * @author alonso
+ * @author Irvin Vera.
+ * @author Alonso Lora.
+ * @author Raymundo Pérez.
  */
-public class AulaDAO implements IAulaDAO{
+public class AulaDAO implements IAulaDAO {
 
+    /**
+     * Permite obtener las aulas disponibles a partir de un hora y fecha.
+     *
+     * @param hora.
+     * @param fecha.
+     * @exception SQLException. La excepción se puede mandar cuando no se
+     * obtiene el resultado esperado por un error en la consulta a la base de
+     * datos.
+     * @return regresa una lista de aulas disponibles.
+     */
     @Override
     public ArrayList<Aula> obtenerAulasDisponibles(Time hora, Date fecha) {
         ArrayList<Aula> aulasDisponibles = new ArrayList();
@@ -46,5 +54,5 @@ public class AulaDAO implements IAulaDAO{
         }
         return aulasDisponibles;
     }
-    
+
 }

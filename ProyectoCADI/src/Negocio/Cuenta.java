@@ -1,15 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Negocio;
 
 /**
+ * Plantilla con la información de la cuenta que tienen todos los usuarios para
+ * ingresar al sistema.
  *
- * @author sony
+ * @author Irvin Vera
+ * @author Alonso Lora
+ * @author Raymundo Pérez
  */
 public class Cuenta {
+
     private String constraseña;
     private String nombreUsuario;
     private String tipoUsuario;
@@ -37,6 +37,5 @@ public class Cuenta {
     public void setTipoUsuario(String tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
     }
-    
-    
+
 }

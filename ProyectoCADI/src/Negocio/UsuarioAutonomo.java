@@ -1,17 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Negocio;
 
 import java.sql.Date;
 
 /**
+ * Plantilla con la información del Usuario Autónomo.
  *
- * @author sony
+ * @author Irvin Vera
+ * @author Alonso Lora
+ * @author Raymundo Pérez
  */
 public class UsuarioAutonomo {
+
     private String apellidos;
     private String nombres;
     private String correoElectronico;
@@ -67,8 +66,9 @@ public class UsuarioAutonomo {
     public void setFechaNac(Date fechaNac) {
         this.fechaNac = fechaNac;
     }
-    public void setFechaNac(int año,int mes, int dia) {
-        fechaNac = new Date(año,mes,dia);
+
+    public void setFechaNac(int año, int mes, int dia) {
+        fechaNac = new Date(año, mes, dia);
     }
 
     public String getExperienciaEducativa() {
@@ -78,6 +78,5 @@ public class UsuarioAutonomo {
     public void setExperienciaEducativa(String experienciaEducativa) {
         this.experienciaEducativa = experienciaEducativa;
     }
-    
-    
+
 }

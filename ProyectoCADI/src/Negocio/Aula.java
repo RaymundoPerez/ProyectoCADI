@@ -1,11 +1,14 @@
-
 package Negocio;
 
 /**
+ * Plantilla con la información del Aula.
  *
- * @author alonso
+ * @author Irvin Vera
+ * @author Alonso Lora
+ * @author Raymundo Pérez
  */
 public class Aula {
+
     private int cupo;
     private String idAula;
 
@@ -24,6 +27,5 @@ public class Aula {
     public void setIdAula(String idAula) {
         this.idAula = idAula;
     }
-    
-    
+
 }
